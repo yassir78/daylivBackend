@@ -12,5 +12,5 @@ public class Partenaire {
 	private long id;
 	private String description;
 	private String banniere;
-	
+	private List
 }

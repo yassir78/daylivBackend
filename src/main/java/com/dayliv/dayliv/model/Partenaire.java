@@ -1,9 +1,12 @@
 package com.dayliv.dayliv.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Partenaire {
@@ -12,5 +15,6 @@ public class Partenaire {
 	private long id;
 	private String description;
 	private String banniere;
-	private List
+	@OneToMany(mappedBy = "partenaire")
+	private List<Product> products;
 }

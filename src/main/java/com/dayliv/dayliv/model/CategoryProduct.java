@@ -6,18 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 
 @Entity
-public class Consumer {
+
+public class CategoryProduct {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@OneToOne
-	private Panier panier;
-	@OneToMany(mappedBy = "consumer")
-	private List<Commande> commandes;
-	@OneToMany(mappedBy = "consumer")
-	private List<Paiement> paiements;
+	private String category_name;
+	@ManyToMany
+	private List<Product> products;
 }

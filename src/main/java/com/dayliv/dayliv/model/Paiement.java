@@ -1,23 +1,27 @@
 package com.dayliv.dayliv.model;
 
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.sun.istack.NotNull;
+
 @Entity
-public class Consumer {
+public class Paiement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@NotNull
+	private Date date_paiement;
+	@NotNull
+	private Float total;
+	@ManyToOne
+	private Consumer consumer;
 	@OneToOne
-	private Panier panier;
-	@OneToMany(mappedBy = "consumer")
-	private List<Commande> commandes;
-	@OneToMany(mappedBy = "consumer")
-	private List<Paiement> paiements;
+	private Commande commande;
 }

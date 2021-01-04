@@ -7,17 +7,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
+import com.sun.istack.NotNull;
 
 @Entity
-public class Consumer {
+public class CommandeStatus {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@OneToOne
-	private Panier panier;
-	@OneToMany(mappedBy = "consumer")
+	@NotNull
+	private String etat_commande;
+	@OneToMany(mappedBy = "commandeStatus")
 	private List<Commande> commandes;
-	@OneToMany(mappedBy = "consumer")
-	private List<Paiement> paiements;
 }

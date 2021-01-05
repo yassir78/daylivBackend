@@ -39,4 +39,6 @@ public class Product {
 	private CommandeItem commandeItem;
 	@ManyToOne
 	private Partenaire partenaire;
+	@OneToMany(mappedBy = "product")
+	private List<Ingredient> products;
 }

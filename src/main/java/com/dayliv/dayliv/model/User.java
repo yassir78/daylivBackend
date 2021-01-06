@@ -10,9 +10,18 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 @Entity
 @Inheritance( strategy = InheritanceType.SINGLE_TABLE )
 @DiscriminatorColumn( name="type", discriminatorType = DiscriminatorType.STRING )
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

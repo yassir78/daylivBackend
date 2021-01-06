@@ -12,7 +12,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,16 +34,16 @@ public class Product {
 	@NotNull
 	private String description;
 	@NotNull
-	private String stock_quantity;
+	private Integer stock_quantity;
 	@NotNull
 	private Float price;
 	private String origine;
+	private String image;
 	private Float poids;
 	private Integer caloris;
 	@OneToOne
 	private PanierItem panierItem;
 	@ManyToMany(mappedBy = "products")
-	@NotNull
 	private List<CategoryProduct> categoryProducts;
 	@OneToMany(mappedBy = "product")
 	private List<Ingredient> ingredients;
@@ -41,4 +53,6 @@ public class Product {
 	private Partenaire partenaire;
 	@OneToMany(mappedBy = "product")
 	private List<Ingredient> products;
+	@OneToMany(mappedBy = "product")
+	private List<Commentaire> commentaires;
 }

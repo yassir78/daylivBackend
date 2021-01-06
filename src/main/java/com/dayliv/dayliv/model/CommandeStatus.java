@@ -10,7 +10,16 @@ import javax.persistence.OneToMany;
 
 import com.sun.istack.NotNull;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class CommandeStatus {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

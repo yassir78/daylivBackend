@@ -11,7 +11,16 @@ import javax.persistence.OneToOne;
 
 import com.sun.istack.NotNull;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Paiement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

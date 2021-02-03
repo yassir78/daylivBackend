@@ -1,4 +1,4 @@
-package com.dayliv.dayliv.serviceIml;
+package com.dayliv.dayliv.serviceImpl;
 
 import java.util.List;
 

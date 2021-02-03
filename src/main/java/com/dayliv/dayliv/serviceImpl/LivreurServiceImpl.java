@@ -1,4 +1,4 @@
-package com.dayliv.dayliv.serviceIml;
+package com.dayliv.dayliv.serviceImpl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.dayliv.dayliv.dao.LivreurDao;
 import com.dayliv.dayliv.model.Livreur;
 import com.dayliv.dayliv.service.LivreurService;
+
 @Service
 public class LivreurServiceImpl implements LivreurService {
 	@Autowired
@@ -15,14 +16,39 @@ public class LivreurServiceImpl implements LivreurService {
 
 	@Override
 	public List<Livreur> findAll() {
-		// TODO Auto-generated method stub
 		return livreurDao.findAll();
 	}
 
 	@Override
 	public Livreur save(Livreur livreur) {
-		// TODO Auto-generated method stub
 		return livreurDao.save(livreur);
+	}
+
+	@Override
+	public void delete(Long id) {
+		livreurDao.deleteById(id);
+	}
+
+	@Override
+	public Livreur update(Long id, Livreur livreur) {
+		return livreurDao.save(livreur);
+	}
+
+	@Override
+	public Livreur findByNom(String nom) {
+		return livreurDao.findByNom(nom);
+	}
+
+	@Override
+	public Livreur findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Livreur findByLogin(String login) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

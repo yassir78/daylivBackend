@@ -31,4 +31,8 @@ public class Consumer extends User {
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@OneToMany(mappedBy = "consumer")
 	private List<Paiement> paiements;
+	
+	
+	
+
 }

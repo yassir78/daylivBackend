@@ -1,4 +1,4 @@
-package com.dayliv.dayliv.serviceIml;
+package com.dayliv.dayliv.serviceImpl;
 
 import java.util.List;
 
@@ -16,14 +16,38 @@ public class ConsumerServiceImpl implements ConsumerService {
 
 	@Override
 	public List<Consumer> findAll() {
-		// TODO Auto-generated method stub
 		return consumerDao.findAll();
 	}
 
 	@Override
 	public Consumer save(Consumer consumer) {
-		// TODO Auto-generated method stub
 		return consumerDao.save(consumer);
+	}
+	
+
+	@Override
+	public Consumer findByLogin(final String login) {
+		return consumerDao.findByLogin(login).orElse(null);
+	}
+
+	@Override
+	public void delete(Long id) {
+		consumerDao.deleteById(id);		
+	}
+
+	@Override
+	public Consumer update(Long id, Consumer consumer) {
+		return consumerDao.save(consumer);
+	}
+
+	@Override
+	public Consumer findByNom(String nom) {
+		return consumerDao.findByNom(nom);
+	}
+
+	@Override
+	public Consumer findById(Long id) {
+		return consumerDao.getOne(id);
 	}
 
 }

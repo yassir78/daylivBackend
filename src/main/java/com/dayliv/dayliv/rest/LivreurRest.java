@@ -39,24 +39,24 @@ public class LivreurRest {
 	}
 	
 	
-	@DeleteMapping("/dayliv-api/livreur/id/{id}")
+	@DeleteMapping("/id/{id}")
 	public void delete(@PathVariable Long id) {
 		livreurService.delete(id);
 	}
-	@PutMapping("/dayliv-api/livreur/num/{id}")
+	@PutMapping("/num/{id}")
 	public Livreur update(@PathVariable Long id,@RequestBody Livreur livreur) {
 		return livreurService.update(id, livreur);
 	}
-	@PostMapping("/dayliv-api/livreur/save")
+	@PostMapping("/save")
 	public Livreur save(@RequestBody Livreur livreur) {
 		return livreurService.save(livreur);
 	}
-	@GetMapping("/dayliv-api/livreur/nom/{nom}")
+	@GetMapping("/nom/{nom}")
 	public Livreur findByNom(@PathVariable String nom) {
 		return livreurService.findByNom(nom);
 	}
 
-	@GetMapping("/dayliv-api/livreur/id/{id}")
+	@GetMapping("/id/{id}")
 	public Livreur findById(@PathVariable Long id) {
 	    return livreurService.findById(id);
 	}

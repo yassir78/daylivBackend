@@ -42,30 +42,30 @@ public class PartenaireRest {
 	}
 	
 	
-	@DeleteMapping("/dayliv-api/consumer/id/{id}")
+	@DeleteMapping("/id/{id}")
 	public void delete(@PathVariable Long id) {
 		partenaireService.delete(id);
 	}
-	@PutMapping("/dayliv-api/consumer/num/{id}")
+	@PutMapping("/num/{id}")
 	public Partenaire update(@PathVariable Long id,@RequestBody Partenaire partenaire) {
 		return partenaireService.update(id, partenaire);
 	}
-	@PostMapping("/dayliv-api/consumer/save")
+	@PostMapping("/save")
 	public Partenaire save(@RequestBody Partenaire partenaire) {
 		return partenaireService.save(partenaire);
 	}
-	@GetMapping("/dayliv-api/partenaire/nom/{nom}")
+	@GetMapping("/nom/{nom}")
 	public Partenaire findByNom(@PathVariable String nom) {
 		return partenaireService.findByNom(nom);
 	}
 
-	@GetMapping("/dayliv-api/partenaire/id/{id}")
+	@GetMapping("/id/{id}")
 	public Partenaire findById(@PathVariable Long id) {
 	    return partenaireService.findById(id);
 	}
 
 
-	@PostMapping("/dayliv-api/partenaire/register")
+	@PostMapping("/register")
 	public ResponseEntity<?> partenaireRegister(@RequestBody Partenaire partenaire){
 	    if(partenaireService.findByLogin(partenaire.getLogin())!=null){
 	        return new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -74,7 +74,7 @@ public class PartenaireRest {
 	    return new ResponseEntity<>(partenaireService.save(partenaire), HttpStatus.CREATED);
 	}
 
-	@GetMapping("/dayliv-api/partenaire/login")
+	@GetMapping("/login")
 	public ResponseEntity<?> partenaireLogin(Principal principal){
 	     if(principal == null){
 	        return ResponseEntity.ok(principal);

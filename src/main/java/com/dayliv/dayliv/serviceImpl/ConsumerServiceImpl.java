@@ -3,17 +3,20 @@ package com.dayliv.dayliv.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.dayliv.dayliv.dao.ConsumerDao;
 import com.dayliv.dayliv.model.Consumer;
 import com.dayliv.dayliv.service.ConsumerService;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Service
 public class ConsumerServiceImpl implements ConsumerService {
 	@Autowired
 	private ConsumerDao consumerDao;
-
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	@Override
 	public List<Consumer> findAll() {
 		return consumerDao.findAll();
@@ -21,6 +24,7 @@ public class ConsumerServiceImpl implements ConsumerService {
 
 	@Override
 	public Consumer save(Consumer consumer) {
+		consumer.setPassword(passwordEncoder.encode(consumer.getPassword()));
 		return consumerDao.save(consumer);
 	}
 	

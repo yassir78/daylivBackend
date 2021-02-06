@@ -38,7 +38,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
         http.cors().and()
                 .authorizeRequests()
                 //These are public paths
-                .antMatchers("/resources/**",  "/error", "/api/user/**", "/dayliv-api/audit_stock/", "/dayliv-api/chiffre/", "/dayliv-api/produit/demande/**").permitAll()
+                .antMatchers("/dayliv-api/consumer/**", "/dayliv-api/livreur/**", "/dayliv-api/partenaire/**").permitAll()
                 //These can be reachable for just have admin role.
                 .antMatchers("/dayliv-api/admin/**").hasRole("ADMIN")
                 //All remaining paths should need authentication.

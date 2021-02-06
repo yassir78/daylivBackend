@@ -37,30 +37,30 @@ public class ConsumerRest {
 	}
 	
 	
-	@DeleteMapping("/dayliv-api/consumer/id/{id}")
+	@DeleteMapping("/id/{id}")
 	public void delete(@PathVariable Long id) {
 		consumerService.delete(id);
 	}
-	@PutMapping("/dayliv-api/consumer/num/{id}")
+	@PutMapping("/num/{id}")
 	public Consumer update(@PathVariable Long id,@RequestBody Consumer consumer) {
 		return consumerService.update(id, consumer);
 	}
-	@PostMapping("/dayliv-api/consumer/save")
+	@PostMapping("/save")
 	public Consumer save(@RequestBody Consumer consumer) {
 		return consumerService.save(consumer);
 	}
-	@GetMapping("/dayliv-api/consumer/nom/{nom}")
+	@GetMapping("/nom/{nom}")
 	public Consumer findByNom(@PathVariable String nom) {
 		return consumerService.findByNom(nom);
 	}
 
-	@GetMapping("/dayliv-api/consumer/id/{id}")
+	@GetMapping("/id/{id}")
 	public Consumer findById(@PathVariable Long id) {
 	    return consumerService.findById(id);
 	}
 
 
-	@PostMapping("/dayliv-api/consumer/register")
+	@PostMapping("/register")
 	public ResponseEntity<?> consumerRegister(@RequestBody Consumer consumer){
 	    if(consumerService.findByLogin(consumer.getLogin())!=null){
 	        return new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -69,7 +69,7 @@ public class ConsumerRest {
 	    return new ResponseEntity<>(consumerService.save(consumer), HttpStatus.CREATED);
 	}
 
-	@GetMapping("/dayliv-api/consumer/login")
+	@GetMapping("/login")
 	public ResponseEntity<?> consumerLogin(Principal principal){
 	     if(principal == null){
 	        return ResponseEntity.ok(principal);
@@ -78,7 +78,7 @@ public class ConsumerRest {
 	            (UsernamePasswordAuthenticationToken) principal;
 	    Consumer consumer = consumerService.findByLogin(authenticationToken.getName());
 	    consumer.setToken(tokenProvider.generateToken(authenticationToken));
-
+        System.out.println(consumer.toString());
 	    return new ResponseEntity<>(consumer, HttpStatus.OK);
 	}
 

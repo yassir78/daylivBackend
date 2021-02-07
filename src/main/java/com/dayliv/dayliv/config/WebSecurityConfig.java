@@ -1,6 +1,7 @@
 package com.dayliv.dayliv.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -38,7 +39,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
         http.cors().and()
                 .authorizeRequests()
                 //These are public paths
-                .antMatchers("/dayliv-api/consumer/**", "/dayliv-api/livreur/**", "/dayliv-api/partenaire/**").permitAll()
+                .antMatchers("/dayliv-api/consumer/**", "/dayliv-api/livreur/**", "/dayliv-api/partenaire/**","/dayli-api/consumer/login").permitAll()
                 //These can be reachable for just have admin role.
                 .antMatchers("/dayliv-api/admin/**").hasRole("ADMIN")
                 //All remaining paths should need authentication.
@@ -46,10 +47,10 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .and()
                 //logout will log the user out by invalidated session.
                 .logout().permitAll()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/dayliv-api/user/logout", "POST"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/dayliv-api/consumer/logout", "POST"))
                 .and()
                 //login form and path
-                .formLogin().loginPage("/dayliv-api/user/login").and()
+                .formLogin().loginPage("/dayliv-api/consumer/login").and()
                 //enable basic authentication
                 .httpBasic().and()
                 //We will handle it later.

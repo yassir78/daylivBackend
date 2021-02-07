@@ -35,6 +35,11 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //Cross-origin-resource-sharing: localhost:8080, localhost:4200(allow for it.)
+    	http
+		.headers()
+			.frameOptions().sameOrigin()
+			.httpStrictTransportSecurity().disable();
+    	
         http.cors().and()
                 .authorizeRequests()
                 //These are public paths
@@ -46,10 +51,10 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .and()
                 //logout will log the user out by invalidated session.
                 .logout().permitAll()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/dayliv-api/user/logout", "POST"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/dayliv-api/consumer/logout", "POST"))
                 .and()
                 //login form and path
-                .formLogin().loginPage("/dayliv-api/user/login").and()
+                .formLogin().loginPage("/dayliv-api/consumer/loginx").and()
                 //enable basic authentication
                 .httpBasic().and()
                 //We will handle it later.

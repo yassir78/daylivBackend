@@ -78,10 +78,9 @@ public class ConsumerRest {
 	            (UsernamePasswordAuthenticationToken) principal;
 	    Consumer consumer = consumerService.findByLogin(authenticationToken.getName());
 	    consumer.setToken(tokenProvider.generateToken(authenticationToken));
-        System.out.println(consumer.toString());
+        System.out.println(consumer );
 	    return new ResponseEntity<>(consumer, HttpStatus.OK);
 	}
-
 	
 
 

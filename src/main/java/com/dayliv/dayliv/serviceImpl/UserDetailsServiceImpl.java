@@ -9,25 +9,27 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.dayliv.dayliv.dao.ConsumerDao;
 import com.dayliv.dayliv.model.Consumer;
 
-public class UserDetailServiceImpl implements UserDetailsService {
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private ConsumerDao consumerDao;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Consumer client = consumerDao.findByLogin(username).orElse(null);
-		if (client == null) {
+		Consumer consumer = consumerDao.findByLogin(username).orElse(null);
+		if (consumer == null) {
 			throw new UsernameNotFoundException(username);
 		}
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		grantedAuthorities.add(new SimpleGrantedAuthority(client.getRole().name()));
+		grantedAuthorities.add(new SimpleGrantedAuthority(consumer.getRole().name()));
 
-		return new org.springframework.security.core.userdetails.User(client.getLogin(), client.getPassword(),
+		return new org.springframework.security.core.userdetails.User(consumer.getLogin(), consumer.getPassword(),
 				grantedAuthorities);
 	}
 

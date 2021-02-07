@@ -20,5 +20,5 @@ import lombok.ToString;
 public class SuperAdmin extends User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 }

@@ -66,7 +66,7 @@ public class DaylivBackendApplication {
 			cons1.setPassword("TYlpDChshPaxdZmJ");
 			cons1.setC_password("TYlpDChshPaxdZmJ");
 			cons1.setImage_profile("https://picsum.photos/200/300");
-			cons1.setActive(true);
+			cons1.setEnabled(true);
 			cons1.setLogin("Dougherty");
 			//
 			cons2.setNom("Alejandra");
@@ -76,7 +76,7 @@ public class DaylivBackendApplication {
 			cons2.setPassword("vxcCwtgeKwImUbor");
 			cons2.setC_password("vxcCwtgeKwImUbor");
 			cons2.setImage_profile("https://picsum.photos/200/300");
-			cons2.setActive(true);
+			cons2.setEnabled(true);
 			cons2.setLogin("Hammons");
 			//
 			cons3.setNom("Brenda");
@@ -86,7 +86,7 @@ public class DaylivBackendApplication {
 			cons3.setPassword("MPJQyBgDxlOBITri");
 			cons3.setC_password("MPJQyBgDxlOBITri");
 			cons3.setImage_profile("https://picsum.photos/200/300");
-			cons3.setActive(true);
+			cons3.setEnabled(true);
 			cons3.setLogin("Middlebrooks");
 			//
 			cons4.setNom("Joseph");
@@ -96,7 +96,7 @@ public class DaylivBackendApplication {
 			cons4.setPassword("veVuWumHZrxxCQRT");
 			cons4.setC_password("veVuWumHZrxxCQRT");
 			cons4.setImage_profile("https://picsum.photos/200/300");
-			cons4.setActive(true);
+			cons4.setEnabled(true);
 			cons4.setLogin("Middlebrooks");
 			Stream.of(cons1, cons2, cons3, cons4).forEach(consumer -> {
 				consumerDao.save(consumer);
@@ -112,7 +112,7 @@ public class DaylivBackendApplication {
 			dis1.setPassword("ievRFDHabiPTEfsL");
 			dis1.setC_password("ievRFDHabiPTEfsL");
 			dis1.setImage_profile("https://picsum.photos/200/300");
-			dis1.setActive(true);
+			dis1.setEnabled(true);
 			dis1.setLogin("Palos");
 			//
 			dis2.setNom("Sallie");
@@ -122,7 +122,7 @@ public class DaylivBackendApplication {
 			dis2.setPassword("Rpb2$57]VL?UcPB(");
 			dis2.setC_password("Rpb2$57]VL?UcPB(");
 			dis2.setImage_profile("https://picsum.photos/200/300");
-			dis2.setActive(true);
+			dis2.setEnabled(true);
 			dis2.setLogin("Napolitano");
 			//
 			dis3.setNom("Anthony");
@@ -132,7 +132,7 @@ public class DaylivBackendApplication {
 			dis3.setPassword("IxgtgdwfQGegbSeQ");
 			dis3.setC_password("IxgtgdwfQGegbSeQ");
 			dis3.setImage_profile("https://picsum.photos/200/300");
-			dis3.setActive(true);
+			dis3.setEnabled(true);
 			dis3.setLogin("Dyson");
 			Stream.of(dis1, dis2, dis3).forEach(dispatcher -> {
 				dispatcherDao.save(dispatcher);
@@ -148,7 +148,7 @@ public class DaylivBackendApplication {
 			liv1.setPassword("oqtvvFAXXqKhTJtk");
 			liv1.setC_password("oqtvvFAXXqKhTJtk");
 			liv1.setImage_profile("https://picsum.photos/200/300");
-			liv1.setActive(true);
+			liv1.setEnabled(true);
 			liv1.setLogin("Payne");
 			liv1.setCard_id("ER-26384");
 			liv1.setMobility("voiture");
@@ -160,7 +160,7 @@ public class DaylivBackendApplication {
 			liv2.setPassword("jyCyurZFqSlcdvUn");
 			liv2.setC_password("jyCyurZFqSlcdvUn");
 			liv2.setImage_profile("https://picsum.photos/200/300");
-			liv2.setActive(true);
+			liv2.setEnabled(true);
 			liv2.setLogin("Abbott");
 			liv1.setCard_id("TG-22224");
 			liv1.setMobility("vélo");
@@ -172,7 +172,7 @@ public class DaylivBackendApplication {
 			liv3.setPassword("RUKNgMbisOhXDMQE");
 			liv3.setC_password("RUKNgMbisOhXDMQE");
 			liv3.setImage_profile("https://picsum.photos/200/300");
-			liv3.setActive(true);
+			liv3.setEnabled(true);
 			liv3.setLogin("Austin");
 			liv1.setCard_id("ZQ-12347");
 			liv1.setMobility("voiture");
@@ -190,7 +190,7 @@ public class DaylivBackendApplication {
 			part1.setPassword("yzdTHdeCyYqUIaMm");
 			part1.setC_password("yzdTHdeCyYqUIaMm");
 			part1.setImage_profile("https://picsum.photos/200/300");
-			part1.setActive(true);
+			part1.setEnabled(true);
 			part1.setLogin("Arroyo");
 			part1.setDescription("Black, straight hair awkwardly hangs over a furrowed");
 			part1.setBanniere("banniere1");
@@ -202,7 +202,7 @@ public class DaylivBackendApplication {
 			part2.setPassword("quXIpcyjGQygZnyg");
 			part2.setC_password("quXIpcyjGQygZnyg");
 			part2.setImage_profile("https://picsum.photos/200/300");
-			part2.setActive(true);
+			part2.setEnabled(true);
 			part2.setLogin("Stevens");
 			part2.setDescription(
 					"Blonde, perfectly groomed hair tight in a ponytail reveals a furrowed, lived-in face");
@@ -215,7 +215,7 @@ public class DaylivBackendApplication {
 			part3.setPassword("vOGwSIuOLqhEdSPK");
 			part3.setC_password("vOGwSIuOLqhEdSPK");
 			part3.setImage_profile("https://picsum.photos/200/300");
-			part3.setActive(true);
+			part3.setEnabled(true);
 			part3.setLogin("Emery");
 			part3.setDescription("White, frizzy hair awkwardly hangs over a furrowed, time-worn face.");
 			part3.setBanniere("bannier3");
@@ -231,7 +231,7 @@ public class DaylivBackendApplication {
 			superAdmin.setPassword("IrgUZCsPbwDBHnJD");
 			superAdmin.setC_password("IrgUZCsPbwDBHnJD");
 			superAdmin.setImage_profile("https://picsum.photos/200/300");
-			superAdmin.setActive(true);
+			superAdmin.setEnabled(true);
 			superAdmin.setLogin("Rego");
 			superAdminDao.save(superAdmin);
 			/* Products */

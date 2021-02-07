@@ -17,11 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dayliv.dayliv.jwt.JwtTokenProvider;
 import com.dayliv.dayliv.model.Consumer;
 import com.dayliv.dayliv.model.Panier;
 import com.dayliv.dayliv.model.Partenaire;
-import com.dayliv.dayliv.model.Role;
+import com.dayliv.dayliv.model.ERole;
 import com.dayliv.dayliv.service.ConsumerService;
 import com.dayliv.dayliv.service.PanierService;
 import com.dayliv.dayliv.service.PartenaireService;
@@ -33,8 +32,8 @@ public class PartenaireRest {
 	
 	@Autowired
 	private PartenaireService partenaireService;
-	@Autowired
-	private JwtTokenProvider tokenProvider;
+	//@Autowired
+	//private JwtTokenProvider tokenProvider;
 
 	@GetMapping("/all")
 	public List<Partenaire> findAll() {
@@ -64,13 +63,13 @@ public class PartenaireRest {
 	    return partenaireService.findById(id);
 	}
 
-
+/*
 	@PostMapping("/register")
 	public ResponseEntity<?> partenaireRegister(@RequestBody Partenaire partenaire){
 	    if(partenaireService.findByLogin(partenaire.getLogin())!=null){
 	        return new ResponseEntity<>(HttpStatus.CONFLICT);
 	    }
-	    partenaire.setRole(Role.PARTENAIRE);
+	    partenaire.setRole(ERole.PARTENAIRE);
 	    return new ResponseEntity<>(partenaireService.save(partenaire), HttpStatus.CREATED);
 	}
 
@@ -85,6 +84,6 @@ public class PartenaireRest {
 	    partenaire.setToken(tokenProvider.generateToken(authenticationToken));
 
 	    return new ResponseEntity<>(partenaire, HttpStatus.OK);
-	}
+	}*/
 
 }

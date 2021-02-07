@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dayliv.dayliv.jwt.JwtTokenProvider;
 import com.dayliv.dayliv.model.Consumer;
 import com.dayliv.dayliv.model.Livreur;
-import com.dayliv.dayliv.model.Role;
+import com.dayliv.dayliv.model.ERole;
 import com.dayliv.dayliv.service.ConsumerService;
 import com.dayliv.dayliv.service.LivreurService;
 
@@ -30,8 +29,7 @@ import com.dayliv.dayliv.service.LivreurService;
 public class LivreurRest {
 	@Autowired
 	private LivreurService livreurService;
-	@Autowired
-	private JwtTokenProvider tokenProvider;
+	//@Autowired
 
 	@GetMapping("/all")
 	public List<Livreur> findAll() {
@@ -61,13 +59,13 @@ public class LivreurRest {
 	    return livreurService.findById(id);
 	}
 
-
+/*
 	@PostMapping("/dayliv-api/livreur/register")
 	public ResponseEntity<?> livreurRegister(@RequestBody Livreur livreur){
 	    if(livreurService.findByLogin(livreur.getLogin())!=null){
 	        return new ResponseEntity<>(HttpStatus.CONFLICT);
 	    }
-	    livreur.setRole(Role.LIVREUR);
+	    livreur.setRole(ERole.LIVREUR);
 	    return new ResponseEntity<>(livreurService.save(livreur), HttpStatus.CREATED);
 	}
 
@@ -83,6 +81,6 @@ public class LivreurRest {
 
 	    return new ResponseEntity<>(livreur, HttpStatus.OK);
 	}
-
+*/
 
 }

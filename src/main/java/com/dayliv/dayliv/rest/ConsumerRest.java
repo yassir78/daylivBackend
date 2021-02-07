@@ -35,20 +35,22 @@ public class ConsumerRest {
 	public List<Consumer> findAll() {
 		return consumerService.findAll();
 	}
-	
-	
+
 	@DeleteMapping("/id/{id}")
 	public void delete(@PathVariable Long id) {
 		consumerService.delete(id);
 	}
+
 	@PutMapping("/num/{id}")
-	public Consumer update(@PathVariable Long id,@RequestBody Consumer consumer) {
+	public Consumer update(@PathVariable Long id, @RequestBody Consumer consumer) {
 		return consumerService.update(id, consumer);
 	}
+
 	@PostMapping("/save")
 	public Consumer save(@RequestBody Consumer consumer) {
 		return consumerService.save(consumer);
 	}
+
 	@GetMapping("/nom/{nom}")
 	public Consumer findByNom(@PathVariable String nom) {
 		return consumerService.findByNom(nom);
@@ -56,20 +58,11 @@ public class ConsumerRest {
 
 	@GetMapping("/id/{id}")
 	public Consumer findById(@PathVariable Long id) {
-	    return consumerService.findById(id);
-	}
-
-
-	@PostMapping("/register")
-	public ResponseEntity<?> consumerRegister(@RequestBody Consumer consumer){
-	    if(consumerService.findByLogin(consumer.getLogin())!=null){
-	        return new ResponseEntity<>(HttpStatus.CONFLICT);
-	    }
-	    consumer.setRole(Role.CONSUMER);
-	    return new ResponseEntity<>(consumerService.save(consumer), HttpStatus.CREATED);
+		return consumerService.findById(id);
 	}
 
 	@GetMapping("/login")
+
 	public ResponseEntity<?> consumerLogin(Principal principal){
 	     if(principal == null){
 	        return ResponseEntity.ok(principal);
@@ -83,5 +76,15 @@ public class ConsumerRest {
 	}
 	
 
+	@PostMapping("/register")
+	public ResponseEntity<?> consumerRegister(@RequestBody Consumer consumer) {
+         System.out.println("hello world");
+		if (consumerService.findByLogin(consumer.getLogin()) != null) {
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		}
+		consumer.setRole(Role.CONSUMER);
+		System.out.println(consumer.toString());
+		return new ResponseEntity<>(consumerService.save(consumer), HttpStatus.CREATED);
+	}
 
 }

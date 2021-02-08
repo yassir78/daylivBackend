@@ -49,6 +49,7 @@ public class AuthController {
 		String jwt = tokenProvider.createToken(authentication);
 		LocalUser localUser = (LocalUser) authentication.getPrincipal();
 		System.out.println(localUser);
+		//return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, GeneralUtils.buildUserInfo(localUser)));
 		return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, GeneralUtils.buildUserInfo(localUser)));
 	}
 

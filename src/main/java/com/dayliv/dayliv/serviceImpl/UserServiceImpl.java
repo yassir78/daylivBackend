@@ -21,12 +21,15 @@ import com.dayliv.dayliv.dto.SignUpRequest;
 import com.dayliv.dayliv.dto.SocialProvider;
 import com.dayliv.dayliv.exception.OAuth2AuthenticationProcessingException;
 import com.dayliv.dayliv.exception.UserAlreadyExistAuthenticationException;
+import com.dayliv.dayliv.model.Consumer;
 import com.dayliv.dayliv.model.Role;
 import com.dayliv.dayliv.model.User;
 import com.dayliv.dayliv.oauth2.user.OAuth2UserInfo;
 import com.dayliv.dayliv.oauth2.user.OAuth2UserInfoFactory;
 import com.dayliv.dayliv.service.UserService;
 import com.dayliv.dayliv.util.GeneralUtils;
+
+
 @Service
 public class UserServiceImpl implements UserService {
 

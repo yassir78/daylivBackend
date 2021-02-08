@@ -1,4 +1,5 @@
 package com.dayliv.dayliv.rest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,10 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dayliv.dayliv.config.CurrentUser;
 import com.dayliv.dayliv.dto.LocalUser;
+import com.dayliv.dayliv.service.ConsumerService;
+import com.dayliv.dayliv.service.UserService;
 import com.dayliv.dayliv.util.GeneralUtils;
 @RestController
 @RequestMapping("/api")
 public class UserRest {
+	@Autowired
+	UserService userService;
+	@Autowired
+	ConsumerService consumerService;
 	@GetMapping("/user/me")
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> getCurrentUser(@CurrentUser LocalUser user) {
@@ -19,7 +26,10 @@ public class UserRest {
 
 	@GetMapping("/all")
 	public ResponseEntity<?> getContent() {
-		return ResponseEntity.ok("Public content goes here");
+		return ResponseEntity.ok(consumerService.findAll());
+
+		
+		//return ResponseEntity.ok("Public content goes here");
 	}
 
 	@GetMapping("/user")

@@ -4,13 +4,14 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
-import com.dayliv.dayliv.model.User;
 import com.dayliv.dayliv.util.GeneralUtils;
+import  com.dayliv.dayliv.dto.LocalUser;
 
 public class LocalUser extends User implements OAuth2User, OidcUser {
 
@@ -21,15 +22,15 @@ public class LocalUser extends User implements OAuth2User, OidcUser {
 	private final OidcIdToken idToken;
 	private final OidcUserInfo userInfo;
 	private Map<String, Object> attributes;
-	private User user;
+	private  com.dayliv.dayliv.model.User user;
 
 	public LocalUser(final String userID, final String password, final boolean enabled, final boolean accountNonExpired, final boolean credentialsNonExpired,
-			final boolean accountNonLocked, final Collection<? extends GrantedAuthority> authorities, final User user) {
+			final boolean accountNonLocked, final Collection<? extends GrantedAuthority> authorities, final  com.dayliv.dayliv.model.User user) {
 		this(userID, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities, user, null, null);
 	}
 
 	public LocalUser(final String userID, final String password, final boolean enabled, final boolean accountNonExpired, final boolean credentialsNonExpired,
-			final boolean accountNonLocked, final Collection<? extends GrantedAuthority> authorities, final User user, OidcIdToken idToken,
+			final boolean accountNonLocked, final Collection<? extends GrantedAuthority> authorities, final  com.dayliv.dayliv.model.User user, OidcIdToken idToken,
 			OidcUserInfo userInfo) {
 		super(userID, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 		this.user = user;
@@ -37,7 +38,7 @@ public class LocalUser extends User implements OAuth2User, OidcUser {
 		this.userInfo = userInfo;
 	}
 
-	public static LocalUser create(User user, Map<String, Object> attributes, OidcIdToken idToken, OidcUserInfo userInfo) {
+	public static LocalUser create(com.dayliv.dayliv.model.User user, Map<String, Object> attributes, OidcIdToken idToken, OidcUserInfo userInfo) {
 		LocalUser localUser = new LocalUser(user.getEmail(), user.getPassword(), user.isEnabled(), true, true, true, GeneralUtils.buildSimpleGrantedAuthorities(user.getRoles()),
 				user, idToken, userInfo);
 		localUser.setAttributes(attributes);
@@ -50,7 +51,7 @@ public class LocalUser extends User implements OAuth2User, OidcUser {
 
 	@Override
 	public String getName() {
-		return this.user.getNom();
+		return this.user.getDisplayName();
 	}
 
 	@Override
@@ -73,14 +74,7 @@ public class LocalUser extends User implements OAuth2User, OidcUser {
 		return this.idToken;
 	}
 
-	public User getUser() {
+	public com.dayliv.dayliv.model.User getUser() {
 		return user;
 	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 }

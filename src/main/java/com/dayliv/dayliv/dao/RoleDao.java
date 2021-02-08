@@ -11,5 +11,5 @@ import com.dayliv.dayliv.model.Role;
 @CrossOrigin
 public interface RoleDao extends JpaRepository<Role,Long>{
 	
-	public Role findByName(String nom);
-}
+	Role findByName(String name);
+	}

@@ -23,7 +23,7 @@ import com.dayliv.dayliv.service.ConsumerService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/dayliv-api/consumer")
+@RequestMapping("/dayliv-api/consumer")   
 public class ConsumerRest {
 	@Autowired
 	private ConsumerService consumerService;

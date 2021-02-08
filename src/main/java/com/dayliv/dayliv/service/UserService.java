@@ -17,8 +17,8 @@ public interface UserService {
 
 	public User save(User user);
 	
-	  public User  findByLogin(String login);
-	  public User findByEmail(String email);
+	public User  findByLogin(String login);
+    public User findByEmail(String email);
 	public void delete(Long id);
 
 	public User update(Long id, User user);
@@ -26,7 +26,7 @@ public interface UserService {
 	public User findByNom(String nom);
 
 	public User findById(Long id);
-	
+
 	public User registerNewUser(SignUpRequest signUpRequest) throws UserAlreadyExistAuthenticationException;
 
 	User findUserByEmail(String email);

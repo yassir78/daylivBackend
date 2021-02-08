@@ -29,6 +29,7 @@ public class Panier {
 	private long id;
 	private float totale;
 	@OneToOne
+	@JsonIgnore
 	private Consumer consumer;
 	@OneToMany(mappedBy = "panier")
 	@JsonIgnore

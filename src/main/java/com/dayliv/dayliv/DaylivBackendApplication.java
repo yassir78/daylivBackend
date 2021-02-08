@@ -40,7 +40,7 @@ import com.dayliv.dayliv.model.Partenaire;
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.model.SuperAdmin;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.dayliv.dayliv")
 public class DaylivBackendApplication {
 
 	public static void main(String[] args) {

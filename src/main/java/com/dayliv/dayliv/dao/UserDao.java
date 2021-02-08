@@ -11,6 +11,6 @@ import com.dayliv.dayliv.model.User;
 @CrossOrigin
 public interface UserDao extends JpaRepository<User,Long>{
 	User findByEmail(String email);
-
+	public User  findByLogin(String login);
 	boolean existsByEmail(String email);
 }

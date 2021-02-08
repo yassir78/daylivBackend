@@ -1,6 +1,5 @@
 package com.dayliv.dayliv.service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -10,6 +9,7 @@ import com.dayliv.dayliv.dto.LocalUser;
 import com.dayliv.dayliv.exception.ResourceNotFoundException;
 import com.dayliv.dayliv.model.User;
 import com.dayliv.dayliv.util.GeneralUtils;
+
 @Service("localUserDetailService")
 public class LocalUserDetailService implements UserDetailsService {
 
@@ -18,12 +18,12 @@ public class LocalUserDetailService implements UserDetailsService {
 
 	@Override
 	@Transactional
-	public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
+	public LocalUser loadUserByUsername(final String email) throws UsernameNotFoundException {
 		User user = userService.findUserByEmail(email);
 		if (user == null) {
 			throw new UsernameNotFoundException("User " + email + " was not found in the database");
 		}
-		return (UserDetails) createLocalUser(user);
+		return createLocalUser(user);
 	}
 
 	@Transactional

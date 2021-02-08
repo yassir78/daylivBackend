@@ -27,7 +27,7 @@ import com.dayliv.dayliv.util.GeneralUtils;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/dayliv-api/auth")
 public class AuthController {
 
 	@Autowired

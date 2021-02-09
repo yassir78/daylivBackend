@@ -32,15 +32,17 @@ public class GeneralUtils {
 		return SocialProvider.LOCAL;
 	}
 
-	/*public static UserInfo buildUserInfo(LocalUser localUser) {
-		List<String> roles = localUser.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
-		User user = localUser.getUser();
-		return new UserInfo(user.getId().toString(), user.getDisplayName(), user.getEmail(), roles);
-	}*/
-	
-	
+	/*
+	 * public static UserInfo buildUserInfo(LocalUser localUser) { List<String>
+	 * roles = localUser.getAuthorities().stream().map(item ->
+	 * item.getAuthority()).collect(Collectors.toList()); User user =
+	 * localUser.getUser(); return new UserInfo(user.getId().toString(),
+	 * user.getDisplayName(), user.getEmail(), roles); }
+	 */
+
 	public static User buildUserInfo(LocalUser localUser) {
-		List<String> roles = localUser.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
+		List<String> roles = localUser.getAuthorities().stream().map(item -> item.getAuthority())
+				.collect(Collectors.toList());
 		User user = localUser.getUser();
 		return user;
 	}

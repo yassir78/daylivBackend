@@ -12,7 +12,7 @@ import com.dayliv.dayliv.service.ConsumerService;
 import com.dayliv.dayliv.service.UserService;
 import com.dayliv.dayliv.util.GeneralUtils;
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api-user")
 public class UserRest {
 	@Autowired
 	UserService userService;

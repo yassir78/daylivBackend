@@ -45,7 +45,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		Role userRole = createRoleIfNotFound(Role.ROLE_USER);
 		Role adminRole = createRoleIfNotFound(Role.ROLE_ADMIN);
 		Role modRole = createRoleIfNotFound(Role.ROLE_MODERATOR);
-		createUserIfNotFound("admin@javachinna.com", Set.of(userRole, adminRole, modRole));
+		createUserIfNotFound("geek.webfreelance@gmail.com", Set.of(userRole, adminRole, modRole));
 		alreadySetup = true;
 	}
 
@@ -56,7 +56,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			user = new User();
 			user.setDisplayName("Admin");
 			user.setEmail(email);
-			user.setPassword(passwordEncoder.encode("admin@"));
+			user.setPassword(passwordEncoder.encode("GWF-+9718"));
 			user.setRoles(roles);
 			user.setProvider(SocialProvider.LOCAL.getProviderType());
 			user.setEnabled(true);

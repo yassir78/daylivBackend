@@ -64,7 +64,6 @@ public class DaylivBackendApplication {
 			cons1.setNum_tel("609-364-4617");
 			cons1.setEmail("whomcide0@bones.hk");
 			cons1.setPassword("TYlpDChshPaxdZmJ");
-			cons1.setC_password("TYlpDChshPaxdZmJ");
 			cons1.setImage_profile("https://picsum.photos/200/300");
 			cons1.setEnabled(true);
 			cons1.setLogin("Dougherty");
@@ -74,7 +73,6 @@ public class DaylivBackendApplication {
 			cons2.setNum_tel("032-992-53-47");
 			cons2.setEmail("ealembratorel34kp@additive.center");
 			cons2.setPassword("vxcCwtgeKwImUbor");
-			cons2.setC_password("vxcCwtgeKwImUbor");
 			cons2.setImage_profile("https://picsum.photos/200/300");
 			cons2.setEnabled(true);
 			cons2.setLogin("Hammons");
@@ -84,7 +82,6 @@ public class DaylivBackendApplication {
 			cons3.setNum_tel("032-992-53-47");
 			cons3.setEmail("gabb@pg77789.com");
 			cons3.setPassword("MPJQyBgDxlOBITri");
-			cons3.setC_password("MPJQyBgDxlOBITri");
 			cons3.setImage_profile("https://picsum.photos/200/300");
 			cons3.setEnabled(true);
 			cons3.setLogin("Middlebrooks");
@@ -94,7 +91,6 @@ public class DaylivBackendApplication {
 			cons4.setNum_tel("06-82000981");
 			cons4.setEmail("oihssan.ih@mainstreethost.company");
 			cons4.setPassword("veVuWumHZrxxCQRT");
-			cons4.setC_password("veVuWumHZrxxCQRT");
 			cons4.setImage_profile("https://picsum.photos/200/300");
 			cons4.setEnabled(true);
 			cons4.setLogin("Middlebrooks");
@@ -110,7 +106,6 @@ public class DaylivBackendApplication {
 			dis1.setNum_tel("213-465-1744");
 			dis1.setEmail("4beatriz.mart@scottpetersondaniel.us");
 			dis1.setPassword("ievRFDHabiPTEfsL");
-			dis1.setC_password("ievRFDHabiPTEfsL");
 			dis1.setImage_profile("https://picsum.photos/200/300");
 			dis1.setEnabled(true);
 			dis1.setLogin("Palos");
@@ -120,7 +115,6 @@ public class DaylivBackendApplication {
 			dis2.setNum_tel("484-200-8165");
 			dis2.setEmail("zmostafaels@sempakk.com");
 			dis2.setPassword("Rpb2$57]VL?UcPB(");
-			dis2.setC_password("Rpb2$57]VL?UcPB(");
 			dis2.setImage_profile("https://picsum.photos/200/300");
 			dis2.setEnabled(true);
 			dis2.setLogin("Napolitano");
@@ -130,7 +124,6 @@ public class DaylivBackendApplication {
 			dis3.setNum_tel("276-445-3126");
 			dis3.setEmail("valiemad1999s@camaloon.mobi");
 			dis3.setPassword("IxgtgdwfQGegbSeQ");
-			dis3.setC_password("IxgtgdwfQGegbSeQ");
 			dis3.setImage_profile("https://picsum.photos/200/300");
 			dis3.setEnabled(true);
 			dis3.setLogin("Dyson");
@@ -146,7 +139,6 @@ public class DaylivBackendApplication {
 			liv1.setNum_tel("803-777-1455");
 			liv1.setEmail("radel.salaho6@ziplb.biz");
 			liv1.setPassword("oqtvvFAXXqKhTJtk");
-			liv1.setC_password("oqtvvFAXXqKhTJtk");
 			liv1.setImage_profile("https://picsum.photos/200/300");
 			liv1.setEnabled(true);
 			liv1.setLogin("Payne");
@@ -158,7 +150,6 @@ public class DaylivBackendApplication {
 			liv2.setNum_tel("515-361-6667");
 			liv2.setEmail("llal@gdian39.com");
 			liv2.setPassword("jyCyurZFqSlcdvUn");
-			liv2.setC_password("jyCyurZFqSlcdvUn");
 			liv2.setImage_profile("https://picsum.photos/200/300");
 			liv2.setEnabled(true);
 			liv2.setLogin("Abbott");
@@ -170,7 +161,6 @@ public class DaylivBackendApplication {
 			liv3.setNum_tel("515-361-6667");
 			liv3.setEmail("hr.amtd@boatparty.today");
 			liv3.setPassword("RUKNgMbisOhXDMQE");
-			liv3.setC_password("RUKNgMbisOhXDMQE");
 			liv3.setImage_profile("https://picsum.photos/200/300");
 			liv3.setEnabled(true);
 			liv3.setLogin("Austin");
@@ -188,7 +178,6 @@ public class DaylivBackendApplication {
 			part1.setNum_tel("973-258-2670");
 			part1.setEmail("xyoussaf.toto2d@patriciasalvo.com");
 			part1.setPassword("yzdTHdeCyYqUIaMm");
-			part1.setC_password("yzdTHdeCyYqUIaMm");
 			part1.setImage_profile("https://picsum.photos/200/300");
 			part1.setEnabled(true);
 			part1.setLogin("Arroyo");
@@ -200,7 +189,6 @@ public class DaylivBackendApplication {
 			part2.setNum_tel("912-202-4367");
 			part2.setEmail("1moun@pigsstep.com");
 			part2.setPassword("quXIpcyjGQygZnyg");
-			part2.setC_password("quXIpcyjGQygZnyg");
 			part2.setImage_profile("https://picsum.photos/200/300");
 			part2.setEnabled(true);
 			part2.setLogin("Stevens");
@@ -213,7 +201,6 @@ public class DaylivBackendApplication {
 			part3.setNum_tel("228-851-3155");
 			part3.setEmail("1moun@pigsstep.com");
 			part3.setPassword("vOGwSIuOLqhEdSPK");
-			part3.setC_password("vOGwSIuOLqhEdSPK");
 			part3.setImage_profile("https://picsum.photos/200/300");
 			part3.setEnabled(true);
 			part3.setLogin("Emery");
@@ -229,7 +216,6 @@ public class DaylivBackendApplication {
 			superAdmin.setNum_tel("330-922-6542");
 			superAdmin.setEmail("7hhaa123_o@pardis.shop");
 			superAdmin.setPassword("IrgUZCsPbwDBHnJD");
-			superAdmin.setC_password("IrgUZCsPbwDBHnJD");
 			superAdmin.setImage_profile("https://picsum.photos/200/300");
 			superAdmin.setEnabled(true);
 			superAdmin.setLogin("Rego");

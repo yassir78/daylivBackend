@@ -14,7 +14,6 @@ import com.dayliv.dayliv.model.Role;
 import com.dayliv.dayliv.model.User;
 
 public class GeneralUtils {
-
 	public static List<SimpleGrantedAuthority> buildSimpleGrantedAuthorities(final Set<Role> roles) {
 		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		for (Role role : roles) {
@@ -32,18 +31,9 @@ public class GeneralUtils {
 		return SocialProvider.LOCAL;
 	}
 
-	/*
-	 * public static UserInfo buildUserInfo(LocalUser localUser) { List<String>
-	 * roles = localUser.getAuthorities().stream().map(item ->
-	 * item.getAuthority()).collect(Collectors.toList()); User user =
-	 * localUser.getUser(); return new UserInfo(user.getId().toString(),
-	 * user.getDisplayName(), user.getEmail(), roles); }
-	 */
-
-	public static User buildUserInfo(LocalUser localUser) {
-		List<String> roles = localUser.getAuthorities().stream().map(item -> item.getAuthority())
-				.collect(Collectors.toList());
+	public static UserInfo buildUserInfo(LocalUser localUser) {
+		List<String> roles = localUser.getAuthorities().stream().map(item -> item.getAuthority()).collect(Collectors.toList());
 		User user = localUser.getUser();
-		return user;
+		return new UserInfo(user.getId().toString(), user.getDisplayName(), user.getEmail(), roles);
 	}
 }

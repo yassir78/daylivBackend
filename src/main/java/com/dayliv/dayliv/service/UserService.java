@@ -14,16 +14,13 @@ import com.dayliv.dayliv.model.User;
 
 public interface UserService {
 	public List<User> findAll();
-
+	
 	public User save(User user);
 	
-	public User  findByLogin(String login);
     public User findByEmail(String email);
 	public void delete(Long id);
 
 	public User update(Long id, User user);
-
-	public User findByNom(String nom);
 
 	public User findById(Long id);
 

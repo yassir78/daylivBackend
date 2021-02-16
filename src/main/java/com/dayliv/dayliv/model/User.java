@@ -48,19 +48,18 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "USER_ID")
 	private Long id;
-	private String nom;
-	
-	private String prenom;
-	private String login;
-	private String providerUserId;
+    private String login;
+	@Column(name = "DISPLAY_NAME")
+	private String displayName;
+   private String nom;
+   private String prenom;
 	private String email;
 	
 	private String password;
-	
-	private String c_password;
-	
+		
 	private String image_profile;
 	
 	private String num_tel;
@@ -68,24 +67,18 @@ public class User {
 	@Column(name = "enabled", columnDefinition = "BIT", length = 1)
 	private boolean enabled;
 
-	@Column(name = "DISPLAY_NAME")
-	private String displayName;
-
 	@Column(name = "created_date", nullable = true, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date createdDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date modifiedDate;
+	
+	@Column(name = "PROVIDER_USER_ID")
+	private String providerUserId;
+
 	private String provider;
 	
-	// Not persistent. There is no column on database table.
-	@Transient
-	private String token;
-	@Enumerated(EnumType.STRING)
-	private ERole role;
-	
-	// bi-directional many-to-many association to Role
 		@JsonIgnore
 		@ManyToMany
 		@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") })

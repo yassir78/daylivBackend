@@ -129,11 +129,6 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
-	@Override
-	public User findByLogin(String login) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public User findByEmail(String email) {
@@ -153,11 +148,7 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
-	@Override
-	public User findByNom(String nom) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public User findById(Long id) {

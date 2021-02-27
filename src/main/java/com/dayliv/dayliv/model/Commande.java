@@ -31,7 +31,6 @@ public class Commande {
 	private String reference;
     @NotNull
 	private Float totale_commande;
-    @NotNull
 	private Date date_commande;
 	@ManyToOne
 	private Consumer consumer;

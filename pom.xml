@@ -14,11 +14,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>daylivBackend</name>
 	<description>dayliv market place application backend</description>
-
 	<properties>
-		<java.version>8</java.version>
+		<java.version>1.8</java.version>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

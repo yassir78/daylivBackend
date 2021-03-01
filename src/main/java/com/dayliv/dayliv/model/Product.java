@@ -39,8 +39,10 @@ public class Product {
 	@NotNull
 	private Float price;
 	private String origine;
-	private String image;
+	private Long id_image;
 	private Float poids;
+	@OneToOne
+	private ImageModel imageModel;
 	private Integer caloris;
 	@OneToOne
 	@JsonIgnore

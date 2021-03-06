@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dayliv.dayliv.dao.ImageModelDao;
-import com.dayliv.dayliv.model.ImageModel;
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.service.ProductService;
 
@@ -37,7 +35,6 @@ public class ProductRest {
 
 	@PostMapping("/")
 	public Product createProduct(@RequestBody Product product) {
-		System.out.println(product.getId_image());
 		return productService.createProduct(product);
 	}
 

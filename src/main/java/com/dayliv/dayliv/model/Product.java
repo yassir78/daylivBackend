@@ -2,6 +2,7 @@ package com.dayliv.dayliv.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,8 +14,6 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,16 +32,15 @@ public class Product {
 	@NotNull
 	private String libelle;
 	@NotNull
+	@Column(length = 1000)
 	private String description;
 	@NotNull
 	private Integer stock_quantity;
 	@NotNull
 	private Float price;
 	private String origine;
-	private Long id_image;
+	private String image;
 	private Float poids;
-	@OneToOne
-	private ImageModel imageModel;
 	private Integer caloris;
 	@OneToOne
 	@JsonIgnore

@@ -4,12 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import com.dayliv.dayliv.dao.ImageModelDao;
 import com.dayliv.dayliv.dao.ProductDao;
-import com.dayliv.dayliv.model.ImageModel;
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.service.ProductService;
 
@@ -17,8 +13,6 @@ import com.dayliv.dayliv.service.ProductService;
 public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductDao productDao;
-	@Autowired
-	private ImageModelDao imageModelDao;
 	@Override
 	public List<Product> findAll() {
 		// TODO Auto-generated method stub
@@ -28,16 +22,12 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product createProduct(Product product) {
 		// TODO Auto-generated method stub
-		ImageModel image = imageModelDao.findById(product.getId_image()).get();
-		product.setImageModel(image);
 		return productDao.save(product);
 	}
 
 	@Override
 	public Product updateProduct(Product product) {
 		// TODO Auto-generated method stub
-		ImageModel image = imageModelDao.findById(product.getId_image()).get();
-		product.setImageModel(image);
 		return productDao.save(product);
 	}
 

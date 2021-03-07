@@ -22,8 +22,12 @@ import com.dayliv.dayliv.service.ProductService;
 public class ProductRest {
 	@Autowired
 	private ProductService productService;
-	
-    @DeleteMapping("/{id}")
+	@GetMapping("/{id}")
+    public Product findById(@PathVariable Long id) {
+		return productService.findById(id);
+	}
+
+	@DeleteMapping("/{id}")
 	public int deleteProduct(@PathVariable Long id) {
 		return productService.deleteProduct(id);
 	}
@@ -42,5 +46,6 @@ public class ProductRest {
 	public List<Product> findAll() {
 		return productService.findAll();
 	}
+	
 
 }

@@ -38,4 +38,10 @@ public class ProductServiceImpl implements ProductService {
 		productDao.delete(productToDelete);
 		return 1;
 	}
+
+	@Override
+	public Product findById(Long id) {
+		// TODO Auto-generated method stub
+		return productDao.getOne(id);
+	}
 }

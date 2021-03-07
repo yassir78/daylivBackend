@@ -1,9 +1,8 @@
 package com.dayliv.dayliv.config;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,15 +42,15 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		Role userRole = createRoleIfNotFound(Role.ROLE_USER);
 		Role adminRole = createRoleIfNotFound(Role.ROLE_ADMIN);
 		Role modRole = createRoleIfNotFound(Role.ROLE_PARTENAIRE);
-		List<Role> roles = new ArrayList<Role>();
-		roles.add(userRole);
+		Set<Role> roles = new HashSet<>();
 		roles.add(adminRole);
+		roles.add(userRole);
 		createUserIfNotFound("admin@admin.com",roles);
 		alreadySetup = true;
 	}
 
 	@Transactional
-	private final User createUserIfNotFound(final String email, List<Role> roles) {
+	private final User createUserIfNotFound(final String email, Set<Role> roles) {
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
 			user = new User();

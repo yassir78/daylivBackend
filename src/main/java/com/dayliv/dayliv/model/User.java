@@ -83,7 +83,7 @@ public class User {
 		@JsonIgnore
 		@ManyToMany
 		@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") })
-		private List<Role> roles;
+		private Set<Role> roles;
 	}
 	
 

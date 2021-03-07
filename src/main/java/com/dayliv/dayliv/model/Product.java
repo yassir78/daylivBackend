@@ -34,7 +34,6 @@ public class Product {
 	@NotNull
 	@Column(length = 1000)
 	private String description;
-	@NotNull
 	private Integer stock_quantity;
 	@NotNull
 	private Float price;

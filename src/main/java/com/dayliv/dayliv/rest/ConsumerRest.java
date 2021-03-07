@@ -84,8 +84,8 @@ public class ConsumerRest {
 		if (consumerService.findByLogin(consumer.getLogin()) != null) {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
-		consumer.setRole(ERole.CONSUMER);
+		//consumer.setRole(ERole.CONSUMER);
 		return new ResponseEntity<>(consumerService.save(consumer), HttpStatus.CREATED);
-	}
-*/
+	}*/
+
 }

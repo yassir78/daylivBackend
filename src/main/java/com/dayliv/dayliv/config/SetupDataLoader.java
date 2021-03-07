@@ -1,5 +1,6 @@
 package com.dayliv.dayliv.config;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -42,7 +43,10 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		Role userRole = createRoleIfNotFound(Role.ROLE_USER);
 		Role adminRole = createRoleIfNotFound(Role.ROLE_ADMIN);
 		Role modRole = createRoleIfNotFound(Role.ROLE_PARTENAIRE);
-		createUserIfNotFound("admin@admin.com", List.of(userRole, adminRole));
+		List<Role> roles = new ArrayList<Role>();
+		roles.add(userRole);
+		roles.add(adminRole);
+		createUserIfNotFound("admin@admin.com",roles);
 		alreadySetup = true;
 	}
 

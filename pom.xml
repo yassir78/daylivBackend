@@ -15,8 +15,8 @@
 	<name>daylivBackend</name>
 	<description>dayliv market place application backend</description>
 	<properties>
-	 <maven.compiler.target>1.9</maven.compiler.target>
-      <maven.compiler.source>1.9</maven.compiler.source>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>

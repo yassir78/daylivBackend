@@ -1,9 +1,8 @@
 package com.dayliv.dayliv.config;
 
-
-
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,6 @@ import com.dayliv.dayliv.dao.UserDao;
 import com.dayliv.dayliv.dto.SocialProvider;
 import com.dayliv.dayliv.model.Role;
 import com.dayliv.dayliv.model.User;
-
-
 
 @Component
 public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
@@ -45,12 +42,12 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		Role userRole = createRoleIfNotFound(Role.ROLE_USER);
 		Role adminRole = createRoleIfNotFound(Role.ROLE_ADMIN);
 		Role modRole = createRoleIfNotFound(Role.ROLE_PARTENAIRE);
-	   createUserIfNotFound("admin@admin.com", Set.of(userRole, adminRole));
+		createUserIfNotFound("admin@admin.com", List.of(userRole, adminRole));
 		alreadySetup = true;
 	}
 
 	@Transactional
-	private final User createUserIfNotFound(final String email, Set<Role> roles) {
+	private final User createUserIfNotFound(final String email, List<Role> roles) {
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
 			user = new User();
@@ -65,7 +62,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			user.setModifiedDate(now);
 			user = userRepository.save(user);
 		}
-		
+
 		return user;
 	}
 

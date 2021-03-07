@@ -2,6 +2,7 @@ package com.dayliv.dayliv.model;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -82,7 +83,7 @@ public class User {
 		@JsonIgnore
 		@ManyToMany
 		@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") })
-		private Set<Role> roles;
+		private List<Role> roles;
 	}
 	
 

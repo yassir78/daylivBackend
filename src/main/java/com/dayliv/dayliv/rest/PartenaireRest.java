@@ -45,9 +45,9 @@ public class PartenaireRest {
 	public void delete(@PathVariable Long id) {
 		partenaireService.delete(id);
 	}
-	@PutMapping("/num/{id}")
-	public Partenaire update(@PathVariable Long id,@RequestBody Partenaire partenaire) {
-		return partenaireService.update(id, partenaire);
+	@PutMapping("/")
+	public Partenaire update(@RequestBody Partenaire partenaire) {
+		return partenaireService.update(partenaire.getId(), partenaire);
 	}
 	@PostMapping("/save")
 	public Partenaire save(@RequestBody Partenaire partenaire) {

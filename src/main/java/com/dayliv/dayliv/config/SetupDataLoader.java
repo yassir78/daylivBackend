@@ -42,21 +42,29 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			return;
 		}
 		// Create initial roles
-		Role userRole = createRoleIfNotFound(Role.ROLE_USER);
+		Role userRole = createRoleIfNotFound(Role.ROLE_COSTUMER);
 		Role adminRole = createRoleIfNotFound(Role.ROLE_ADMIN);
-		Role modRole = createRoleIfNotFound(Role.ROLE_PARTENAIRE);
-	   createUserIfNotFound("admin@admin.com", Set.of(userRole, adminRole));
+		Role parRole = createRoleIfNotFound(Role.ROLE_PARTENAIRE);
+		Role disRole = createRoleIfNotFound(Role.ROLE_DISPATCHER);
+		Role livRole = createRoleIfNotFound(Role.ROLE_LIVREUR);
+
+	   createUserIfNotFound("admin@admin.com", "Admin", "admin", Set.of(userRole, adminRole,parRole,livRole, disRole));
+	   createUserIfNotFound("partenaire@partenaire.com", "Partenaire", "partenaire", Set.of(userRole,parRole));
+	   createUserIfNotFound("livreur@livreur.com", "Livreur", "livreur", Set.of(userRole,livRole));
+	   createUserIfNotFound("dispatcher@dispatcher.com", "Dispatcher", "dispatcher", Set.of(userRole, disRole));
+
+	   
 		alreadySetup = true;
 	}
 
 	@Transactional
-	private final User createUserIfNotFound(final String email, Set<Role> roles) {
+	private final User createUserIfNotFound(final String email, final String name, final String password, Set<Role> roles) {
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
 			user = new User();
-			user.setDisplayName("Admin");
+			user.setDisplayName(name);
 			user.setEmail(email);
-			user.setPassword(passwordEncoder.encode("admin"));
+			user.setPassword(passwordEncoder.encode(password));
 			user.setRoles(roles);
 			user.setProvider(SocialProvider.LOCAL.getProviderType());
 			user.setEnabled(true);

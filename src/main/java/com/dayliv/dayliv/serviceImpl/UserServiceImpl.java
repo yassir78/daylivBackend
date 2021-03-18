@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
 		user.setEmail(formDTO.getEmail());
 		user.setPassword(passwordEncoder.encode(formDTO.getPassword()));
 		final HashSet<Role> roles = new HashSet<Role>();
-		roles.add(roleRepository.findByName(Role.ROLE_USER));
+		roles.add(roleRepository.findByName(Role.ROLE_COSTUMER));
 		user.setRoles(roles);
 		user.setProvider(formDTO.getSocialProvider().getProviderType());
 		user.setEnabled(true);

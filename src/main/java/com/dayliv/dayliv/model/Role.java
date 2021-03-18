@@ -22,9 +22,12 @@ import lombok.Setter;
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final String USER = "USER";
-	public static final String ROLE_USER = "ROLE_USER";
+	public static final String ROLE_COSTUMER = "ROLE_COSTUMER";
 	public static final String ROLE_ADMIN = "ROLE_ADMIN";
 	public static final String ROLE_PARTENAIRE = "ROLE_PARTENAIRE";
+	public static final String ROLE_LIVREUR = "ROLE_LIVREUR";
+	public static final String ROLE_DISPATCHER = "ROLE_DISPATCHER";
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

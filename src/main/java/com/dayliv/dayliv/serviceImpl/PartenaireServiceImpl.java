@@ -27,8 +27,9 @@ public class PartenaireServiceImpl implements PartenaireService {
 		return partenaireDao.save(partenaire);
 	}
 	@Override
-	public void delete(Long id) {
+	public int delete(Long id) {
 		partenaireDao.deleteById(id);
+		return 1;
 	}
 	@Override
 	public Partenaire update(Long id, Partenaire partenaire) {

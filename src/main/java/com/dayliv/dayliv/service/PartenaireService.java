@@ -9,7 +9,7 @@ public interface PartenaireService {
 
 	public Partenaire save(Partenaire partenaire);
 
-	public void delete(Long id);
+	public int delete(Long id);
 
 	public Partenaire update(Long id, Partenaire partenaire);
 
@@ -18,4 +18,5 @@ public interface PartenaireService {
 	public Partenaire findById(Long id);
 
 	public Partenaire findByLogin(String login);
+
 }

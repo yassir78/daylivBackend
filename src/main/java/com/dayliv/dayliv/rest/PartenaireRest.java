@@ -29,30 +29,37 @@ import com.dayliv.dayliv.service.PartenaireService;
 @CrossOrigin
 @RequestMapping("/dayliv-api/partenaire")
 public class PartenaireRest {
-	
+
 	@Autowired
 	private PartenaireService partenaireService;
-	//@Autowired
-	//private JwtTokenProvider tokenProvider;
+	// @Autowired
+	// private JwtTokenProvider tokenProvider;
 
 	@GetMapping("/all")
 	public List<Partenaire> findAll() {
 		return partenaireService.findAll();
 	}
-	
-	
+
 	@DeleteMapping("/id/{id}")
 	public void delete(@PathVariable Long id) {
 		partenaireService.delete(id);
 	}
+
 	@PutMapping("/")
 	public Partenaire update(@RequestBody Partenaire partenaire) {
 		return partenaireService.update(partenaire.getId(), partenaire);
 	}
+
+	@DeleteMapping("/{id}")
+	public int deletePartenaire(@PathVariable Long id) {
+		return partenaireService.delete(id);
+	}
+
 	@PostMapping("/save")
 	public Partenaire save(@RequestBody Partenaire partenaire) {
 		return partenaireService.save(partenaire);
 	}
+
 	@GetMapping("/nom/{nom}")
 	public Partenaire findByNom(@PathVariable String nom) {
 		return partenaireService.findByNom(nom);
@@ -60,30 +67,25 @@ public class PartenaireRest {
 
 	@GetMapping("/id/{id}")
 	public Partenaire findById(@PathVariable Long id) {
-	    return partenaireService.findById(id);
+		return partenaireService.findById(id);
 	}
 
-/*
-	@PostMapping("/register")
-	public ResponseEntity<?> partenaireRegister(@RequestBody Partenaire partenaire){
-	    if(partenaireService.findByLogin(partenaire.getLogin())!=null){
-	        return new ResponseEntity<>(HttpStatus.CONFLICT);
-	    }
-	    partenaire.setRole(ERole.PARTENAIRE);
-	    return new ResponseEntity<>(partenaireService.save(partenaire), HttpStatus.CREATED);
-	}
-
-	@GetMapping("/login")
-	public ResponseEntity<?> partenaireLogin(Principal principal){
-	     if(principal == null){
-	        return ResponseEntity.ok(principal);
-	    }
-	    UsernamePasswordAuthenticationToken authenticationToken =
-	            (UsernamePasswordAuthenticationToken) principal;
-	    Partenaire partenaire = partenaireService.findByLogin(authenticationToken.getName());
-	    partenaire.setToken(tokenProvider.generateToken(authenticationToken));
-
-	    return new ResponseEntity<>(partenaire, HttpStatus.OK);
-	}*/
+	/*
+	 * @PostMapping("/register") public ResponseEntity<?>
+	 * partenaireRegister(@RequestBody Partenaire partenaire){
+	 * if(partenaireService.findByLogin(partenaire.getLogin())!=null){ return new
+	 * ResponseEntity<>(HttpStatus.CONFLICT); }
+	 * partenaire.setRole(ERole.PARTENAIRE); return new
+	 * ResponseEntity<>(partenaireService.save(partenaire), HttpStatus.CREATED); }
+	 * 
+	 * @GetMapping("/login") public ResponseEntity<?> partenaireLogin(Principal
+	 * principal){ if(principal == null){ return ResponseEntity.ok(principal); }
+	 * UsernamePasswordAuthenticationToken authenticationToken =
+	 * (UsernamePasswordAuthenticationToken) principal; Partenaire partenaire =
+	 * partenaireService.findByLogin(authenticationToken.getName());
+	 * partenaire.setToken(tokenProvider.generateToken(authenticationToken));
+	 * 
+	 * return new ResponseEntity<>(partenaire, HttpStatus.OK); }
+	 */
 
 }

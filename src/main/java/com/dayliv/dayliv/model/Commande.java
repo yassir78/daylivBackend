@@ -32,6 +32,8 @@ public class Commande {
     @NotNull
 	private Float totale_commande;
 	private Date date_commande;
+	private Float longitude;
+	private Float latitude;
 	@ManyToOne
 	private Consumer consumer;
 	@ManyToOne

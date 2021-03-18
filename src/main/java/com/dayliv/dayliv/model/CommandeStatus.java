@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -27,5 +28,6 @@ public class CommandeStatus {
 	@NotNull
 	private String etat_commande;
 	@OneToMany(mappedBy = "commandeStatus")
+	@JsonIgnore
 	private List<Commande> commandes;
 }

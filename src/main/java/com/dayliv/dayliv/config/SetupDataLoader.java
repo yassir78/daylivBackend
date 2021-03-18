@@ -1,9 +1,8 @@
 package com.dayliv.dayliv.config;
 
-
-
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,6 @@ import com.dayliv.dayliv.dao.UserDao;
 import com.dayliv.dayliv.dto.SocialProvider;
 import com.dayliv.dayliv.model.Role;
 import com.dayliv.dayliv.model.User;
-
-
 
 @Component
 public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
@@ -47,13 +44,27 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		Role parRole = createRoleIfNotFound(Role.ROLE_PARTENAIRE);
 		Role disRole = createRoleIfNotFound(Role.ROLE_DISPATCHER);
 		Role livRole = createRoleIfNotFound(Role.ROLE_LIVREUR);
+		Set<Role> rolesAdmin = new HashSet<>();
+		rolesAdmin.add(userRole);
+		rolesAdmin.add(adminRole);
+		rolesAdmin.add(parRole);
+		rolesAdmin.add(livRole);
+		rolesAdmin.add(disRole);
 
-	   createUserIfNotFound("admin@admin.com", "Admin", "admin", Set.of(userRole, adminRole,parRole,livRole, disRole));
-	   createUserIfNotFound("partenaire@partenaire.com", "Partenaire", "partenaire", Set.of(userRole,parRole));
-	   createUserIfNotFound("livreur@livreur.com", "Livreur", "livreur", Set.of(userRole,livRole));
-	   createUserIfNotFound("dispatcher@dispatcher.com", "Dispatcher", "dispatcher", Set.of(userRole, disRole));
+	   createUserIfNotFound("admin@admin.com", "Admin", "admin", rolesAdmin);
+		Set<Role> rolesPartenaire = new HashSet<>();
+		rolesPartenaire.add(userRole);
+		rolesPartenaire.add(parRole);
+	   createUserIfNotFound("partenaire@partenaire.com", "Partenaire", "partenaire", rolesPartenaire);
+		Set<Role> rolesLivreur = new HashSet<>();
+		rolesLivreur.add(userRole);
+		rolesLivreur.add(livRole);
+	   createUserIfNotFound("livreur@livreur.com", "Livreur", "livreur", rolesLivreur);
+		Set<Role> rolesDispatcher = new HashSet<>();
+		rolesDispatcher.add(userRole);
+		rolesDispatcher.add(disRole);
+	   createUserIfNotFound("dispatcher@dispatcher.com", "Dispatcher", "dispatcher", rolesDispatcher);
 
-	   
 		alreadySetup = true;
 	}
 
@@ -73,7 +84,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			user.setModifiedDate(now);
 			user = userRepository.save(user);
 		}
-		
+
 		return user;
 	}
 

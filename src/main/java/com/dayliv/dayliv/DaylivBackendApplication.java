@@ -26,6 +26,7 @@ import com.dayliv.dayliv.dao.SuperAdminDao;
 import com.dayliv.dayliv.model.Commande;
 import com.dayliv.dayliv.model.CommandeItem;
 import com.dayliv.dayliv.model.CommandeStatus;
+import com.dayliv.dayliv.model.Livreur;
 
 @SpringBootApplication(scanBasePackages = "com.dayliv.dayliv")
 public class DaylivBackendApplication {
@@ -90,6 +91,8 @@ public class DaylivBackendApplication {
 			Stream.of(commande1, commande2).forEach(commande -> {
 				commandeDao.save(commande);
 			});
+			
+			
 		};
 
 }

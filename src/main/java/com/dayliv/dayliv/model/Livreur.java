@@ -17,4 +17,7 @@ import lombok.ToString;
 public class Livreur extends User{
 	private String card_id;
 	private String mobility;
+	private double lg;
+	private double lat;
+	
 }

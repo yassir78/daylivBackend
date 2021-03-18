@@ -15,6 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dayliv.dayliv.dao.RoleDao;
 import com.dayliv.dayliv.dao.UserDao;
 import com.dayliv.dayliv.dto.SocialProvider;
+import com.dayliv.dayliv.model.Dispatcher;
+import com.dayliv.dayliv.model.Livreur;
+import com.dayliv.dayliv.model.Partenaire;
 import com.dayliv.dayliv.model.Role;
 import com.dayliv.dayliv.model.User;
 
@@ -44,6 +47,8 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		Role parRole = createRoleIfNotFound(Role.ROLE_PARTENAIRE);
 		Role disRole = createRoleIfNotFound(Role.ROLE_DISPATCHER);
 		Role livRole = createRoleIfNotFound(Role.ROLE_LIVREUR);
+		
+		//User creation
 		Set<Role> rolesAdmin = new HashSet<>();
 		rolesAdmin.add(userRole);
 		rolesAdmin.add(adminRole);
@@ -66,8 +71,86 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 	   createUserIfNotFound("dispatcher@dispatcher.com", "Dispatcher", "dispatcher", rolesDispatcher);
 
 		alreadySetup = true;
+		
+		
+		//Livreur Creation
+		
+	   createLivreurIfNotFound("livreur1@livreur1.com", "Livreur1",1 ,2 ,"livreur1", rolesLivreur);
+	   createLivreurIfNotFound("livreur2@livreur2.com", "Livreur2",4 , 5, "livreur2", rolesLivreur);
+	   createLivreurIfNotFound("livreur3@livreur3.com", "Livreur3",6 ,7 , "livreur3", rolesLivreur);
+	   createLivreurIfNotFound("livreur4@livreur4.com", "Livreur4",8 ,9 , "livreur4", rolesLivreur);
+	   createLivreurIfNotFound("livreur5@livreur5.com", "Livreur5", 10,11 , "livreur5", rolesLivreur);
+	   createLivreurIfNotFound("livreur6@livreur6.com", "Livreur6", 12,13 ,"livreur6", rolesLivreur);
+
+        
 	}
 
+	@Transactional
+	private final User createLivreurIfNotFound(final String email, final String name,double lg, double lat, final String password, Set<Role> roles) {
+		User user = userRepository.findByEmail(email);
+		if (user == null) {
+			Livreur livreur = new Livreur();
+			livreur.setDisplayName(name);
+			livreur.setLg(lg);
+			livreur.setLat(lat);
+			livreur.setEmail(email);
+			livreur.setPassword(passwordEncoder.encode(password));
+			livreur.setRoles(roles);
+			livreur.setProvider(SocialProvider.LOCAL.getProviderType());
+			livreur.setEnabled(true);
+			Date now = Calendar.getInstance().getTime();
+			livreur.setCreatedDate(now);
+			livreur.setModifiedDate(now);
+			
+			user = userRepository.save(livreur);
+		}
+
+		return user;
+	}
+
+	
+	@Transactional
+	private final User createDispatcherIfNotFound(final String email, final String name, final String password, Set<Role> roles) {
+		User user = userRepository.findByEmail(email);
+		if (user == null) {
+			user = new Dispatcher();
+			user.setDisplayName(name);
+			user.setEmail(email);
+			user.setPassword(passwordEncoder.encode(password));
+			user.setRoles(roles);
+			user.setProvider(SocialProvider.LOCAL.getProviderType());
+			user.setEnabled(true);
+			Date now = Calendar.getInstance().getTime();
+			user.setCreatedDate(now);
+			user.setModifiedDate(now);
+			user = userRepository.save(user);
+		}
+
+		return user;
+	}
+	
+	
+	@Transactional
+	private final User createPartenaireIfNotFound(final String email, final String name, final String password, Set<Role> roles) {
+		User user = userRepository.findByEmail(email);
+		if (user == null) {
+			user = new Partenaire();
+			user.setDisplayName(name);
+			user.setEmail(email);
+			user.setPassword(passwordEncoder.encode(password));
+			user.setRoles(roles);
+			user.setProvider(SocialProvider.LOCAL.getProviderType());
+			user.setEnabled(true);
+			Date now = Calendar.getInstance().getTime();
+			user.setCreatedDate(now);
+			user.setModifiedDate(now);
+			user = userRepository.save(user);
+		}
+
+		return user;
+	}
+	
+	
 	@Transactional
 	private final User createUserIfNotFound(final String email, final String name, final String password, Set<Role> roles) {
 		User user = userRepository.findByEmail(email);
@@ -87,7 +170,6 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 
 		return user;
 	}
-
 	@Transactional
 	private final Role createRoleIfNotFound(final String name) {
 		Role role = roleRepository.findByName(name);

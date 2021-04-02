@@ -75,12 +75,12 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		
 		//Livreur Creation
 		
-	   createLivreurIfNotFound("livreur1@livreur1.com", "Livreur1",1 ,2 ,"livreur1", rolesLivreur);
-	   createLivreurIfNotFound("livreur2@livreur2.com", "Livreur2",4 , 5, "livreur2", rolesLivreur);
-	   createLivreurIfNotFound("livreur3@livreur3.com", "Livreur3",6 ,7 , "livreur3", rolesLivreur);
-	   createLivreurIfNotFound("livreur4@livreur4.com", "Livreur4",8 ,9 , "livreur4", rolesLivreur);
-	   createLivreurIfNotFound("livreur5@livreur5.com", "Livreur5", 10,11 , "livreur5", rolesLivreur);
-	   createLivreurIfNotFound("livreur6@livreur6.com", "Livreur6", 12,13 ,"livreur6", rolesLivreur);
+	   createLivreurIfNotFound("livreur1@livreur1.com", "Livreur1",6.2 ,46.2143907 ,"livreur1", rolesLivreur);
+	   createLivreurIfNotFound("livreur2@livreur2.com", "Livreur2",6.2493 , 46.2243907, "livreur2", rolesLivreur);
+//	   createLivreurIfNotFound("livreur3@livreur3.com", "Livreur3",6.3 ,46.2443907 , "livreur3", rolesLivreur);
+//	   createLivreurIfNotFound("livreur4@livreur4.com", "Livreur4",6.3,46.2643907 , "livreur4", rolesLivreur);
+//	   createLivreurIfNotFound("livreur5@livreur5.com", "Livreur5", 6.3,46.2743907 , "livreur5", rolesLivreur);
+//	   createLivreurIfNotFound("livreur6@livreur6.com", "Livreur6", 6.3,46.2243907,"livreur6", rolesLivreur);
 
         
 	}

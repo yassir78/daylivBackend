@@ -47,10 +47,8 @@ public class DaylivBackendApplication {
 			commande1.setReference("MT-2938");
 			commande1.setTotale_commande(4500F);
 			commande1.setDate_commande(new Date());
-			commande1.setLongitude(50F);
-			commande1.setLatitude(25F);
-			commande2.setLongitude(70F);
-			commande2.setLatitude(30F);
+			commande2.setLongitude(6.1431577F);
+			commande2.setLatitude(46.2043907F);
 			commande2.setReference("DF-9086");
 			commande2.setTotale_commande(9877F);
 			commande2.setDate_commande(new Date());

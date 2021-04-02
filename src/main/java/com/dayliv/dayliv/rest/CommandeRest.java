@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dayliv.dayliv.model.Commande;
+import com.dayliv.dayliv.model.Livreur;
 import com.dayliv.dayliv.service.CommandeService;
 
 @RestController
@@ -19,7 +21,18 @@ import com.dayliv.dayliv.service.CommandeService;
 public class CommandeRest {
 	@Autowired
 	private CommandeService commandeService;
-    @PostMapping("/save")
+
+	@GetMapping("/liv/{id}")
+	public List<Commande> getCommandeByLivreur(@PathVariable Long id) {
+		return commandeService.getCommandeByLivreur(id);
+	}
+
+	@PostMapping("/setLivreur/{id}")
+	public Commande affecterCommandeLivreur(@RequestBody Livreur livreur, @PathVariable Long id) {
+		return commandeService.affecterCommandeLivreur(livreur, id);
+	}
+
+	@PostMapping("/save")
 	public Commande save(@RequestBody Commande commande) {
 		return commandeService.save(commande);
 	}

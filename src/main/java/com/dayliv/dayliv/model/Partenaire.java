@@ -7,6 +7,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -14,10 +15,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
+@Data
 @Entity
 @DiscriminatorValue("partenaire")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -32,4 +32,8 @@ public class Partenaire  extends User{
 	private List<Product> products;
 	@ManyToMany
 	private List<CategoryPartenaire> categoryPartenaires;
+	@OneToOne
+	private Store store;
+	
+	private String code;
 }

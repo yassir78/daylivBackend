@@ -22,11 +22,13 @@ import com.dayliv.dayliv.dao.PanierDao;
 import com.dayliv.dayliv.dao.PanierItemDao;
 import com.dayliv.dayliv.dao.PartenaireDao;
 import com.dayliv.dayliv.dao.ProductDao;
+import com.dayliv.dayliv.dao.StoreDao;
 import com.dayliv.dayliv.dao.SuperAdminDao;
 import com.dayliv.dayliv.model.Commande;
 import com.dayliv.dayliv.model.CommandeItem;
 import com.dayliv.dayliv.model.CommandeStatus;
 import com.dayliv.dayliv.model.Livreur;
+import com.dayliv.dayliv.model.Store;
 
 @SpringBootApplication(scanBasePackages = "com.dayliv.dayliv")
 public class DaylivBackendApplication {
@@ -39,7 +41,7 @@ public class DaylivBackendApplication {
 	public CommandLineRunner demo(ConsumerDao consumerDao, DispatcherDao dispatcherDao, LivreurDao livreurDao,
 			PartenaireDao partenaireDao, SuperAdminDao superAdminDao, ProductDao productDao,
 			IngredientDao ingredientDao, CommentaireDao commentaireDao, CommandeDao commandeDao,
-			CommandeItemDao commandeItemDao, CommandeStatusDao commandeStatusDao, PanierDao panierDao,
+			CommandeItemDao commandeItemDao, CommandeStatusDao commandeStatusDao, PanierDao panierDao, StoreDao storeDao, 
 		PanierItemDao panierItemDao, CategoryProductDao categoryProductDao,CategoryPartenaireDao categoryPartenaireDao) {
 		return (args) -> {
 			Commande commande1 = new Commande();
@@ -76,6 +78,9 @@ public class DaylivBackendApplication {
 			Stream.of(commandeItem1, commandeItem2).forEach(commandeItem -> {
 				commandeItemDao.save(commandeItem);
 			});
+			
+			
+			
 			/* commande status */
 			CommandeStatus commandeStatus1 = new CommandeStatus();
 			CommandeStatus commandeStatus2 = new CommandeStatus();
@@ -90,6 +95,22 @@ public class DaylivBackendApplication {
 			commande2.setCommandeStatus(commandeStatus2);
 			Stream.of(commande1, commande2).forEach(commande -> {
 				commandeDao.save(commande);
+			});
+			
+			Stream.of("XEHZJ8855", "KUISBJJS987", "OLKJHS96554").forEach(code -> {
+				  Store store = new Store();
+				  store.setCode(code);
+				  store.setPhone("06785521455");
+				  store.setName("SHOP-"+code);
+				  store.setInBusinessSince("2020");
+				  store.setLat(5278.555);
+				  store.setLg(56634.21);
+				  store.setEmail(code +"@gmail.com");
+				  store.setAddress("MA"+code);
+				  store.setCurrency("CH");
+				  store.setUseCache(true);
+				  store.setLogo(code+"logo.png");
+				  storeDao.save(store);
 			});
 			
 			

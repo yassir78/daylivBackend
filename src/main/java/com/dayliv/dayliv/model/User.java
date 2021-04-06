@@ -79,7 +79,6 @@ public class User {
 	private String providerUserId;
 
 	private String provider;
-	
 		@JsonIgnore
 		@ManyToMany
 		@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") })

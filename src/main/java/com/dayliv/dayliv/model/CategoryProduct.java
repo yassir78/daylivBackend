@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,6 @@ public class CategoryProduct {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String category_name;
-	@ManyToMany
+	@OneToMany(mappedBy = "categoryProduct")
 	private List<Product> products;
 }

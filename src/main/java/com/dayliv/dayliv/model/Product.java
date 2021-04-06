@@ -44,9 +44,9 @@ public class Product {
 	@OneToOne
 	@JsonIgnore
 	private PanierItem panierItem;
-	@ManyToMany(mappedBy = "products")
+	@ManyToOne
 	@JsonIgnore
-	private List<CategoryProduct> categoryProducts;
+	private CategoryProduct categoryProduct;
 	@OneToMany(mappedBy = "product")
 	@JsonIgnore
 	private List<Ingredient> ingredients;

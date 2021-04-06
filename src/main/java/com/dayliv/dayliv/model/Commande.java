@@ -40,6 +40,8 @@ public class Commande {
 	private CommandeStatus commandeStatus;
 	@OneToOne
 	private Paiement paiement;
+	@OneToOne
+	private Livreur livreur;
 	@OneToMany(mappedBy = "commande")
 	private List<CommandeItem> commandeItems;
 }

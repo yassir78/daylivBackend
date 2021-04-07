@@ -60,7 +60,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		Set<Role> rolesPartenaire = new HashSet<>();
 		rolesPartenaire.add(userRole);
 		rolesPartenaire.add(parRole);
-	   createUserIfNotFound("partenaire@partenaire.com", "Partenaire", "partenaire", rolesPartenaire);
+	   createPartenaireIfNotFound("partenaire@partenaire.com", "Partenaire", "partenaire", rolesPartenaire);
 		Set<Role> rolesLivreur = new HashSet<>();
 		rolesLivreur.add(userRole);
 		rolesLivreur.add(livRole);
@@ -134,17 +134,18 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 	private final User createPartenaireIfNotFound(final String email, final String name, final String password, Set<Role> roles) {
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
-			user = new Partenaire();
-			user.setDisplayName(name);
-			user.setEmail(email);
-			user.setPassword(passwordEncoder.encode(password));
-			user.setRoles(roles);
-			user.setProvider(SocialProvider.LOCAL.getProviderType());
-			user.setEnabled(true);
+			Partenaire partenaire = new Partenaire();
+			partenaire.setDisplayName(name);
+			partenaire.setEmail(email);
+			partenaire.setPassword(passwordEncoder.encode(password));
+			partenaire.setRoles(roles);
+			partenaire.setStoreCode("XEHZJ8855");
+			partenaire.setProvider(SocialProvider.LOCAL.getProviderType());
+			partenaire.setEnabled(true);
 			Date now = Calendar.getInstance().getTime();
-			user.setCreatedDate(now);
-			user.setModifiedDate(now);
-			user = userRepository.save(user);
+			partenaire.setCreatedDate(now);
+			partenaire.setModifiedDate(now);
+			user = userRepository.save(partenaire);
 		}
 
 		return user;

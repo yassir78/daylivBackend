@@ -13,6 +13,7 @@ import com.dayliv.dayliv.service.ProductService;
 public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductDao productDao;
+
 	@Override
 	public List<Product> findAll() {
 		// TODO Auto-generated method stub
@@ -43,5 +44,11 @@ public class ProductServiceImpl implements ProductService {
 	public Product findById(Long id) {
 		// TODO Auto-generated method stub
 		return productDao.getOne(id);
+	}
+
+	@Override
+	public List<Product> getProductsByStore(String storeCode) {
+		// TODO Auto-generated method stub
+		return productDao.findBystoreCode(storeCode);
 	}
 }

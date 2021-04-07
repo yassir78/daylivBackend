@@ -31,6 +31,10 @@ public class ProductRest {
 	public int deleteProduct(@PathVariable Long id) {
 		return productService.deleteProduct(id);
 	}
+	@GetMapping("/store/{storeCode}")
+	public List<Product> getProductsByStore(@PathVariable String storeCode){
+		return productService.getProductsByStore(storeCode);
+	}
 
 	@PutMapping("/")
 	public Product updateProduct(@RequestBody Product product) {
@@ -39,6 +43,7 @@ public class ProductRest {
 
 	@PostMapping("/")
 	public Product createProduct(@RequestBody Product product) {
+		System.out.println(product.getCategoryProduct().getCategory_name());
 		return productService.createProduct(product);
 	}
 

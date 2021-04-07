@@ -52,6 +52,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "USER_ID")
 	private Long id;
+	private String storeCode;
     private String login;
 	@Column(name = "DISPLAY_NAME")
 	private String displayName;

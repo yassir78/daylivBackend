@@ -39,13 +39,13 @@ public class Product {
 	private Float price;
 	private String origine;
 	private String image;
+	private String storeCode;
 	private Float poids;
 	private Integer caloris;
 	@OneToOne
 	@JsonIgnore
 	private PanierItem panierItem;
 	@ManyToOne
-	@JsonIgnore
 	private CategoryProduct categoryProduct;
 	@OneToMany(mappedBy = "product")
 	@JsonIgnore

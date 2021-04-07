@@ -15,13 +15,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-@Data
+
 @Entity
 @DiscriminatorValue("partenaire")
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @ToString
-public class Partenaire  extends User{
+public class Partenaire extends User {
 	private String description;
 	private String banniere;
 	private Long latitude;
@@ -34,6 +35,5 @@ public class Partenaire  extends User{
 	private List<CategoryPartenaire> categoryPartenaires;
 	@OneToOne
 	private Store store;
-	
-	private String code;
+
 }

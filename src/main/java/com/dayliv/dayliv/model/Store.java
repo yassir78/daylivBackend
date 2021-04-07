@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
@@ -43,6 +45,9 @@ public class Store {
     private boolean useCache;
 	private double lg;
 	private double lat;
+	@OneToMany(mappedBy = "store")
+	@JsonIgnore
+	private List<CategoryProduct> categoryProducts;
 	@JsonIgnore
 	@OneToOne
 	private Partenaire partenaire ;

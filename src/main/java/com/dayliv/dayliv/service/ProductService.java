@@ -15,4 +15,6 @@ public interface ProductService {
 	public int deleteProduct(Long id);
 
 	public Product findById(Long id);
+
+	public List<Product> getProductsByStore(String storeCode);
 }

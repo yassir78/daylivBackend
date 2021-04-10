@@ -20,4 +20,10 @@ public class CommandeStatusServiceImpl implements CommandeStatusService {
 		return commandeStatusDao.findAll();
 	}
 
+	@Override
+	public void save(CommandeStatus commandeStatus) {
+		commandeStatusDao.save(commandeStatus);
+		
+	}
+
 }

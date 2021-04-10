@@ -3,6 +3,7 @@ package com.dayliv.dayliv.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -44,4 +45,6 @@ public class Commande {
 	private Livreur livreur;
 	@OneToMany(mappedBy = "commande")
 	private List<CommandeItem> commandeItems;
+	@OneToOne(cascade = CascadeType.ALL)
+	private LivraisonInfos livrasonInfos;
 }

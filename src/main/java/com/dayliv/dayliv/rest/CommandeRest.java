@@ -34,6 +34,8 @@ public class CommandeRest {
 
 	@PostMapping("/save")
 	public Commande save(@RequestBody Commande commande) {
+		System.out.println("Commande..............");
+		System.out.println(commande);
 		return commandeService.save(commande);
 	}
 

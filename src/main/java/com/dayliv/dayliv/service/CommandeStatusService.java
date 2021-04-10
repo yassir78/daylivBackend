@@ -6,4 +6,6 @@ import com.dayliv.dayliv.model.CommandeStatus;
 
 public interface CommandeStatusService {
 	public List<CommandeStatus> findAll();
+
+	public void save(CommandeStatus commandeStatus);
 }

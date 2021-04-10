@@ -6,11 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dayliv.dayliv.dao.CommandeDao;
+import com.dayliv.dayliv.dao.LivraisonInfosDao;
 import com.dayliv.dayliv.dao.LivreurDao;
 import com.dayliv.dayliv.model.Commande;
+import com.dayliv.dayliv.model.CommandeStatus;
+import com.dayliv.dayliv.model.LivraisonInfos;
 import com.dayliv.dayliv.model.Livreur;
 import com.dayliv.dayliv.service.CommandeItemService;
 import com.dayliv.dayliv.service.CommandeService;
+import com.dayliv.dayliv.service.CommandeStatusService;
+import com.dayliv.dayliv.service.LivraisonInfosService;
 
 @Service
 public class CommandeServiceImpl implements CommandeService {
@@ -19,8 +24,11 @@ public class CommandeServiceImpl implements CommandeService {
 	@Autowired
 	private CommandeItemService commandeItemService;
 	@Autowired
+	private CommandeStatusService CommandeStatusService;
+	@Autowired
 	private LivreurDao livreurDao;
-
+	@Autowired
+	private LivraisonInfosService livraisonInfosService;
 	@Override
 	public List<Commande> findAll() {
 		// TODO Auto-generated method stub
@@ -29,11 +37,31 @@ public class CommandeServiceImpl implements CommandeService {
 
 	@Override
 	public Commande save(Commande commande) {
+		
 		// TODO Auto-generated method stub
+		LivraisonInfos livraisonInfos = commande.getLivrasonInfos();
+		CommandeStatus commandeStatus = commande.getCommandeStatus();
+		if ( livraisonInfos != null) {
+			System.out.println(livraisonInfos);
+			commande.setLivrasonInfos(livraisonInfos);
+			livraisonInfosService.save(livraisonInfos);
+
+			
+		}
+		if ( commandeStatus != null) {
+			System.out.println(commandeStatus);
+			commande.setCommandeStatus(commandeStatus);
+			CommandeStatusService.save(commandeStatus);
+
+			
+		}
+
 		commandeDao.save(commande);
-		if (commande.getCommandeItems() != null) {
+          if (commande.getCommandeItems() != null) {
 			commandeItemService.saveCommandeItems(commande, commande.getCommandeItems());
 		}
+		
+		
 		return commande;
 	}
 

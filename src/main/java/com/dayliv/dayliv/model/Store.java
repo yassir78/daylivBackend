@@ -45,10 +45,6 @@ public class Store {
     private boolean useCache;
 	private double lg;
 	private double lat;
-	@OneToMany(mappedBy = "store")
-	@JsonIgnore
-	private List<CategoryProduct> categoryProducts;
-	@JsonIgnore
 	@OneToOne
 	private Partenaire partenaire ;
 }

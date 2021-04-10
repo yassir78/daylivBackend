@@ -27,11 +27,19 @@ public class CategoryProductServiceImpl implements CategoryProductService {
 	@Override
 	public List<CategoryProduct> getCategoriesByStoreCode(String code) {
 		// TODO Auto-generated method stub
+		System.out.println("this is sparta");
 		Store store = storeDao.findByCode(code);
 		if (store != null) {
-			return store.getCategoryProducts();
+			System.out.println("this is Ch3kouka");
+			return categoryProductDao.findByStoreCode(code);
 		}
 		return null;
+	}
+
+	@Override
+	public CategoryProduct save(CategoryProduct categoryProduct) {
+		// TODO Auto-generated method stub
+		return categoryProductDao.save(categoryProduct);
 	}
 
 }

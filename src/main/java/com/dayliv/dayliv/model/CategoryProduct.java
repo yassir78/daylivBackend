@@ -27,8 +27,7 @@ public class CategoryProduct {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String category_name;
-	@ManyToOne
-	private Store store;
+	private String storeCode;
 	@JsonIgnore
 	@OneToMany(mappedBy = "categoryProduct")
 	private List<Product> products;

@@ -115,7 +115,7 @@ public class DaylivBackendApplication {
 				Stream.of("pizza", "panini", "chawarma").forEach(libelle -> {
 					CategoryProduct categoryProduct = new CategoryProduct();
 					categoryProduct.setCategory_name(libelle);
-					categoryProduct.setStore(store);
+					categoryProduct.setStoreCode("XEHZJ8855");
 					categoryProductDao.save(categoryProduct);
 				});
 			});

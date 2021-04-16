@@ -41,7 +41,7 @@ public class Store {
 	private String email;
 	@NotNull
 	private String phone;
-	private String template;
+	private String description;
     private boolean useCache;
 	private double lg;
 	private double lat;

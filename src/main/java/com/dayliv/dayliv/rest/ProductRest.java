@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,9 +43,8 @@ public class ProductRest {
 	}
 
 	@PostMapping("/")
-	public Product createProduct(@RequestBody Product product) {
-		System.out.println(product.getCategoryProduct().getCategory_name());
-		return productService.createProduct(product);
+	public Product createProduct(@RequestBody Product product,@RequestHeader("idUser") String idUser) {
+		return productService.createProduct(product,idUser);
 	}
 
 	@GetMapping("/")

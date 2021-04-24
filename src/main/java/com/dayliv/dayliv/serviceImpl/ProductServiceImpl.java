@@ -5,14 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dayliv.dayliv.dao.PartenaireDao;
 import com.dayliv.dayliv.dao.ProductDao;
+import com.dayliv.dayliv.dao.UserDao;
+import com.dayliv.dayliv.model.Partenaire;
 import com.dayliv.dayliv.model.Product;
+import com.dayliv.dayliv.model.User;
 import com.dayliv.dayliv.service.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductDao productDao;
+	@Autowired
+	private PartenaireDao partenaireDao;
 
 	@Override
 	public List<Product> findAll() {
@@ -21,8 +27,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product createProduct(Product product) {
+	public Product createProduct(Product product, String idUser) {
 		// TODO Auto-generated method stub
+		Partenaire partenaire = partenaireDao.findById(Long.valueOf(idUser)).get();
+		product.setPartenaire(partenaire);
 		return productDao.save(product);
 	}
 

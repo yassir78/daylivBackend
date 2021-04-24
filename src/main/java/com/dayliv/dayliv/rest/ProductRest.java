@@ -23,8 +23,9 @@ import com.dayliv.dayliv.service.ProductService;
 public class ProductRest {
 	@Autowired
 	private ProductService productService;
+
 	@GetMapping("/{id}")
-    public Product findById(@PathVariable Long id) {
+	public Product findById(@PathVariable Long id) {
 		return productService.findById(id);
 	}
 
@@ -32,8 +33,9 @@ public class ProductRest {
 	public int deleteProduct(@PathVariable Long id) {
 		return productService.deleteProduct(id);
 	}
+
 	@GetMapping("/store/{storeCode}")
-	public List<Product> getProductsByStore(@PathVariable String storeCode){
+	public List<Product> getProductsByStore(@PathVariable String storeCode) {
 		return productService.getProductsByStore(storeCode);
 	}
 
@@ -43,14 +45,13 @@ public class ProductRest {
 	}
 
 	@PostMapping("/")
-	public Product createProduct(@RequestBody Product product,@RequestHeader("idUser") String idUser) {
-		return productService.createProduct(product,idUser);
+	public Product createProduct(@RequestBody Product product, @RequestHeader("idUser") String idUser) {
+		return productService.createProduct(product, idUser);
 	}
 
 	@GetMapping("/")
 	public List<Product> findAll() {
 		return productService.findAll();
 	}
-	
 
 }

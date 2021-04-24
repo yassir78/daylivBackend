@@ -19,6 +19,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -35,8 +36,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Inheritance( strategy = InheritanceType.SINGLE_TABLE )
-@DiscriminatorColumn( name="type", discriminatorType = DiscriminatorType.STRING )
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -48,24 +49,26 @@ public class User {
 			Collection<? extends GrantedAuthority> authorities) {
 		// TODO Auto-generated constructor stub
 	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "USER_ID")
 	private Long id;
 	private String storeCode;
-    private String login;
+	private String login;
 	@Column(name = "DISPLAY_NAME")
 	private String displayName;
-   private String nom;
-   private String prenom;
+	private String nom;
+	private String prenom;
 	private String email;
-	
+
 	private String password;
-		
+
 	private String image_profile;
-	
+	@OneToMany(mappedBy = "user")
+	private List<Notification> notifications;
 	private String num_tel;
-	
+	private String notificationToken;
 	@Column(name = "enabled", columnDefinition = "BIT", length = 1)
 	private boolean enabled;
 
@@ -75,17 +78,14 @@ public class User {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date modifiedDate;
-	
+
 	@Column(name = "PROVIDER_USER_ID")
 	private String providerUserId;
 
 	private String provider;
-		@JsonIgnore
-		@ManyToMany
-		@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "ROLE_ID") })
-		private Set<Role> roles;
-	}
-	
-
-  
-
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
+			@JoinColumn(name = "ROLE_ID") })
+	private Set<Role> roles;
+}

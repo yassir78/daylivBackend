@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,10 +36,10 @@ public class NotificationRest {
 	}
 
 	@PostMapping("/updateToken/{idUser}")
-	public User updateUserTokenNotification(@PathVariable long idUser, @RequestBody TextNode token) {
+	public User updateUserTokenNotification(@PathVariable long idUser,@RequestHeader("token") String token) {
 		System.out.println("////////////////////////////////////////////////////");
-		System.out.println(token.asText());
-		return notificationService.updateUserNotification(idUser, token.asText());
+		System.out.println(token);
+		return notificationService.updateUserNotification(idUser, token);
 	}
 
 }

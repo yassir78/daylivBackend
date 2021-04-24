@@ -36,4 +36,13 @@ public class NotificationServiceImpl implements NotificationService {
 		return user.getNotifications();
 	}
 
+	@Override
+	public User updateUserNotification(long idUser, String token) {
+		// TODO Auto-generated method stub
+		User user = userDao.findById(idUser).get();
+		user.setNotificationToken(token);
+		userDao.save(user);
+		return user;
+	}
+
 }

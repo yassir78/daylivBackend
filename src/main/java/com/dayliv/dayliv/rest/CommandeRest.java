@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dayliv.dayliv.model.Commande;
 import com.dayliv.dayliv.model.Livreur;
 import com.dayliv.dayliv.service.CommandeService;
+import com.dayliv.dayliv.service.EmailService;
 
 @RestController
 @CrossOrigin
@@ -21,7 +22,8 @@ import com.dayliv.dayliv.service.CommandeService;
 public class CommandeRest {
 	@Autowired
 	private CommandeService commandeService;
-
+	@Autowired
+    private EmailService emailService; 
 	@GetMapping("/liv/{id}")
 	public List<Commande> getCommandeByLivreur(@PathVariable Long id) {
 		return commandeService.getCommandeByLivreur(id);
@@ -29,6 +31,7 @@ public class CommandeRest {
 
 	@PostMapping("/setLivreur/{id}")
 	public Commande affecterCommandeLivreur(@RequestBody Livreur livreur, @PathVariable Long id) {
+		emailService.sendMail(livreur.getEmail(), "Dayliv Marketplace", "Bonjour vous avez reçu une nouvelle commande !");
 		return commandeService.affecterCommandeLivreur(livreur, id);
 	}
 
@@ -36,6 +39,7 @@ public class CommandeRest {
 	public Commande save(@RequestBody Commande commande) {
 		System.out.println("Commande..............");
 		System.out.println(commande);
+		emailService.sendMail(commande.getLivreur().getEmail(), "Dayliv Marketplace", "Bonjour vous avez reçu une nouvelle commande !");
 		return commandeService.save(commande);
 	}
 

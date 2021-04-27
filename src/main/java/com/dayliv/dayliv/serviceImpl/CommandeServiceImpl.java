@@ -77,19 +77,14 @@ public class CommandeServiceImpl implements CommandeService {
 		}
 		return null;
 	}
-
+    
 	@Override
 	public List<Commande> getCommandeByLivreur(Long id) {
 		// TODO Auto-generated method stub
 		Livreur livreur = livreurDao.findById(id).get();
-
 		System.out.println("hello world" + livreur.getId());
-		if (livreur != null) {
-			List<Commande> commandes = commandeDao.findByLivreur(livreur);
-			return commandes;
-
-		}
-		return null;
+		List<Commande> commandes = commandeDao.findByLivreur(livreur);
+		return commandes;
 	}
 
 }

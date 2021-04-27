@@ -4,12 +4,20 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dayliv.dayliv.model.Dispatcher;
+import com.dayliv.dayliv.model.Partenaire;
 import com.dayliv.dayliv.service.DispatcherService;
+import com.dayliv.dayliv.service.EmailService;
+import com.dayliv.dayliv.service.PartenaireService;
 
 @RestController
 @CrossOrigin
@@ -17,10 +25,46 @@ import com.dayliv.dayliv.service.DispatcherService;
 public class DisaptcherRest {
 	@Autowired
 	private DispatcherService dispatcherService;
+	// @Autowired
+	// private JwtTokenProvider tokenProvider;
 
-	@GetMapping("/")
+	@Autowired
+    private EmailService emailService; 
+
+	@GetMapping("/all")
 	public List<Dispatcher> findAll() {
 		return dispatcherService.findAll();
 	}
 
+	@DeleteMapping("/id/{id}")
+	public void delete(@PathVariable Long id) {
+		dispatcherService.delete(id);
+	}
+
+	@PutMapping("/")
+	public Dispatcher update(@RequestBody Dispatcher dispatcher) {
+		return dispatcherService.update(dispatcher.getId(), dispatcher);
+	}
+
+	@DeleteMapping("/{id}")
+	public int deletePartenaire(@PathVariable Long id) {
+		return dispatcherService.delete(id);
+	}
+
+	@PostMapping("/save")
+	public Dispatcher save(@RequestBody Dispatcher dispatcher) {
+		emailService.sendMail(dispatcher.getEmail(), "Dayliv Marketplace", "Bonjour nous avons crée un compte pour vous !");
+		//emailService.sendMailWithInlineResources(dispatcher.getEmail(), "Dayliv Marketplace", "https://cdn.shopify.com/s/files/1/0511/3901/8925/files/Copia_de_Copia_de_REN_1_410x.png");
+		return dispatcherService.save(dispatcher);
+	}
+
+	@GetMapping("/nom/{nom}")
+	public Dispatcher findByNom(@PathVariable String nom) {
+		return dispatcherService.findByNom(nom);
+	}
+
+	@GetMapping("/id/{id}")
+	public Dispatcher findById(@PathVariable Long id) {
+		return dispatcherService.findById(id);
+	}
 }

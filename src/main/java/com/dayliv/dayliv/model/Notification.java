@@ -24,6 +24,7 @@ public class Notification {
 	private long id;
 	private String title;
 	private String body;
+	private String path;
 	private Boolean seen;
 	@ManyToOne
 	@JsonIgnore

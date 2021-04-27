@@ -22,6 +22,7 @@ import com.dayliv.dayliv.model.Panier;
 import com.dayliv.dayliv.model.Partenaire;
 import com.dayliv.dayliv.model.ERole;
 import com.dayliv.dayliv.service.ConsumerService;
+import com.dayliv.dayliv.service.EmailService;
 import com.dayliv.dayliv.service.PanierService;
 import com.dayliv.dayliv.service.PartenaireService;
 
@@ -34,6 +35,9 @@ public class PartenaireRest {
 	private PartenaireService partenaireService;
 	// @Autowired
 	// private JwtTokenProvider tokenProvider;
+
+	@Autowired
+    private EmailService emailService; 
 
 	@GetMapping("/all")
 	public List<Partenaire> findAll() {
@@ -57,6 +61,8 @@ public class PartenaireRest {
 
 	@PostMapping("/save")
 	public Partenaire save(@RequestBody Partenaire partenaire) {
+		emailService.sendMail(partenaire.getEmail(), "Dayliv Marketplace", "Bonjour nous avons crée un compte pour vous !");
+		//emailService.sendMailWithInlineResources(partenaire.getEmail(), "Dayliv Marketplace", "https://cdn.shopify.com/s/files/1/0511/3901/8925/files/Copia_de_Copia_de_REN_1_410x.png");
 		return partenaireService.save(partenaire);
 	}
 

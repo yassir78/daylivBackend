@@ -3,6 +3,7 @@ package com.dayliv.dayliv;
 import java.util.Date;
 import java.util.stream.Stream;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,14 +31,18 @@ import com.dayliv.dayliv.model.CommandeItem;
 import com.dayliv.dayliv.model.CommandeStatus;
 import com.dayliv.dayliv.model.Livreur;
 import com.dayliv.dayliv.model.Store;
+import com.dayliv.dayliv.service.EmailService;
 
 @SpringBootApplication(scanBasePackages = "com.dayliv.dayliv")
-public class DaylivBackendApplication {
+public class DaylivBackendApplication implements CommandLineRunner  {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DaylivBackendApplication.class, args);
 	}
 
+	@Autowired
+    private EmailService emailService; 
+	
 	@Bean
 	public CommandLineRunner demo(ConsumerDao consumerDao, DispatcherDao dispatcherDao, LivreurDao livreurDao,
 			PartenaireDao partenaireDao, SuperAdminDao superAdminDao, ProductDao productDao,
@@ -122,6 +127,14 @@ public class DaylivBackendApplication {
 
 		};
 
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+
+           emailService.sendMail("belkoweb9718@gmail.com", "Hi", "Ho ho ho");
+    	
+    	 //  emailService.sendPreConfiguredMail("Ho ho ho");
 	}
 
 }

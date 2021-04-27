@@ -52,9 +52,9 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		Set<Role> rolesAdmin = new HashSet<>();
 		rolesAdmin.add(userRole);
 		rolesAdmin.add(adminRole);
-		rolesAdmin.add(parRole);
-		rolesAdmin.add(livRole);
-		rolesAdmin.add(disRole);
+		//rolesAdmin.add(parRole);
+		//rolesAdmin.add(livRole);
+		//rolesAdmin.add(disRole);
 
 	   createUserIfNotFound("admin@admin.com", "Admin", "admin", rolesAdmin);
 		Set<Role> rolesPartenaire = new HashSet<>();

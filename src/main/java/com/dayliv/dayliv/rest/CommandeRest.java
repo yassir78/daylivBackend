@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dayliv.dayliv.model.Commande;
+import com.dayliv.dayliv.model.CommandeStatus;
 import com.dayliv.dayliv.model.Livreur;
 import com.dayliv.dayliv.service.CommandeService;
 import com.dayliv.dayliv.service.EmailService;
@@ -47,5 +49,11 @@ public class CommandeRest {
 	public List<Commande> findAll() {
 		return commandeService.findAll();
 	}
+	@PostMapping("/changeStatus/{id}")
+	public Commande changeStatus(@RequestHeader("status") String status,@PathVariable Long id) {
+		return commandeService.changeStatus(status, id);
+		
+	}
+	
 
 }

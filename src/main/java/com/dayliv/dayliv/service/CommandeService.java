@@ -12,5 +12,6 @@ public interface CommandeService {
 	public Commande save(Commande commande);
 	public Commande affecterCommandeLivreur(Livreur livreur,Long id);
 	public List<Commande> getCommandeByLivreur(Long id);
+	public List<Commande> findAllByStoreCode(String storeCode);
 	public Commande changeStatus(String status,Long id);
 }

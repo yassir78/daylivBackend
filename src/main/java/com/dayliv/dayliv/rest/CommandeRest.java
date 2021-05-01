@@ -49,6 +49,14 @@ public class CommandeRest {
 	public List<Commande> findAll() {
 		return commandeService.findAll();
 	}
+
+	
+
+	@GetMapping("/store/{storeCode}")
+	public List<Commande> findAllByStoreCode(@PathVariable String storeCode) {
+		return commandeService.findAll();
+	}
+
 	@PostMapping("/changeStatus/{id}")
 	public Commande changeStatus(@PathVariable Long id,@RequestHeader("status") String status) {
 		System.out.println("//////////////////////////////");

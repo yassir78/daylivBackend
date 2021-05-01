@@ -43,11 +43,11 @@ public class CommandeServiceImpl implements CommandeService {
 	public Commande save(Commande commande) {
 
 		// TODO Auto-generated method stub
-		LivraisonInfos livraisonInfos = commande.getLivrasonInfos();
+		LivraisonInfos livraisonInfos = commande.getLivraisonInfos();
 		CommandeStatus commandeStatus = commande.getCommandeStatus();
 		if (livraisonInfos != null) {
 			System.out.println(livraisonInfos);
-			commande.setLivrasonInfos(livraisonInfos);
+			commande.setLivraisonInfos(livraisonInfos);
 			livraisonInfosService.save(livraisonInfos);
 
 		}
@@ -99,6 +99,11 @@ public class CommandeServiceImpl implements CommandeService {
 
 		}
 		return commande;
+	}
+
+	@Override
+	public List<Commande> findAllByStoreCode(String storeCode) {
+		return commandeDao.findAllByStoreCode(storeCode);
 	}
 
 }

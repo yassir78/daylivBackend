@@ -98,7 +98,7 @@ public class CommandeServiceImpl implements CommandeService {
 			commandeStatusDao.save(commandeStatus);
 
 		}
-		return null;
+		return commande;
 	}
 
 }

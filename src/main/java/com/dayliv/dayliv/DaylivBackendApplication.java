@@ -56,6 +56,8 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			commande1.setReference("MT-2938");
 			commande1.setTotale_commande(4500F);
 			commande1.setDate_commande(new Date());
+			commande1.setLongitude(6.1431577F);
+			commande1.setLatitude(46.2043907F);
 			commande2.setLongitude(6.1431577F);
 			commande2.setLatitude(46.2043907F);
 			commande2.setReference("DF-9086");

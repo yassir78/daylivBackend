@@ -92,4 +92,9 @@ public class CommandeServiceImpl implements CommandeService {
 		return null;
 	}
 
+	@Override
+	public List<Commande> findAllByStoreCode(String storeCode) {
+		return commandeDao.findAllByStoreCode(storeCode);
+	}
+
 }

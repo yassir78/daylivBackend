@@ -46,5 +46,6 @@ public class Commande {
 	@OneToMany(mappedBy = "commande")
 	private List<CommandeItem> commandeItems;
 	@OneToOne(cascade = CascadeType.ALL)
-	private LivraisonInfos livrasonInfos;
+	private LivraisonInfos livraisonInfos;
+	private String storeCode;
 }

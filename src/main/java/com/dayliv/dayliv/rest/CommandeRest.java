@@ -47,5 +47,11 @@ public class CommandeRest {
 	public List<Commande> findAll() {
 		return commandeService.findAll();
 	}
+	
+
+	@GetMapping("/store/{storeCode}")
+	public List<Commande> findAllByStoreCode(@PathVariable String storeCode) {
+		return commandeService.findAll();
+	}
 
 }

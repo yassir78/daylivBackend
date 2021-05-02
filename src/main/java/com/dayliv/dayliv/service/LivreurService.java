@@ -13,7 +13,7 @@ public interface LivreurService {
 	public void delete(Long id);
 
 	public Livreur update(Long id, Livreur livreur);
-
+	public Livreur updateLocation(Long id, Livreur livreur);
 	public Livreur findByNom(String nom);
 
 	public Livreur findById(Long id);

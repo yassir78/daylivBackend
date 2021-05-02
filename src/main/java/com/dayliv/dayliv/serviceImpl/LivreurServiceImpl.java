@@ -33,6 +33,14 @@ public class LivreurServiceImpl implements LivreurService {
 	public Livreur update(Long id, Livreur livreur) {
 		return livreurDao.save(livreur);
 	}
+	
+	@Override
+	public Livreur updateLocation(Long id, Livreur livreur) {
+		Livreur liv = livreurDao.getOne(id);
+		liv.setLg(livreur.getLg());
+		liv.setLat(livreur.getLat());
+		return livreurDao.save(livreur);
+	}
 
 	@Override
 	public Livreur findByNom(String nom) {

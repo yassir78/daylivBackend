@@ -45,6 +45,13 @@ public class LivreurRest {
 	public Livreur update(@PathVariable Long id,@RequestBody Livreur livreur) {
 		return livreurService.update(id, livreur);
 	}
+	
+	@PutMapping("/liv/{id}")
+	public Livreur updateLocation(@PathVariable Long id,@RequestBody Livreur livreur) {
+		return livreurService.update(id, livreur);
+	}
+	
+	
 	@PostMapping("/save")
 	public Livreur save(@RequestBody Livreur livreur) {
 		return livreurService.save(livreur);

@@ -68,7 +68,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		Set<Role> rolesDispatcher = new HashSet<>();
 		rolesDispatcher.add(userRole);
 		rolesDispatcher.add(disRole);
-	   createUserIfNotFound("dispatcher@dispatcher.com", "Dispatcher", "dispatcher", rolesDispatcher);
+	   createDispatcherIfNotFound("dispatcher@dispatcher.com", "Dispatcher", "dispatcher", rolesDispatcher);
 
 		alreadySetup = true;
 		
@@ -113,17 +113,17 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 	private final User createDispatcherIfNotFound(final String email, final String name, final String password, Set<Role> roles) {
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
-			user = new Dispatcher();
-			user.setDisplayName(name);
-			user.setEmail(email);
-			user.setPassword(passwordEncoder.encode(password));
-			user.setRoles(roles);
-			user.setProvider(SocialProvider.LOCAL.getProviderType());
-			user.setEnabled(true);
+			Dispatcher dispatcher = new Dispatcher();
+			dispatcher.setDisplayName(name);
+			dispatcher.setEmail(email);
+			dispatcher.setPassword(passwordEncoder.encode(password));
+			dispatcher.setRoles(roles);
+			dispatcher.setProvider(SocialProvider.LOCAL.getProviderType());
+			dispatcher.setEnabled(true);
 			Date now = Calendar.getInstance().getTime();
-			user.setCreatedDate(now);
-			user.setModifiedDate(now);
-			user = userRepository.save(user);
+			dispatcher.setCreatedDate(now);
+			dispatcher.setModifiedDate(now);
+			user = userRepository.save(dispatcher);
 		}
 
 		return user;

@@ -3,6 +3,7 @@ package com.dayliv.dayliv.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,11 @@ import com.dayliv.dayliv.service.StoreService;
 public class StoreRest {
 	@Autowired
 	private StoreService storeService;
+    @GetMapping("/adresse/{code}")
+	public ResponseEntity<String>  findAddressByCode(@PathVariable String code) {
+		String result =  storeService.findAddressByCode(code);
+		return ResponseEntity.ok(result);
+	}
 
 	@GetMapping("/{id}")
 	public Store findById(@PathVariable Long id) {

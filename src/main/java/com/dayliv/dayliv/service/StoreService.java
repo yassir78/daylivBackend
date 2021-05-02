@@ -2,6 +2,8 @@ package com.dayliv.dayliv.service;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.dayliv.dayliv.model.Store;
 
 public interface StoreService {
@@ -16,5 +18,7 @@ public interface StoreService {
 	public Store findById(Long id);
 	
 	public Store findByCode(String code);
+	
+	public String findAddressByCode(String code);
 
 }

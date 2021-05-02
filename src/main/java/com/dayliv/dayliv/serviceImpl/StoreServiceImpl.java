@@ -3,6 +3,7 @@ package com.dayliv.dayliv.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.dayliv.dayliv.dao.StoreDao;
@@ -40,6 +41,16 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public Store findByCode(String code) {
 		return storeDao.findByCode(code);
+	}
+
+	@Override
+	public String findAddressByCode(String code) {
+		// TODO Auto-generated method stub$
+		Store store = storeDao.findByCode(code);
+		if(store != null && !store.getAddress().equals("")) {
+			return store.getAddress();
+		}
+		return "";
 	}
 
 }

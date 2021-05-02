@@ -55,14 +55,12 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			Commande commande2 = new Commande();
 			commande1.setReference("MT-2938");
 			commande1.setTotale_commande(4500F);
-			commande1.setStoreCode("XEHZJ8855");
 			commande1.setDate_commande(new Date());
 			commande1.setLongitude(6.1431577F);
 			commande1.setLatitude(46.2043907F);
 			commande2.setLongitude(6.1431577F);
 			commande2.setLatitude(46.2043907F);
 			commande2.setReference("DF-9086");
-			commande2.setStoreCode("XEHZJ8855");
 			commande2.setTotale_commande(9877F);
 			commande2.setDate_commande(new Date());
 			Stream.of(commande1, commande2).forEach(commande -> {
@@ -109,7 +107,7 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 				store.setCode(code);
 				store.setPhone("06785521455");
 				store.setName("SHOP-" + code);
-
+                store.setCode("HD-7000");
 				store.setInBusinessSince("2020");
 				store.setLat(5278.555);
 				store.setLg(56634.21);

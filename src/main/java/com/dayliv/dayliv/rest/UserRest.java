@@ -12,14 +12,14 @@ import com.dayliv.dayliv.service.ConsumerService;
 import com.dayliv.dayliv.service.UserService;
 import com.dayliv.dayliv.util.GeneralUtils;
 @RestController
-@RequestMapping("/dayliv-api")
+@RequestMapping("/dayliv-api/user")
 public class UserRest {
 	@Autowired
 	UserService userService;
 	@Autowired
 	ConsumerService consumerService;
-	  @GetMapping("/user/me")
-	    @PreAuthorize("hasRole('USER')")
+	  @GetMapping("/me")
+	    @PreAuthorize("hasRole('ROLE_COSTUMER')")
 	    public ResponseEntity<?> getCurrentUser(@CurrentUser LocalUser user) {
 	        return ResponseEntity.ok(GeneralUtils.buildUserInfo(user));
 	    }
@@ -29,8 +29,8 @@ public class UserRest {
 			return ResponseEntity.ok("Public content goes here");
 		}
 
-		@GetMapping("/user")
-		@PreAuthorize("hasRole('USER')")
+		@GetMapping("users")
+		@PreAuthorize("hasRole('ROLE_COSTUMER')")
 		public ResponseEntity<?> getUserContent() {
 			return ResponseEntity.ok("User content goes here");
 		}

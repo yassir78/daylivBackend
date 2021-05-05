@@ -75,8 +75,8 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		
 		//Livreur Creation
 		
-	   createLivreurIfNotFound("livreur1@livreur1.com", "Livreur1",6.2 ,46.2143907 ,"livreur1", rolesLivreur);
-	   createLivreurIfNotFound("livreur2@livreur2.com", "Livreur2",6.2493 , 46.2243907, "livreur2", rolesLivreur);
+	   createLivreurIfNotFound("livreur1@livreur1.com", "Livreur1",6.2 ,46.2143907 ,"livreur1", "scooter",rolesLivreur);
+	   createLivreurIfNotFound("livreur2@livreur2.com", "Livreur2",6.2493 , 46.2243907, "livreur2","camion" ,rolesLivreur);
 //	   createLivreurIfNotFound("livreur3@livreur3.com", "Livreur3",6.3 ,46.2443907 , "livreur3", rolesLivreur);
 //	   createLivreurIfNotFound("livreur4@livreur4.com", "Livreur4",6.3,46.2643907 , "livreur4", rolesLivreur);
 //	   createLivreurIfNotFound("livreur5@livreur5.com", "Livreur5", 6.3,46.2743907 , "livreur5", rolesLivreur);
@@ -86,7 +86,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 	}
 
 	@Transactional
-	private final User createLivreurIfNotFound(final String email, final String name,double lg, double lat, final String password, Set<Role> roles) {
+	private final User createLivreurIfNotFound(final String email, final String name,double lg, double lat, final String password,final String mobilite ,Set<Role> roles) {
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
 			Livreur livreur = new Livreur();
@@ -96,6 +96,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			livreur.setEmail(email);
 			livreur.setPassword(passwordEncoder.encode(password));
 			livreur.setRoles(roles);
+			livreur.setMobility(mobilite);
 			livreur.setProvider(SocialProvider.LOCAL.getProviderType());
 			livreur.setEnabled(true);
 			Date now = Calendar.getInstance().getTime();

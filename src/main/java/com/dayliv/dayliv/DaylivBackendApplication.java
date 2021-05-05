@@ -107,7 +107,7 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 				store.setCode(code);
 				store.setPhone("06785521455");
 				store.setName("SHOP-" + code);
-                store.setCode("HD-7000");
+				store.setCodePostal("500300");
 				store.setInBusinessSince("2020");
 				store.setLat(5278.555);
 				store.setLg(56634.21);

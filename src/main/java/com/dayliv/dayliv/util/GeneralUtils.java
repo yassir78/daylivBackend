@@ -35,7 +35,7 @@ public class GeneralUtils {
 		List<String> roles = localUser.getAuthorities().stream().map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 		User user = localUser.getUser();
-		return new UserInfo(user.getId().toString(), user.getDisplayName(), user.getEmail(), user.getStoreCode(),
+		return new UserInfo(user.getId().toString(), user.getDisplayName(), user.getEmail() ,  user.getStoreCode(),user.getNom(), user.getPrenom(), user.getImage_profile(), user.getNum_tel(),
 				roles);
 	}
 }

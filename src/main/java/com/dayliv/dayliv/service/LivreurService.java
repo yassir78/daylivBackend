@@ -15,7 +15,7 @@ public interface LivreurService {
 	public Livreur update(Long id, Livreur livreur);
 	public Livreur updateLocation(Long id, Livreur livreur);
 	public Livreur findByNom(String nom);
-
+	public Livreur findByEmail(String email);
 	public Livreur findById(Long id);
 
 	public Livreur findByLogin(String login);

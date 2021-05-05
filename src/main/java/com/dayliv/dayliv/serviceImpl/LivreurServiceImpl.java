@@ -3,6 +3,7 @@ package com.dayliv.dayliv.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.dayliv.dayliv.dao.LivreurDao;
@@ -13,7 +14,8 @@ import com.dayliv.dayliv.service.LivreurService;
 public class LivreurServiceImpl implements LivreurService {
 	@Autowired
 	private LivreurDao livreurDao;
-
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	@Override
 	public List<Livreur> findAll() {
 		return livreurDao.findAll();
@@ -21,6 +23,7 @@ public class LivreurServiceImpl implements LivreurService {
 
 	@Override
 	public Livreur save(Livreur livreur) {
+		livreur.setPassword(passwordEncoder.encode(livreur.getPassword()));
 		return livreurDao.save(livreur);
 	}
 
@@ -36,10 +39,13 @@ public class LivreurServiceImpl implements LivreurService {
 	
 	@Override
 	public Livreur updateLocation(Long id, Livreur livreur) {
-		Livreur liv = livreurDao.getOne(id);
-		liv.setLg(livreur.getLg());
-		liv.setLat(livreur.getLat());
-		return livreurDao.save(livreur);
+		System.out.println("MMMMMMMMMMMMMMMMMMMMMMM********************");
+		System.out.println(livreur);
+		Livreur liv = livreurDao.findByEmail("livreur@livreur.com");
+		 //.setLg(livreur.getLg());
+		// liv.setLat(livreur.getLat());
+	
+		return livreurDao.save(liv);
 	}
 
 	@Override
@@ -57,6 +63,12 @@ public class LivreurServiceImpl implements LivreurService {
 	public Livreur findByLogin(String login) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Livreur findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return livreurDao.findByEmail(email) ;
 	}
 
 }

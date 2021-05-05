@@ -14,5 +14,7 @@ import com.dayliv.dayliv.model.Livreur;
 public interface LivreurDao extends JpaRepository<Livreur,Long>{
 	public Optional<Consumer>  findByLogin(String nom); 
 	public Livreur findByNom(String nom);
+	public Livreur findByEmail(String email);
+
 
 }

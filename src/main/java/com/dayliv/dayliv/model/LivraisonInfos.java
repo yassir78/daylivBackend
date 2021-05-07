@@ -28,6 +28,7 @@ public class LivraisonInfos {
 	private String adresse2;
 	private String ville;
 	private String tel;
+	private String email;
 	private String codePostal;
 	private String pays;
 

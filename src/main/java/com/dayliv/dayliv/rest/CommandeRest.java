@@ -41,7 +41,9 @@ public class CommandeRest {
 	public Commande save(@RequestBody Commande commande) {
 		System.out.println("Commande..............");
 		System.out.println(commande);
-		//emailService.sendMail(commande.getLivreur().getEmail(), "Dayliv Marketplace", "Bonjour vous avez reçu une nouvelle commande !");
+		emailService.sendMail(commande.getLivraisonInfos().getEmail(), "Dayliv Marketplace", "Votre commande a été bien reçu !");
+
+		emailService.sendMail(commande.getLivreur().getEmail(), "Dayliv Marketplace", "Bonjour vous avez reçu une nouvelle commande !");
 		return commandeService.save(commande);
 	}
 

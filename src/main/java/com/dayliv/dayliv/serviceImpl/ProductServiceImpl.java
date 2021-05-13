@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.dayliv.dayliv.dao.PartenaireDao;
 import com.dayliv.dayliv.dao.ProductDao;
+import com.dayliv.dayliv.dao.ProductImageDao;
 import com.dayliv.dayliv.dao.UserDao;
 import com.dayliv.dayliv.model.Partenaire;
 import com.dayliv.dayliv.model.Product;
+import com.dayliv.dayliv.model.ProductImage;
 import com.dayliv.dayliv.model.User;
 import com.dayliv.dayliv.service.ProductService;
 
@@ -19,6 +21,8 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao;
 	@Autowired
 	private PartenaireDao partenaireDao;
+	@Autowired
+	private ProductImageDao productImageDao;
 
 	@Override
 	public List<Product> findAll() {
@@ -31,7 +35,17 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		Partenaire partenaire = partenaireDao.findById(Long.valueOf(idUser)).get();
 		product.setPartenaire(partenaire);
-		return productDao.save(product);
+		System.out.println("*********************************");
+		Product savedProduct  = productDao.save(product);
+		if (product.getProductImages() != null) {
+			for (ProductImage image : product.getProductImages()) {
+				System.out.println("*********************************");
+				System.out.println(image.getPath());
+				image.setProduct(savedProduct);
+				productImageDao.save(image);
+			}
+		}
+		return savedProduct;
 	}
 
 	@Override

@@ -46,6 +46,7 @@ public class ProductRest {
 
 	@PostMapping("/")
 	public Product createProduct(@RequestBody Product product, @RequestHeader("idUser") String idUser) {
+		System.out.println(product.toString());
 		return productService.createProduct(product, idUser);
 	}
 

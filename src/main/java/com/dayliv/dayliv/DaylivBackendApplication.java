@@ -23,6 +23,7 @@ import com.dayliv.dayliv.dao.PanierDao;
 import com.dayliv.dayliv.dao.PanierItemDao;
 import com.dayliv.dayliv.dao.PartenaireDao;
 import com.dayliv.dayliv.dao.ProductDao;
+import com.dayliv.dayliv.dao.ProductImageDao;
 import com.dayliv.dayliv.dao.StoreDao;
 import com.dayliv.dayliv.dao.SuperAdminDao;
 import com.dayliv.dayliv.model.CategoryProduct;
@@ -30,6 +31,8 @@ import com.dayliv.dayliv.model.Commande;
 import com.dayliv.dayliv.model.CommandeItem;
 import com.dayliv.dayliv.model.CommandeStatus;
 import com.dayliv.dayliv.model.Livreur;
+import com.dayliv.dayliv.model.Product;
+import com.dayliv.dayliv.model.ProductImage;
 import com.dayliv.dayliv.model.Store;
 import com.dayliv.dayliv.service.EmailService;
 
@@ -48,7 +51,7 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			PartenaireDao partenaireDao, SuperAdminDao superAdminDao, ProductDao productDao,
 			IngredientDao ingredientDao, CommentaireDao commentaireDao, CommandeDao commandeDao,
 			CommandeItemDao commandeItemDao, CommandeStatusDao commandeStatusDao, PanierDao panierDao,
-			StoreDao storeDao, PanierItemDao panierItemDao, CategoryProductDao categoryProductDao,
+			StoreDao storeDao, PanierItemDao panierItemDao, CategoryProductDao categoryProductDao,ProductImageDao productImageDao,
 			CategoryPartenaireDao categoryPartenaireDao) {
 		return (args) -> {
 			Commande commande1 = new Commande();

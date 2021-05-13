@@ -61,7 +61,7 @@ public class PartenaireRest {
 
 	@PostMapping("/save")
 	public Partenaire save(@RequestBody Partenaire partenaire) {
-		emailService.sendMail(partenaire.getEmail(), "Dayliv Marketplace", "Bonjour nous avons crée un compte pour vous !");
+		//emailService.sendMail(partenaire.getEmail(), "Dayliv Marketplace", "Bonjour nous avons crée un compte pour vous !");
 		//emailService.sendMailWithInlineResources(partenaire.getEmail(), "Dayliv Marketplace", "https://cdn.shopify.com/s/files/1/0511/3901/8925/files/Copia_de_Copia_de_REN_1_410x.png");
 		return partenaireService.save(partenaire);
 	}

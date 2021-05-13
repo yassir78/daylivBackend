@@ -3,6 +3,7 @@ package com.dayliv.dayliv.model;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,8 +39,10 @@ public class Product {
 	@NotNull
 	private Float price;
 	private String origine;
-	private String image;
 	private String storeCode;
+	@OneToMany(mappedBy = "product")
+	
+	private List<ProductImage> productImages;
 	private Float poids;
 	private Integer caloris;
 	@OneToOne
@@ -58,4 +61,5 @@ public class Product {
 	@OneToMany(mappedBy = "product")
 	@JsonIgnore
 	private List<Commentaire> commentaires;
+	
 }

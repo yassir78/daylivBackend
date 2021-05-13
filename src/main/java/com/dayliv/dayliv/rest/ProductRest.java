@@ -1,8 +1,11 @@
 package com.dayliv.dayliv.rest;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dayliv.dayliv.model.Product;
@@ -53,5 +57,21 @@ public class ProductRest {
 	public List<Product> findAll() {
 		return productService.findAll();
 	}
+	
+	@GetMapping("/products")
+	  public ResponseEntity<Map<String, Object>> getAllProducts(
+	        @RequestParam(required = false) String name,
+	        @RequestParam(defaultValue = "0") int page,
+	        @RequestParam(defaultValue = "6") int size
+	      ) {
+     try {
+	    
+	      return new ResponseEntity<>(productService.getAllProducts(name, page, size), HttpStatus.OK);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	  }
+	
+
 
 }

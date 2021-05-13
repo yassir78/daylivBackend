@@ -26,7 +26,7 @@ public class CategoryPartenaire {
 	private long id;
 	@NotNull
 	@Size(min = 5)
-	private String caregory_partenaire_name;
+	private String nom;
 	@ManyToMany(mappedBy = "categoryPartenaires")
 	private List<Partenaire> partenaires;
 

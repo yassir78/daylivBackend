@@ -2,6 +2,7 @@ package com.dayliv.dayliv.service;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 import com.dayliv.dayliv.model.Livreur;
 
@@ -19,4 +20,6 @@ public interface LivreurService {
 	public Livreur findById(Long id);
 
 	public Livreur findByLogin(String login);
+	public Map<String, Object> getAllLivreurs(String name, int page, int size);
+
 }

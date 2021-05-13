@@ -1,6 +1,7 @@
 package com.dayliv.dayliv.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.dayliv.dayliv.model.Consumer;
 
@@ -18,4 +19,7 @@ public interface ConsumerService {
 	public Consumer findByNom(String nom);
 
 	public Consumer findById(Long id);
+	
+	public Map<String, Object> getAllConsumers(String name, int page, int size);
+
 }

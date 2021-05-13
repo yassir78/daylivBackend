@@ -24,8 +24,8 @@ public class LivraisonInfos {
 	private long id;
 	private String nom;
 	private String prenom;
-	private String adresse;
-	private String adresse2;
+	private String adresseLivraison;
+	private String adresseFacture;
 	private String ville;
 	private String tel;
 	private String email;

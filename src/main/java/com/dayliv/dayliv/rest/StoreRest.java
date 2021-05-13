@@ -26,6 +26,11 @@ import com.dayliv.dayliv.service.StoreService;
 public class StoreRest {
 	@Autowired
 	private StoreService storeService;
+    @GetMapping("/adresse/{code}")
+	public ResponseEntity<String>  findAddressByCode(@PathVariable String code) {
+		String result =  storeService.findAddressByCode(code);
+		return ResponseEntity.ok(result);
+	}
 
 	@GetMapping("/{id}")
 	public Store findById(@PathVariable Long id) {

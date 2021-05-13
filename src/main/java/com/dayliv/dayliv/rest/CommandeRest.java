@@ -64,7 +64,9 @@ public class CommandeRest {
 	}
 
 	@PostMapping("/changeStatus/{id}")
-	public Commande changeStatus(@RequestHeader("status") String status,@PathVariable Long id) {
+	public Commande changeStatus(@PathVariable Long id,@RequestHeader("status") String status) {
+		System.out.println("//////////////////////////////");
+		System.out.println(status);
 		return commandeService.changeStatus(status, id);
 		
 	}

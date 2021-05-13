@@ -47,5 +47,6 @@ public class Commande {
 	private List<CommandeItem> commandeItems;
 	@OneToOne(cascade = CascadeType.ALL)
 	private LivraisonInfos livraisonInfos;
-	private String storeCode;
+	@ManyToOne
+	private Store store;
 }

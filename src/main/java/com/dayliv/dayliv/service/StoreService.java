@@ -3,6 +3,8 @@ package com.dayliv.dayliv.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
+
 import com.dayliv.dayliv.model.Store;
 
 public interface StoreService {
@@ -18,5 +20,6 @@ public interface StoreService {
 	
 	public Store findByCode(String code);
 	public Map<String, Object> getAllStores(String name, int page, int size);
+	public String findAddressByCode(String code);
 
 }

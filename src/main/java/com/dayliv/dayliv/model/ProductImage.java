@@ -1,35 +1,30 @@
 package com.dayliv.dayliv.model;
 
-import java.util.Date;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class LivraisonInfos {
+public class ProductImage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String nom;
-	private String prenom;
-	private String adresseLivraison;
-	private String adresseFacture;
-	private String ville;
-	private String tel;
-	private String email;
-	private String codePostal;
-	private String pays;
-
+	private String path;
+	@ManyToOne
+	@JsonIgnore
+	private Product product;
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.dayliv.dayliv.model.Consumer;
 import com.dayliv.dayliv.model.Livreur;
+
 import com.dayliv.dayliv.model.Partenaire;
 @Repository
 @CrossOrigin

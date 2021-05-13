@@ -52,7 +52,9 @@ public class CommandeServiceImpl implements CommandeService {
 		// TODO Auto-generated method stub
 		LivraisonInfos livraisonInfos = commande.getLivraisonInfos();
 		CommandeStatus commandeStatus = commande.getCommandeStatus();
+		System.out.println("LIVRAISON INFOS");
 		if (livraisonInfos != null) {
+			System.out.println("///////////////////////////////");
 			System.out.println(livraisonInfos);
 			commande.setLivraisonInfos(livraisonInfos);
 			livraisonInfosService.save(livraisonInfos);
@@ -105,7 +107,7 @@ public class CommandeServiceImpl implements CommandeService {
 			commandeStatusDao.save(commandeStatus);
 
 		}
-		return null;
+		return commande;
 	}
 
 	@Override

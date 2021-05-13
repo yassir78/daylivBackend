@@ -68,15 +68,15 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		Set<Role> rolesDispatcher = new HashSet<>();
 		rolesDispatcher.add(userRole);
 		rolesDispatcher.add(disRole);
-	   createUserIfNotFound("dispatcher@dispatcher.com", "Dispatcher", "dispatcher", rolesDispatcher);
+	   createDispatcherIfNotFound("dispatcher@dispatcher.com", "Dispatcher", "dispatcher", rolesDispatcher);
 
 		alreadySetup = true;
 		
 		
 		//Livreur Creation
 		
-	   createLivreurIfNotFound("livreur1@livreur1.com", "Livreur1",6.2 ,46.2143907 ,"livreur1", rolesLivreur);
-	   createLivreurIfNotFound("livreur2@livreur2.com", "Livreur2",6.2493 , 46.2243907, "livreur2", rolesLivreur);
+	   createLivreurIfNotFound("livreur1@livreur1.com", "Livreur1",6.2 ,46.2143907 ,"livreur1", "scooter",rolesLivreur);
+	   createLivreurIfNotFound("livreur2@livreur2.com", "Livreur2",6.2493 , 46.2243907, "livreur2","camion" ,rolesLivreur);
 //	   createLivreurIfNotFound("livreur3@livreur3.com", "Livreur3",6.3 ,46.2443907 , "livreur3", rolesLivreur);
 //	   createLivreurIfNotFound("livreur4@livreur4.com", "Livreur4",6.3,46.2643907 , "livreur4", rolesLivreur);
 //	   createLivreurIfNotFound("livreur5@livreur5.com", "Livreur5", 6.3,46.2743907 , "livreur5", rolesLivreur);
@@ -86,7 +86,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 	}
 
 	@Transactional
-	private final User createLivreurIfNotFound(final String email, final String name,double lg, double lat, final String password, Set<Role> roles) {
+	private final User createLivreurIfNotFound(final String email, final String name,double lg, double lat, final String password,final String mobilite ,Set<Role> roles) {
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
 			Livreur livreur = new Livreur();
@@ -96,6 +96,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			livreur.setEmail(email);
 			livreur.setPassword(passwordEncoder.encode(password));
 			livreur.setRoles(roles);
+			livreur.setMobility(mobilite);
 			livreur.setProvider(SocialProvider.LOCAL.getProviderType());
 			livreur.setEnabled(true);
 			Date now = Calendar.getInstance().getTime();
@@ -113,17 +114,17 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 	private final User createDispatcherIfNotFound(final String email, final String name, final String password, Set<Role> roles) {
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
-			user = new Dispatcher();
-			user.setDisplayName(name);
-			user.setEmail(email);
-			user.setPassword(passwordEncoder.encode(password));
-			user.setRoles(roles);
-			user.setProvider(SocialProvider.LOCAL.getProviderType());
-			user.setEnabled(true);
+			Dispatcher dispatcher = new Dispatcher();
+			dispatcher.setDisplayName(name);
+			dispatcher.setEmail(email);
+			dispatcher.setPassword(passwordEncoder.encode(password));
+			dispatcher.setRoles(roles);
+			dispatcher.setProvider(SocialProvider.LOCAL.getProviderType());
+			dispatcher.setEnabled(true);
 			Date now = Calendar.getInstance().getTime();
-			user.setCreatedDate(now);
-			user.setModifiedDate(now);
-			user = userRepository.save(user);
+			dispatcher.setCreatedDate(now);
+			dispatcher.setModifiedDate(now);
+			user = userRepository.save(dispatcher);
 		}
 
 		return user;

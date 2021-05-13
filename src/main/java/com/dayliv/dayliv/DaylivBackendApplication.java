@@ -23,6 +23,7 @@ import com.dayliv.dayliv.dao.PanierDao;
 import com.dayliv.dayliv.dao.PanierItemDao;
 import com.dayliv.dayliv.dao.PartenaireDao;
 import com.dayliv.dayliv.dao.ProductDao;
+import com.dayliv.dayliv.dao.ProductImageDao;
 import com.dayliv.dayliv.dao.StoreDao;
 import com.dayliv.dayliv.dao.SuperAdminDao;
 import com.dayliv.dayliv.model.CategoryProduct;
@@ -31,6 +32,8 @@ import com.dayliv.dayliv.model.CommandeItem;
 import com.dayliv.dayliv.model.CommandeStatus;
 import com.dayliv.dayliv.model.Livreur;
 import com.dayliv.dayliv.model.Product;
+
+import com.dayliv.dayliv.model.ProductImage;
 import com.dayliv.dayliv.model.Store;
 import com.dayliv.dayliv.service.EmailService;
 
@@ -49,19 +52,19 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			PartenaireDao partenaireDao, SuperAdminDao superAdminDao, ProductDao productDao,
 			IngredientDao ingredientDao, CommentaireDao commentaireDao, CommandeDao commandeDao,
 			CommandeItemDao commandeItemDao, CommandeStatusDao commandeStatusDao, PanierDao panierDao,
-			StoreDao storeDao, PanierItemDao panierItemDao, CategoryProductDao categoryProductDao,
-			CategoryPartenaireDao categoryPartenaireDao ) {
+			StoreDao storeDao, PanierItemDao panierItemDao, CategoryProductDao categoryProductDao,ProductImageDao productImageDao,
+			CategoryPartenaireDao categoryPartenaireDao) {
 		return (args) -> {
 			Commande commande1 = new Commande();
 			Commande commande2 = new Commande();
 			commande1.setReference("MT-2938");
 			commande1.setTotale_commande(4500F);
-			commande1.setStoreCode("XEHZJ8855");
 			commande1.setDate_commande(new Date());
+			commande1.setLongitude(6.1431577F);
+			commande1.setLatitude(46.2043907F);
 			commande2.setLongitude(6.1431577F);
 			commande2.setLatitude(46.2043907F);
 			commande2.setReference("DF-9086");
-			commande2.setStoreCode("XEHZJ8855");
 			commande2.setTotale_commande(9877F);
 			commande2.setDate_commande(new Date());
 			Stream.of(commande1, commande2).forEach(commande -> {
@@ -108,7 +111,7 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 				store.setCode(code);
 				store.setPhone("06785521455");
 				store.setName("SHOP-" + code);
-
+				store.setCodePostal("500300");
 				store.setInBusinessSince("2020");
 				store.setLat(5278.555);
 				store.setLg(56634.21);
@@ -134,8 +137,11 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 				product.setOrigine("Chine");
 			    product.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
 			    product.setPrice((float) 58.6);
-			    product.setImage("https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/39/358943/1.jpg?9484");
+			    ProductImage pi = new ProductImage();
 			    productDao.save(product);
+			    pi.setPath("https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/39/358943/1.jpg?9484");
+			    pi.setProduct(product);
+			    productImageDao.save(pi);
 			});
 			
 

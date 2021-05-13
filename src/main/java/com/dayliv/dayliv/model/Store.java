@@ -36,6 +36,7 @@ public class Store {
 	private String defaultLanguage;//code
 	private String currency;//code
 	private String inBusinessSince;
+	private String codePostal;
 	private String address;
 	@NotNull
 	private String email;
@@ -47,4 +48,7 @@ public class Store {
 	private double lat;
 	@OneToOne
 	private Partenaire partenaire ;
+	@OneToMany(mappedBy = "store")
+	@JsonIgnore
+	private List<Commande> commandes;
 }

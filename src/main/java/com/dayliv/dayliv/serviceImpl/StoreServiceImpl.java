@@ -1,12 +1,19 @@
 package com.dayliv.dayliv.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.dayliv.dayliv.dao.StoreDao;
+import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.model.Store;
 import com.dayliv.dayliv.service.StoreService;
 @Service
@@ -44,13 +51,34 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
-	public String findAddressByCode(String code) {
-		// TODO Auto-generated method stub$
-		Store store = storeDao.findByCode(code);
-		if(store != null && !store.getAddress().equals("")) {
-			return store.getAddress();
-		}
-		return "";
-	}
+	public Map<String, Object> getAllStores(String name, int page, int size) {
+		 List<Store> stores = new ArrayList<Store>();
+	      Pageable paging = PageRequest.of(page, size);
+	      
+	      Page<Store> pagecats;
+	      if (name == null)
+	    	  pagecats = storeDao.findAll(paging);
+	      else
+	    	  pagecats = storeDao.findByNameContaining(name, paging);
 
+	      stores = pagecats.getContent();
+
+	      Map<String, Object> response = new HashMap<>();
+	      response.put("stores", stores);
+	      response.put("currentPage", pagecats.getNumber());
+	      response.put("totalItems", pagecats.getTotalElements());
+	      response.put("totalPages", pagecats.getTotalPages());
+
+		return response;
+
+	}
+	
+			public String findAddressByCode(String code) {
+				// TODO Auto-generated method stub$
+				Store store = storeDao.findByCode(code);
+				if(store != null && !store.getAddress().equals("")) {
+					return store.getAddress();
+				}
+				return "";
+	}
 }

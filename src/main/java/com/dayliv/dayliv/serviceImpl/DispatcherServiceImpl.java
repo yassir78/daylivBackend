@@ -1,13 +1,20 @@
 package com.dayliv.dayliv.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.dayliv.dayliv.dao.DispatcherDao;
 import com.dayliv.dayliv.model.Dispatcher;
+import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.service.DispatcherService;
 
 @Service
@@ -59,6 +66,28 @@ public class DispatcherServiceImpl implements DispatcherService {
 	public Dispatcher findByLogin(String login) {
 		// TODO Auto-generated method stub
 		return DispatcherDao.findByLogin(login);
+	}
+
+	@Override
+	public Map<String, Object> getAllDispatchers(String name, int page, int size) {
+		 List<Dispatcher> dispatchers = new ArrayList<Dispatcher>();
+	      Pageable paging = PageRequest.of(page, size);
+	      
+	      Page<Dispatcher> pagecats;
+	      if (name == null)
+	    	  pagecats = DispatcherDao.findAll(paging);
+	      else
+	    	  pagecats = DispatcherDao.findByNomContaining(name, paging);
+
+	      dispatchers = pagecats.getContent();
+
+	      Map<String, Object> response = new HashMap<>();
+	      response.put("dispatchers", dispatchers);
+	      response.put("currentPage", pagecats.getNumber());
+	      response.put("totalItems", pagecats.getTotalElements());
+	      response.put("totalPages", pagecats.getTotalPages());
+
+		return response;
 	}
 
 }

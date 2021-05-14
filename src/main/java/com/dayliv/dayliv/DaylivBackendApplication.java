@@ -32,6 +32,7 @@ import com.dayliv.dayliv.model.CommandeItem;
 import com.dayliv.dayliv.model.CommandeStatus;
 import com.dayliv.dayliv.model.Livreur;
 import com.dayliv.dayliv.model.Product;
+
 import com.dayliv.dayliv.model.ProductImage;
 import com.dayliv.dayliv.model.Store;
 import com.dayliv.dayliv.service.EmailService;
@@ -124,11 +125,25 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 				// categories
 				Stream.of("pizza", "panini", "chawarma").forEach(libelle -> {
 					CategoryProduct categoryProduct = new CategoryProduct();
-					categoryProduct.setCategory_name(libelle);
+					categoryProduct.setNom(libelle);
 					categoryProduct.setStoreCode("XEHZJ8855");
 					categoryProductDao.save(categoryProduct);
 				});
 			});
+			
+			Stream.of("PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone", "PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone").forEach(libelle->{
+				Product product = new Product();
+				product.setLibelle(libelle);
+				product.setOrigine("Chine");
+			    product.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+			    product.setPrice((float) 58.6);
+			    ProductImage pi = new ProductImage();
+			    productDao.save(product);
+			    pi.setPath("https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/39/358943/1.jpg?9484");
+			    pi.setProduct(product);
+			    productImageDao.save(pi);
+			});
+			
 
 		};
 

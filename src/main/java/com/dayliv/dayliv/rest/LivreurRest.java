@@ -2,6 +2,7 @@ package com.dayliv.dayliv.rest;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dayliv.dayliv.model.Consumer;
@@ -67,6 +69,21 @@ public class LivreurRest {
 	public Livreur findById(@PathVariable Long id) {
 	    return livreurService.findById(id);
 	}
+	
+
+	@GetMapping("/livreurs")
+	  public ResponseEntity<Map<String, Object>> getAllCategories(
+	        @RequestParam(required = false) String name,
+	        @RequestParam(defaultValue = "0") int page,
+	        @RequestParam(defaultValue = "3") int size
+	      ) {
+       try {
+	    
+	      return new ResponseEntity<>(livreurService.getAllLivreurs(name, page, size), HttpStatus.OK);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	  }
 
 /*
 	@PostMapping("/dayliv-api/livreur/register")

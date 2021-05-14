@@ -1,13 +1,20 @@
 package com.dayliv.dayliv.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.dayliv.dayliv.dao.PartenaireDao;
 import com.dayliv.dayliv.model.Partenaire;
+import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.service.PartenaireService;
 
 @Service
@@ -46,6 +53,27 @@ public class PartenaireServiceImpl implements PartenaireService {
 	@Override
 	public Partenaire findByLogin(String login) {
 		return partenaireDao.findByLogin(login);
+	}
+	@Override
+	public Map<String, Object> getAllPartenaires(String name, int page, int size) {
+		 List<Partenaire> partenaires = new ArrayList<Partenaire>();
+	      Pageable paging = PageRequest.of(page, size);
+	      
+	      Page<Partenaire> pagecats;
+	      if (name == null)
+	    	  pagecats = partenaireDao.findAll(paging);
+	      else
+	    	  pagecats = partenaireDao.findByNomContaining(name, paging);
+
+	      partenaires = pagecats.getContent();
+
+	      Map<String, Object> response = new HashMap<>();
+	      response.put("partenaires", partenaires);
+	      response.put("currentPage", pagecats.getNumber());
+	      response.put("totalItems", pagecats.getTotalElements());
+	      response.put("totalPages", pagecats.getTotalPages());
+
+		return response;
 	}
 
 }

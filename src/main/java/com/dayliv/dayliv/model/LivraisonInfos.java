@@ -29,6 +29,11 @@ public class LivraisonInfos {
 	private String ville;
 	private String tel;
 	private String email;
+	private String batiment;
+	private String interphone;
+	private String typeLivraison;
+	private String dateLivraison;
+	private String etage;
 	private String codePostal;
 	private String pays;
 

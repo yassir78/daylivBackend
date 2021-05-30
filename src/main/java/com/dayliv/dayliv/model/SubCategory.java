@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -22,15 +21,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CategoryProduct {
+public class SubCategory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String categorie;
-	private String storeCode;
+	private String sousCategorie;
 	@JsonIgnore
-	@OneToMany(mappedBy = "categoryProduct")
-	private List<Product> products;
-	@OneToMany(mappedBy = "categoryProduct")
-	private List<SubCategory> sousCategories;
+	@ManyToOne
+	private CategoryProduct categoryProduct;
 }

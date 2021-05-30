@@ -13,9 +13,11 @@ import org.springframework.stereotype.Service;
 
 import com.dayliv.dayliv.dao.CategoryProductDao;
 import com.dayliv.dayliv.dao.StoreDao;
+import com.dayliv.dayliv.dao.SubCategoryDao;
 import com.dayliv.dayliv.model.CategoryProduct;
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.model.Store;
+import com.dayliv.dayliv.model.SubCategory;
 import com.dayliv.dayliv.service.CategoryProductService;
 
 @Service
@@ -24,7 +26,8 @@ public class CategoryProductServiceImpl implements CategoryProductService {
 	private CategoryProductDao categoryProductDao;
 	@Autowired
 	private StoreDao storeDao;
-
+@Autowired
+private SubCategoryDao subCategoryDao;
 	@Override
 	public List<CategoryProduct> findAll() {
 		// TODO Auto-generated method stub
@@ -46,7 +49,16 @@ public class CategoryProductServiceImpl implements CategoryProductService {
 	@Override
 	public CategoryProduct save(CategoryProduct categoryProduct) {
 		// TODO Auto-generated method stub
-		return categoryProductDao.save(categoryProduct);
+		System.out.println("******categoryProduct***");
+		System.out.println(categoryProduct);
+		CategoryProduct cat = categoryProductDao.save(categoryProduct);
+		if(categoryProduct.getSousCategories()!=null) {
+			for(SubCategory subCat:categoryProduct.getSousCategories()) {
+				subCat.setCategoryProduct(cat);
+				subCategoryDao.save(subCat);
+			}
+		}
+		return cat;
 	}
 
 	@Override
@@ -58,7 +70,7 @@ public class CategoryProductServiceImpl implements CategoryProductService {
 	      if (name == null)
 	    	  pagecats = categoryProductDao.findAll(paging);
 	      else
-	    	  pagecats = categoryProductDao.findByNomContaining(name, paging);
+	    	  pagecats = categoryProductDao.findByCategorieContaining(name, paging);
 
 	      categoryProducts = pagecats.getContent();
 

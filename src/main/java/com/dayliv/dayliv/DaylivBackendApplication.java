@@ -25,6 +25,7 @@ import com.dayliv.dayliv.dao.PartenaireDao;
 import com.dayliv.dayliv.dao.ProductDao;
 import com.dayliv.dayliv.dao.ProductImageDao;
 import com.dayliv.dayliv.dao.StoreDao;
+import com.dayliv.dayliv.dao.SubCategoryDao;
 import com.dayliv.dayliv.dao.SuperAdminDao;
 import com.dayliv.dayliv.model.CategoryProduct;
 import com.dayliv.dayliv.model.Commande;
@@ -35,6 +36,7 @@ import com.dayliv.dayliv.model.Product;
 
 import com.dayliv.dayliv.model.ProductImage;
 import com.dayliv.dayliv.model.Store;
+import com.dayliv.dayliv.model.SubCategory;
 import com.dayliv.dayliv.service.EmailService;
 
 @SpringBootApplication(scanBasePackages = "com.dayliv")
@@ -53,7 +55,7 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			IngredientDao ingredientDao, CommentaireDao commentaireDao, CommandeDao commandeDao,
 			CommandeItemDao commandeItemDao, CommandeStatusDao commandeStatusDao, PanierDao panierDao,
 			StoreDao storeDao, PanierItemDao panierItemDao, CategoryProductDao categoryProductDao,ProductImageDao productImageDao,
-			CategoryPartenaireDao categoryPartenaireDao) {
+			CategoryPartenaireDao categoryPartenaireDao, SubCategoryDao subCategoryDao) {
 		return (args) -> {
 			Commande commande1 = new Commande();
 			Commande commande2 = new Commande();
@@ -125,12 +127,18 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 				// categories
 				Stream.of("pizza", "panini", "chawarma").forEach(libelle -> {
 					CategoryProduct categoryProduct = new CategoryProduct();
-					categoryProduct.setNom(libelle);
+					categoryProduct.setCategorie(libelle);
 					categoryProduct.setStoreCode("XEHZJ8855");
 					categoryProductDao.save(categoryProduct);
+					Stream.of("s-pizza", "s-panini", "s-chawarma").forEach(nom->{
+						SubCategory subCategory = new SubCategory();
+						subCategory.setSousCategorie(nom);
+						subCategory.setCategoryProduct(categoryProduct);
+						subCategoryDao.save(subCategory);
+					});
 				});
 			});
-			
+
 //			Stream.of("PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone", "PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone").forEach(libelle->{
 //				Product product = new Product();
 //				product.setLibelle(libelle);
@@ -143,6 +151,7 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 //			    pi.setProduct(product);
 //			    productImageDao.save(pi);
 //			});
+
 			
 
 		};

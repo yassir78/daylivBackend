@@ -27,6 +27,10 @@ import com.dayliv.dayliv.service.ProductService;
 public class ProductRest {
 	@Autowired
 	private ProductService productService;
+    @GetMapping("/random")
+	public List<Product> getProductsRandomly() {
+		return productService.getProductsRandomly();
+	}
 
 	@GetMapping("/{id}")
 	public Product findById(@PathVariable Long id) {

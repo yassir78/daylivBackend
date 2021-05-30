@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -43,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
 		Partenaire partenaire = partenaireDao.findById(Long.valueOf(idUser)).get();
 		product.setPartenaire(partenaire);
 		System.out.println("*********************************");
-		Product savedProduct  = productDao.save(product);
+		Product savedProduct = productDao.save(product);
 		if (product.getProductImages() != null) {
 			for (ProductImage image : product.getProductImages()) {
 				System.out.println("*********************************");
@@ -72,7 +75,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product findById(Long id) {
 		// TODO Auto-generated method stub
-		return productDao.getOne(id);
+		return productDao.findById(id).get();
 	}
 
 	@Override
@@ -85,23 +88,34 @@ public class ProductServiceImpl implements ProductService {
 	public Map<String, Object> getAllProducts(String name, int page, int size) {
 		System.out.println("****************************************");
 		System.out.println(name);
-		 List<Product> products = new ArrayList<Product>();
-	      Pageable paging = PageRequest.of(page, size);
-	      
-	      Page<Product> pagecats;
-	      if (name == null)
-	    	  pagecats = productDao.findAll(paging);
-	      else
-	    	  pagecats = productDao.findByLibelleContaining(name, paging);
+		List<Product> products = new ArrayList<Product>();
+		Pageable paging = PageRequest.of(page, size);
 
-	      products = pagecats.getContent();
+		Page<Product> pagecats;
+		if (name == null)
+			pagecats = productDao.findAll(paging);
+		else
+			pagecats = productDao.findByLibelleContaining(name, paging);
 
-	      Map<String, Object> response = new HashMap<>();
-	      response.put("products", products);
-	      response.put("currentPage", pagecats.getNumber());
-	      response.put("totalItems", pagecats.getTotalElements());
-	      response.put("totalPages", pagecats.getTotalPages());
+		products = pagecats.getContent();
+
+		Map<String, Object> response = new HashMap<>();
+		response.put("products", products);
+		response.put("currentPage", pagecats.getNumber());
+		response.put("totalItems", pagecats.getTotalElements());
+		response.put("totalPages", pagecats.getTotalPages());
 
 		return response;
+	}
+
+	@Override
+	public List<Product> getProductsRandomly() {
+		// TODO Auto-generated method stub
+		List<Product> products = productDao.findProductsRandomly();
+		if(products.size()>3) {
+			return products.stream().limit(3).collect(Collectors.toList());
+		}
+		return products;
+
 	}
 }

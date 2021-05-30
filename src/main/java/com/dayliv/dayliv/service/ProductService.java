@@ -20,5 +20,7 @@ public interface ProductService {
 	public List<Product> getProductsByStore(String storeCode);
 	
 	public Map<String, Object> getAllProducts(String name, int page, int size);
+	
+	public List<Product> getProductsRandomly();
 
 }

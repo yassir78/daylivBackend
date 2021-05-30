@@ -15,6 +15,6 @@ import com.dayliv.dayliv.model.CategoryProduct;
 @CrossOrigin
 public interface CategoryProductDao extends JpaRepository<CategoryProduct, Long> {
 	public List<CategoryProduct> findByStoreCode(String storeCode);
-	public Page<CategoryProduct> findByNomContaining(String name, Pageable pageable);
+	public Page<CategoryProduct> findByCategorieContaining(String name, Pageable pageable);
 
 }

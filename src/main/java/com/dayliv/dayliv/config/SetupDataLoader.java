@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.validator.internal.util.stereotypes.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -31,7 +32,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 
 	@Autowired
 	private RoleDao roleRepository;
-
+    @Lazy
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -60,7 +61,10 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		Set<Role> rolesPartenaire = new HashSet<>();
 		rolesPartenaire.add(userRole);
 		rolesPartenaire.add(parRole);
-	   createPartenaireIfNotFound("partenaire@partenaire.com", "Partenaire", "partenaire", rolesPartenaire);
+	   createPartenaireIfNotFound("partenaire@partenaire.com", "Partenaire", "partenaire", rolesPartenaire, "XEHZJ8855");
+	   createPartenaireIfNotFound("ikea@ikea.com", "Ikea", "ikea", rolesPartenaire, "I2021");
+	   createPartenaireIfNotFound("payot@payot.com", "Payot", "payot", rolesPartenaire, "P2021");
+
 		Set<Role> rolesLivreur = new HashSet<>();
 		rolesLivreur.add(userRole);
 		rolesLivreur.add(livRole);
@@ -132,7 +136,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 	
 	
 	@Transactional
-	private final User createPartenaireIfNotFound(final String email, final String name, final String password, Set<Role> roles) {
+	private final User createPartenaireIfNotFound(final String email, final String name, final String password, Set<Role> roles, String storeCode) {
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
 			Partenaire partenaire = new Partenaire();
@@ -140,7 +144,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			partenaire.setEmail(email);
 			partenaire.setPassword(passwordEncoder.encode(password));
 			partenaire.setRoles(roles);
-			partenaire.setStoreCode("XEHZJ8855");
+			partenaire.setStoreCode(storeCode);
 			partenaire.setProvider(SocialProvider.LOCAL.getProviderType());
 			partenaire.setEnabled(true);
 			Date now = Calendar.getInstance().getTime();

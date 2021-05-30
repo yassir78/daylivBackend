@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.hibernate.validator.internal.util.stereotypes.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
@@ -38,7 +40,6 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private RoleDao roleRepository;
-
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 

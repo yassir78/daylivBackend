@@ -67,7 +67,7 @@ public class StoreRest {
 	  public ResponseEntity<Map<String, Object>> getAllCategories(
 	        @RequestParam(required = false) String name,
 	        @RequestParam(defaultValue = "0") int page,
-	        @RequestParam(defaultValue = "3") int size
+	        @RequestParam(defaultValue = "6") int size
 	      ) {
        try {
 	    

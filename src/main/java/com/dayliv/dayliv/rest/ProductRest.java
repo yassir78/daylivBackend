@@ -62,12 +62,13 @@ public class ProductRest {
 	@GetMapping("/products")
 	  public ResponseEntity<Map<String, Object>> getAllProducts(
 	        @RequestParam(required = false) String name,
+	        @RequestParam(required = true) String storeCode,
 	        @RequestParam(defaultValue = "0") int page,
-	        @RequestParam(defaultValue = "6") int size
+	        @RequestParam(defaultValue = "12") int size
 	      ) {
      try {
 	    
-	      return new ResponseEntity<>(productService.getAllProducts(name, page, size), HttpStatus.OK);
+	      return new ResponseEntity<>(productService.getAllProducts(name, storeCode,page, size), HttpStatus.OK);
 	    } catch (Exception e) {
 	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	    }

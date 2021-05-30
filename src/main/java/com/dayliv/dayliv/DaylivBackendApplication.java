@@ -25,6 +25,7 @@ import com.dayliv.dayliv.dao.PartenaireDao;
 import com.dayliv.dayliv.dao.ProductDao;
 import com.dayliv.dayliv.dao.ProductImageDao;
 import com.dayliv.dayliv.dao.StoreDao;
+import com.dayliv.dayliv.dao.SubCategoryDao;
 import com.dayliv.dayliv.dao.SuperAdminDao;
 import com.dayliv.dayliv.model.CategoryProduct;
 import com.dayliv.dayliv.model.Commande;
@@ -35,9 +36,10 @@ import com.dayliv.dayliv.model.Product;
 
 import com.dayliv.dayliv.model.ProductImage;
 import com.dayliv.dayliv.model.Store;
+import com.dayliv.dayliv.model.SubCategory;
 import com.dayliv.dayliv.service.EmailService;
 
-@SpringBootApplication(scanBasePackages = "com.dayliv.dayliv")
+@SpringBootApplication(scanBasePackages = "com.dayliv")
 public class DaylivBackendApplication implements CommandLineRunner  {
 
 	public static void main(String[] args) {
@@ -53,9 +55,9 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			IngredientDao ingredientDao, CommentaireDao commentaireDao, CommandeDao commandeDao,
 			CommandeItemDao commandeItemDao, CommandeStatusDao commandeStatusDao, PanierDao panierDao,
 			StoreDao storeDao, PanierItemDao panierItemDao, CategoryProductDao categoryProductDao,ProductImageDao productImageDao,
-			CategoryPartenaireDao categoryPartenaireDao) {
+			CategoryPartenaireDao categoryPartenaireDao, SubCategoryDao subCategoryDao) {
 		return (args) -> {
-			/*Commande commande1 = new Commande();
+			Commande commande1 = new Commande();
 			Commande commande2 = new Commande();
 			commande1.setReference("MT-2938");
 			commande1.setTotale_commande(4500F);
@@ -71,7 +73,7 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 				commandeDao.save(commande);
 			});
 			/* commande Item */
-			/*CommandeItem commandeItem1 = new CommandeItem();
+			CommandeItem commandeItem1 = new CommandeItem();
 			CommandeItem commandeItem2 = new CommandeItem();
 			CommandeItem commandeItem3 = new CommandeItem();
 			commandeItem1.setQuantity(4);
@@ -91,7 +93,7 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			});
 
 			/* commande status */
-		/*	CommandeStatus commandeStatus1 = new CommandeStatus();
+			CommandeStatus commandeStatus1 = new CommandeStatus();
 			CommandeStatus commandeStatus2 = new CommandeStatus();
 			CommandeStatus commandeStatus3 = new CommandeStatus();
 			commandeStatus1.setEtat_commande("En cours");
@@ -99,14 +101,14 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			commandeStatus3.setEtat_commande("En cours");
 			Stream.of(commandeStatus1, commandeStatus2, commandeStatus3).forEach(commandeStatus -> {
 				commandeStatusDao.save(commandeStatus);
-			});*/
-			/*commande1.setCommandeStatus(commandeStatus1);
+			});
+			commande1.setCommandeStatus(commandeStatus1);
 			commande2.setCommandeStatus(commandeStatus2);
 			Stream.of(commande1, commande2).forEach(commande -> {
 				commandeDao.save(commande);
-			});*/
+			});
 
-			/*Stream.of("XEHZJ8855", "KUISBJJS987", "OLKJHS96554").forEach(code -> {
+			Stream.of("XEHZJ8855", "KUISBJJS987", "OLKJHS96554").forEach(code -> {
 				Store store = new Store();
 				store.setCode(code);
 				store.setPhone("06785521455");
@@ -125,23 +127,30 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 				// categories
 				Stream.of("pizza", "panini", "chawarma").forEach(libelle -> {
 					CategoryProduct categoryProduct = new CategoryProduct();
-					categoryProduct.setNom(libelle);
+					categoryProduct.setCategorie(libelle);
 					categoryProduct.setStoreCode("XEHZJ8855");
 					categoryProductDao.save(categoryProduct);
+					Stream.of("s-pizza", "s-panini", "s-chawarma").forEach(nom->{
+						SubCategory subCategory = new SubCategory();
+						subCategory.setSousCategorie(nom);
+						subCategory.setCategoryProduct(categoryProduct);
+						subCategoryDao.save(subCategory);
+					});
 				});
 			});
-			*/
+			
 			Stream.of("PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone", "PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone").forEach(libelle->{
-				/*Product product = new Product();
+				Product product = new Product();
 				product.setLibelle(libelle);
 				product.setOrigine("Chine");
+				product.setStoreCode("XEHZJ8855");
 			    product.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
 			    product.setPrice((float) 58.6);
 			    ProductImage pi = new ProductImage();
 			    productDao.save(product);
 			    pi.setPath("https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/39/358943/1.jpg?9484");
 			    pi.setProduct(product);
-			    productImageDao.save(pi);*/
+			    productImageDao.save(pi);
 			});
 			
 

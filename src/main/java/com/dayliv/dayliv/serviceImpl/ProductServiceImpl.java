@@ -82,17 +82,23 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Map<String, Object> getAllProducts(String name, int page, int size) {
+	public Map<String, Object> getAllProducts(String name, String storeCode, int page, int size) {
 		System.out.println("****************************************");
 		System.out.println(name);
+		System.out.println(storeCode);
+        List<String> params = new ArrayList<String>();
+        params.add(name);
+        params.add(storeCode);
 		 List<Product> products = new ArrayList<Product>();
 	      Pageable paging = PageRequest.of(page, size);
 	      
 	      Page<Product> pagecats;
 	      if (name == null)
-	    	  pagecats = productDao.findAll(paging);
+	    	  //pagecats = productDao.findAll(paging);
+	    	  pagecats = productDao.findByStoreCodeContaining(storeCode, paging);
 	      else
-	    	  pagecats = productDao.findByLibelleContaining(name, paging);
+	    	   
+	    	  pagecats = productDao.findByLibelleAndStoreCodeContaining(name, storeCode, paging);
 
 	      products = pagecats.getContent();
 

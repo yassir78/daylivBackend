@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -16,6 +17,8 @@ import com.dayliv.dayliv.model.Product;
 @CrossOrigin
 public interface ProductDao extends JpaRepository<Product, Long> {
 	public List<Product> findBystoreCode(String storeCode);
-	public Page<Product> findByLibelleContaining(String name, Pageable pageable);
+	@Query("SELECT p FROM Product p WHERE p.libelle like %?1% and p.storeCode = ?2")
+	public Page<Product> findByLibelleAndStoreCodeContaining(String libelle, String storecode, Pageable pageable);
+	public Page<Product> findByStoreCodeContaining(String storeCode, Pageable pageable);
 
 }

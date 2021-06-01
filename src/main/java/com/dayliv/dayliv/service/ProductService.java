@@ -14,7 +14,7 @@ public interface ProductService {
 	public Product updateProduct(Product product);
 
 	public int deleteProduct(Long id);
-
+	public List<Product> getProductsRandomly();
 	public Product findById(Long id);
 
 	public List<Product> getProductsByStore(String storeCode);

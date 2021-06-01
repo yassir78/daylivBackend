@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dayliv.dayliv.model.CategoryProduct;
@@ -14,6 +15,7 @@ import com.dayliv.dayliv.model.SubCategory;
 import com.dayliv.dayliv.service.SubCategoryService;
 
 @RestController
+@RequestMapping("/dayliv-api/subCategory")
 public class subCategoryRest {
 @Autowired
 private SubCategoryService subCategoryService;

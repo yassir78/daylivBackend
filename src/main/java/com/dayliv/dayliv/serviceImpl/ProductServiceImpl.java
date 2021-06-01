@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -64,7 +65,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int deleteProduct(Long id) {
 		// TODO Auto-generated method stub
-		Product productToDelete = productDao.getOne(id);
+		Product productToDelete = productDao.findById(id).get();
 		productDao.delete(productToDelete);
 		return 1;
 	}
@@ -72,7 +73,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product findById(Long id) {
 		// TODO Auto-generated method stub
-		return productDao.getOne(id);
+		return productDao.findById(id).get();
 	}
 
 	@Override
@@ -109,5 +110,16 @@ public class ProductServiceImpl implements ProductService {
 	      response.put("totalPages", pagecats.getTotalPages());
 
 		return response;
+	}
+	
+	@Override
+	public List<Product> getProductsRandomly() {
+		// TODO Auto-generated method stub
+		List<Product> products = productDao.findProductsRandomly();
+		if(products.size()>3) {
+			return products.stream().limit(3).collect(Collectors.toList());
+		}
+		return products;
+
 	}
 }

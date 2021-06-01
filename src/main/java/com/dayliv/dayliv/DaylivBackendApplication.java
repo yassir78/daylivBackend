@@ -57,7 +57,7 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			StoreDao storeDao, PanierItemDao panierItemDao, CategoryProductDao categoryProductDao,ProductImageDao productImageDao,
 			CategoryPartenaireDao categoryPartenaireDao, SubCategoryDao subCategoryDao) {
 		return (args) -> {
-			Commande commande1 = new Commande();
+		/*	Commande commande1 = new Commande();
 			Commande commande2 = new Commande();
 			commande1.setReference("MT-2938");
 			commande1.setTotale_commande(4500F);
@@ -71,9 +71,9 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			commande2.setDate_commande(new Date());
 			Stream.of(commande1, commande2).forEach(commande -> {
 				commandeDao.save(commande);
-			});
+			});*/
 			/* commande Item */
-			CommandeItem commandeItem1 = new CommandeItem();
+			/*CommandeItem commandeItem1 = new CommandeItem();
 			CommandeItem commandeItem2 = new CommandeItem();
 			CommandeItem commandeItem3 = new CommandeItem();
 			commandeItem1.setQuantity(4);
@@ -90,10 +90,10 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			});
 			Stream.of(commandeItem1, commandeItem2).forEach(commandeItem -> {
 				commandeItemDao.save(commandeItem);
-			});
+			});*/
 
 			/* commande status */
-			CommandeStatus commandeStatus1 = new CommandeStatus();
+			/*CommandeStatus commandeStatus1 = new CommandeStatus();
 			CommandeStatus commandeStatus2 = new CommandeStatus();
 			CommandeStatus commandeStatus3 = new CommandeStatus();
 			commandeStatus1.setEtat_commande("En cours");
@@ -101,8 +101,8 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			commandeStatus3.setEtat_commande("En cours");
 			Stream.of(commandeStatus1, commandeStatus2, commandeStatus3).forEach(commandeStatus -> {
 				commandeStatusDao.save(commandeStatus);
-			});
-			commande1.setCommandeStatus(commandeStatus1);
+			});*/
+			/*commande1.setCommandeStatus(commandeStatus1);
 			commande2.setCommandeStatus(commandeStatus2);
 			Stream.of(commande1, commande2).forEach(commande -> {
 				commandeDao.save(commande);
@@ -123,9 +123,9 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 				store.setUseCache(true);
 				store.setLogo(code + "logo.png");
 
-				storeDao.save(store);
+				storeDao.save(store);*/
 				// categories
-				Stream.of("pizza", "panini", "chawarma").forEach(libelle -> {
+			/*	Stream.of("pizza", "panini", "chawarma").forEach(libelle -> {
 					CategoryProduct categoryProduct = new CategoryProduct();
 					categoryProduct.setCategorie(libelle);
 					categoryProduct.setStoreCode("XEHZJ8855");
@@ -137,9 +137,9 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 						subCategoryDao.save(subCategory);
 					});
 				});
-			});
+			});*/
 			
-			Stream.of("PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone", "PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone").forEach(libelle->{
+			/*Stream.of("PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone", "PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone").forEach(libelle->{
 				Product product = new Product();
 				product.setLibelle(libelle);
 				product.setOrigine("Chine");
@@ -151,7 +151,7 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			    pi.setPath("https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/39/358943/1.jpg?9484");
 			    pi.setProduct(product);
 			    productImageDao.save(pi);
-			});
+			});*/
 			
 
 		};

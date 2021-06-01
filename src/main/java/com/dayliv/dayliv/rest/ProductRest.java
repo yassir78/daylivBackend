@@ -28,6 +28,7 @@ public class ProductRest {
 	@Autowired
 	private ProductService productService;
 
+	
 	@GetMapping("/{id}")
 	public Product findById(@PathVariable Long id) {
 		return productService.findById(id);
@@ -73,7 +74,10 @@ public class ProductRest {
 	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	  }
-	
+	 @GetMapping("/random")
+		public List<Product> getProductsRandomly() {
+			return productService.getProductsRandomly();
+		}
 
 
 }

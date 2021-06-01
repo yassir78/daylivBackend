@@ -20,5 +20,6 @@ public interface ProductDao extends JpaRepository<Product, Long> {
 	@Query("SELECT p FROM Product p WHERE p.libelle like %?1% and p.storeCode = ?2")
 	public Page<Product> findByLibelleAndStoreCodeContaining(String libelle, String storecode, Pageable pageable);
 	public Page<Product> findByStoreCodeContaining(String storeCode, Pageable pageable);
-
+	@Query("select product from Product product order by rand() ")
+	public List<Product> findProductsRandomly();
 }

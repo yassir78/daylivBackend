@@ -29,7 +29,8 @@ public class CommandeRest {
 	@Autowired
 	private CommandeService commandeService;
 	@Autowired
-    private EmailService emailService; 
+	private EmailService emailService;
+
 	@GetMapping("/liv/{id}")
 	public List<Commande> getCommandeByLivreur(@PathVariable Long id) {
 		return commandeService.getCommandeByLivreur(id);
@@ -37,7 +38,16 @@ public class CommandeRest {
 
 	@PostMapping("/setLivreur/{id}")
 	public Commande affecterCommandeLivreur(@RequestBody Livreur livreur, @PathVariable Long id) {
-		emailService.sendMail(livreur.getEmail(), "Dayliv Marketplace", "Bonjour vous avez reçu une nouvelle commande !");
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				emailService.sendMail(livreur.getEmail(), "Dayliv Marketplace",
+						"Bonjour vous avez reçu une nouvelle commande !");
+			}
+		});
+
 		return commandeService.affecterCommandeLivreur(livreur, id);
 	}
 
@@ -56,34 +66,28 @@ public class CommandeRest {
 		return commandeService.findAll();
 	}
 
-	
-
 	@GetMapping("/store/{storeCode}")
 	public List<Commande> findAllByStoreCode(@PathVariable String storeCode) {
 		return commandeService.findAll();
 	}
 
 	@PostMapping("/changeStatus/{id}")
-	public Commande changeStatus(@PathVariable Long id,@RequestHeader("status") String status) {
+	public Commande changeStatus(@PathVariable Long id, @RequestHeader("status") String status) {
 		System.out.println("//////////////////////////////");
 		System.out.println(status);
 		return commandeService.changeStatus(status, id);
-		
+
 	}
-	
 
 	@GetMapping("/commandes")
-	  public ResponseEntity<Map<String, Object>> getAllCategories(
-	        @RequestParam(required = false) String name,
-	        @RequestParam(defaultValue = "0") int page,
-	        @RequestParam(defaultValue = "3") int size
-	      ) {
-       try {
-	    
-	      return new ResponseEntity<>(commandeService.getAllCommandes(name, page, size), HttpStatus.OK);
-	    } catch (Exception e) {
-	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
-	  }
+	public ResponseEntity<Map<String, Object>> getAllCategories(@RequestParam(required = false) String name,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size) {
+		try {
+
+			return new ResponseEntity<>(commandeService.getAllCommandes(name, page, size), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 }

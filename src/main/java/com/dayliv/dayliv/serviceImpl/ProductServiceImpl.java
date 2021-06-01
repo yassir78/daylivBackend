@@ -15,12 +15,9 @@ import org.springframework.stereotype.Service;
 import com.dayliv.dayliv.dao.PartenaireDao;
 import com.dayliv.dayliv.dao.ProductDao;
 import com.dayliv.dayliv.dao.ProductImageDao;
-import com.dayliv.dayliv.dao.UserDao;
-import com.dayliv.dayliv.model.CategoryPartenaire;
 import com.dayliv.dayliv.model.Partenaire;
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.model.ProductImage;
-import com.dayliv.dayliv.model.User;
 import com.dayliv.dayliv.service.ProductService;
 
 @Service
@@ -44,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
 		Partenaire partenaire = partenaireDao.findById(Long.valueOf(idUser)).get();
 		product.setPartenaire(partenaire);
 		System.out.println("*********************************");
-		Product savedProduct  = productDao.save(product);
+		Product savedProduct = productDao.save(product);
 		if (product.getProductImages() != null) {
 			for (ProductImage image : product.getProductImages()) {
 				System.out.println("*********************************");
@@ -109,9 +106,10 @@ public class ProductServiceImpl implements ProductService {
 	      response.put("totalItems", pagecats.getTotalElements());
 	      response.put("totalPages", pagecats.getTotalPages());
 
+
 		return response;
 	}
-	
+
 	@Override
 	public List<Product> getProductsRandomly() {
 		// TODO Auto-generated method stub

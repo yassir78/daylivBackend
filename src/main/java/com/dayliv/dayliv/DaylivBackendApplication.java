@@ -152,6 +152,7 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			    pi.setProduct(product);
 			    productImageDao.save(pi);
 			});*/
+
 			
 
 		};

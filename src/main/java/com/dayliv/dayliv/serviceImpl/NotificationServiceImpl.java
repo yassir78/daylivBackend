@@ -24,6 +24,7 @@ public class NotificationServiceImpl implements NotificationService {
 		// TODO Auto-generated method stub
 		User user = userDao.findById(idUser).get();
 		notification.setUser(user);
+		notification.setSeen(false);
 		Notification savedNotification = notificationDao.save(notification);
 		userDao.save(user);
 		return savedNotification;
@@ -33,7 +34,9 @@ public class NotificationServiceImpl implements NotificationService {
 	public List<Notification> getAllNotificationsByUserId(long idUser) {
 		// TODO Auto-generated method stub
 		User user = userDao.findById(idUser).get();
-		return user.getNotifications();
+		List<Notification> notification = user.getNotifications();
+		notification.sort((o1, o2) -> o2.getCreatedAt().compareTo(o1.getCreatedAt()));
+		return notification;
 	}
 
 	@Override
@@ -43,6 +46,16 @@ public class NotificationServiceImpl implements NotificationService {
 		user.setNotificationToken(token);
 		userDao.save(user);
 		return user;
+	}
+
+	@Override
+	public void changeStatus(long idNotification) {
+		// TODO Auto-generated method stub
+		Notification notification = notificationDao.findById(idNotification).get();
+		if (notification != null) {
+			notification.setSeen(true);
+			notificationDao.save(notification);
+		}
 	}
 
 }

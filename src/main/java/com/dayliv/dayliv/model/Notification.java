@@ -30,6 +30,7 @@ public class Notification {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/YY, HH:mm")
 	private Date createdAt = new Date();
 	private String path;
+	private String client;
 	private Boolean seen;
 	@ManyToOne
 	@JsonIgnore

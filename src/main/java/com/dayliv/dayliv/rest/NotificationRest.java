@@ -24,6 +24,10 @@ public class NotificationRest {
 
 	@Autowired
 	private NotificationService notificationService;
+    @PostMapping("/changeStatus/{idNotification}")
+	public void changeStatus(@PathVariable long idNotification) {
+		notificationService.changeStatus(idNotification);
+	}
 
 	@GetMapping("/{idUser}")
 	public List<Notification> getAllNotificationsByUserId(@PathVariable long idUser) {

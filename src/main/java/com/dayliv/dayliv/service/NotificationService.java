@@ -11,4 +11,6 @@ public interface NotificationService {
 	public List<Notification> getAllNotificationsByUserId(long idUser);
 	
 	public User updateUserNotification(long idUser,String token);
+	
+	public void changeStatus(long idNotification);
 }

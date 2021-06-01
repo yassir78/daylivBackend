@@ -74,7 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authenticationEntryPoint(new RestAuthenticationEntryPoint())
 				.and()
 			.authorizeRequests()
-				.antMatchers("/", "/error", "/api/all","/oauth2/**", "/login/oauth2/code/**", "/api/auth/**","/dayliv-api/auth/**", "/oauth2/**","/dayliv-api/product/**","/dayliv-api/image/**","/dayliv-api/partenaire/**","/dayliv-api/commande/**", "/dayliv-api/store/**","/dayliv-api/categoryProduct/**", "/dayliv-api/payment/**","/dayliv-api/user/**","/dayliv-api/user/me","/dayliv-api/livreur/**","/dayliv-api/dispatcher/**","/dayliv-api/notification/**").permitAll()
+				.antMatchers("/", "/error", "/api/all","/oauth2/**", "/login/oauth2/code/**", "/api/auth/**","/dayliv-api/auth/**", "/oauth2/**","/dayliv-api/product/**","/dayliv-api/image/**","/dayliv-api/partenaire/**","/dayliv-api/commande/**", "/dayliv-api/store/**","/dayliv-api/categoryProduct/**", "/dayliv-api/payment/**","/dayliv-api/user/**","/dayliv-api/user/me","/dayliv-api/livreur/**","/dayliv-api/dispatcher/**","/dayliv-api/notification/**","/dayliv-api/user/**").permitAll()
 			.anyRequest()
 				.authenticated()
 				.and()

@@ -38,6 +38,8 @@ public class Product {
 	private Integer stock_quantity;
 	@NotNull
 	private Float price;
+	private double nbrCube;
+	private String typeVolume;
 	private String origine;
 	private String storeCode;
 	@OneToMany(mappedBy = "product")

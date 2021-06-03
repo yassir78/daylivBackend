@@ -107,8 +107,8 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			Stream.of(commande1, commande2).forEach(commande -> {
 				commandeDao.save(commande);
 			});
-
-			Stream.of("XEHZJ8855", "KUISBJJS987", "OLKJHS96554").forEach(code -> {
+                */
+			/*Stream.of("I2021", "P2021", "M2021", "XEHZJ8855").forEach(code -> {
 				Store store = new Store();
 				store.setCode(code);
 				store.setPhone("06785521455");
@@ -121,11 +121,11 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 				store.setAddress("MA" + code);
 				store.setCurrency("CH");
 				store.setUseCache(true);
-				store.setLogo(code + "logo.png");
+				store.setLogo("https://via.placeholder.com/150/0000ff/808080?Text="+store.getName());
 
-				storeDao.save(store);*/
-				// categories
-			/*	Stream.of("pizza", "panini", "chawarma").forEach(libelle -> {
+				storeDao.save(store);
+				
+			Stream.of("pizza", "panini", "chawarma").forEach(libelle -> {
 					CategoryProduct categoryProduct = new CategoryProduct();
 					categoryProduct.setCategorie(libelle);
 					categoryProduct.setStoreCode("XEHZJ8855");
@@ -139,11 +139,11 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 				});
 			});*/
 			
-			/*Stream.of("PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone", "PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone").forEach(libelle->{
+			/*Stream.of("PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone", "PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone","PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone", "PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone").forEach(libelle->{
 				Product product = new Product();
 				product.setLibelle(libelle);
 				product.setOrigine("Chine");
-				product.setStoreCode("XEHZJ8855");
+				product.setStoreCode("I2021");
 			    product.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
 			    product.setPrice((float) 58.6);
 			    ProductImage pi = new ProductImage();
@@ -152,7 +152,6 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 			    pi.setProduct(product);
 			    productImageDao.save(pi);
 			});*/
-
 			
 
 		};

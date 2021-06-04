@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.dayliv</groupId>
 	<artifactId>dayliv</artifactId>
-	<version>Sample Application</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>daylivBackend</name>
 	<description>dayliv market place application backend</description>
 	<properties>

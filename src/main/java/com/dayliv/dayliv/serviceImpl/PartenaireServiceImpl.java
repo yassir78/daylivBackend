@@ -2,6 +2,7 @@ package com.dayliv.dayliv.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -13,8 +14,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.dayliv.dayliv.dao.PartenaireDao;
+import com.dayliv.dayliv.dao.RoleDao;
 import com.dayliv.dayliv.model.Partenaire;
 import com.dayliv.dayliv.model.Product;
+import com.dayliv.dayliv.model.Role;
 import com.dayliv.dayliv.service.PartenaireService;
 
 @Service
@@ -23,6 +26,8 @@ public class PartenaireServiceImpl implements PartenaireService {
     private PartenaireDao partenaireDao;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private RoleDao roleRepository;
 	@Override
 	public List<Partenaire> findAll() {
 		return partenaireDao.findAll();
@@ -31,6 +36,9 @@ public class PartenaireServiceImpl implements PartenaireService {
 	public Partenaire save(Partenaire partenaire) {
 		String password =passwordEncoder.encode(partenaire.getPassword());
 		partenaire.setPassword(password);
+		final HashSet<Role> roles = new HashSet<Role>();
+		roles.add(roleRepository.findByName(Role.ROLE_PARTENAIRE));
+		partenaire.setRoles(roles);
 		return partenaireDao.save(partenaire);
 	}
 	@Override

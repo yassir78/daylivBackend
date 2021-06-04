@@ -108,7 +108,7 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 				commandeDao.save(commande);
 			});
                 */
-			/*Stream.of("I2021", "P2021", "M2021", "XEHZJ8855").forEach(code -> {
+			Stream.of("I2021", "P2021", "M2021", "XEHZJ8855").forEach(code -> {
 				Store store = new Store();
 				store.setCode(code);
 				store.setPhone("06785521455");
@@ -137,7 +137,7 @@ public class DaylivBackendApplication implements CommandLineRunner  {
 						subCategoryDao.save(subCategory);
 					});
 				});
-			});*/
+			});
 			
 			/*Stream.of("PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone", "PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone","PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone", "PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone").forEach(libelle->{
 				Product product = new Product();

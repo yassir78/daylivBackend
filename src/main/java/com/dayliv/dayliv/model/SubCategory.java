@@ -26,7 +26,11 @@ public class SubCategory {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String sousCategorie;
+	private String storeCode;
 	@JsonIgnore
 	@ManyToOne
 	private CategoryProduct categoryProduct;
+	@JsonIgnore
+	@OneToMany(mappedBy = "subCategory")
+	private List<Product> products;
 }

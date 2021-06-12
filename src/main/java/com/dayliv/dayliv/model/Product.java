@@ -41,6 +41,9 @@ public class Product {
 	private double nbrCube;
 	private String typeVolume;
 	private String origine;
+	private double longueur;
+	private double largeur;
+	private double hauteur;
 	private String storeCode;
 	@OneToMany(mappedBy = "product")
 	
@@ -52,6 +55,8 @@ public class Product {
 	private PanierItem panierItem;
 	@ManyToOne
 	private CategoryProduct categoryProduct;
+	@ManyToOne
+	private SubCategory subCategory;
 	@OneToMany(mappedBy = "product")
 	@JsonIgnore
 	private List<Ingredient> ingredients;

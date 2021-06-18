@@ -25,6 +25,10 @@ public List<SubCategory> findAll() {
 	return subCategoryService.findAll();
 }
 
+@GetMapping("/storeCode/{storeCode}")
+public List<SubCategory> getSubCategoriesByStoreCode(@PathVariable String storeCode) {
+	return subCategoryService.getSubCategoriesByStoreCode(storeCode);
+}
 
 @PostMapping("/")
 public SubCategory save(@RequestBody SubCategory subCategory) {

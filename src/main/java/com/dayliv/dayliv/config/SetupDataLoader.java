@@ -57,30 +57,30 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		//rolesAdmin.add(livRole);
 		//rolesAdmin.add(disRole);
 
-	   createUserIfNotFound("admin@admin.com", "Admin", "admin", rolesAdmin);
+	   createUserIfNotFound("admin@admin.com", "Admin","Axel","Idriss","admin", rolesAdmin);
 		Set<Role> rolesPartenaire = new HashSet<>();
 		rolesPartenaire.add(userRole);
 		rolesPartenaire.add(parRole);
-	   createPartenaireIfNotFound("partenaire@partenaire.com", "Partenaire", "partenaire", rolesPartenaire, "XEHZJ8855");
-	   createPartenaireIfNotFound("ikea@ikea.com", "Ikea", "ikea", rolesPartenaire, "I2021");
-	   createPartenaireIfNotFound("payot@payot.com", "Payot", "payot", rolesPartenaire, "P2021");
+	   createPartenaireIfNotFound("partenaire@partenaire.com", "Partenaire","Mike", "Le Roi ","partenaire", rolesPartenaire, "XEHZJ8855");
+	   createPartenaireIfNotFound("ikea@ikea.com", "Ikea", "ikea","ikea", "ikea", rolesPartenaire, "I2021");
+	   createPartenaireIfNotFound("payot@payot.com", "Payot", "payot","payot", "payot", rolesPartenaire, "P2021");
 
 		Set<Role> rolesLivreur = new HashSet<>();
 		rolesLivreur.add(userRole);
 		rolesLivreur.add(livRole);
-	   createUserIfNotFound("livreur@livreur.com", "Livreur", "livreur", rolesLivreur);
+	   createUserIfNotFound("livreur@livreur.com", "Livreur", "Livreur", "Livreur", "livreur", rolesLivreur);
 		Set<Role> rolesDispatcher = new HashSet<>();
 		rolesDispatcher.add(userRole);
 		rolesDispatcher.add(disRole);
-	   createDispatcherIfNotFound("dispatcher@dispatcher.com", "Dispatcher", "dispatcher", rolesDispatcher);
+	   createDispatcherIfNotFound("dispatcher@dispatcher.com", "Dispatcher","Eric","Moise", "dispatcher", rolesDispatcher);
 
 		alreadySetup = true;
 		
 		
 		//Livreur Creation
 		
-	   createLivreurIfNotFound("livreur1@livreur1.com", "Livreur1",6.2 ,46.2143907 ,"livreur1", "scooter",rolesLivreur);
-	   createLivreurIfNotFound("livreur2@livreur2.com", "Livreur2",6.2493 , 46.2243907, "livreur2","camion" ,rolesLivreur);
+	   createLivreurIfNotFound("livreur1@livreur1.com", "Livreur1","Jean","Florian",6.2 ,46.2143907 ,"livreur1", "scooter",rolesLivreur);
+	   createLivreurIfNotFound("livreur2@livreur2.com", "Livreur2","Paul","François",6.2493 , 46.2243907, "livreur2","camion" ,rolesLivreur);
 //	   createLivreurIfNotFound("livreur3@livreur3.com", "Livreur3",6.3 ,46.2443907 , "livreur3", rolesLivreur);
 //	   createLivreurIfNotFound("livreur4@livreur4.com", "Livreur4",6.3,46.2643907 , "livreur4", rolesLivreur);
 //	   createLivreurIfNotFound("livreur5@livreur5.com", "Livreur5", 6.3,46.2743907 , "livreur5", rolesLivreur);
@@ -90,11 +90,13 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 	}
 
 	@Transactional
-	private final User createLivreurIfNotFound(final String email, final String name,double lg, double lat, final String password,final String mobilite ,Set<Role> roles) {
+	private final User createLivreurIfNotFound(final String email, final String name,String firstName,String lastName ,double lg, double lat, final String password,final String mobilite ,Set<Role> roles) {
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
 			Livreur livreur = new Livreur();
 			livreur.setDisplayName(name);
+			livreur.setNom(firstName);
+			livreur.setPrenom(lastName);
 			livreur.setLg(lg);
 			livreur.setLat(lat);
 			livreur.setEmail(email);
@@ -115,11 +117,13 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 
 	
 	@Transactional
-	private final User createDispatcherIfNotFound(final String email, final String name, final String password, Set<Role> roles) {
+	private final User createDispatcherIfNotFound(final String email,final String name,String firstName,String lastName ,  final String password, Set<Role> roles) {
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
 			Dispatcher dispatcher = new Dispatcher();
 			dispatcher.setDisplayName(name);
+			dispatcher.setNom(firstName);
+			dispatcher.setPrenom(lastName);
 			dispatcher.setEmail(email);
 			dispatcher.setPassword(passwordEncoder.encode(password));
 			dispatcher.setRoles(roles);
@@ -136,11 +140,13 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 	
 	
 	@Transactional
-	private final User createPartenaireIfNotFound(final String email, final String name, final String password, Set<Role> roles, String storeCode) {
+	private final User createPartenaireIfNotFound(final String email, final String name, String firstName,String lastName ,final String password, Set<Role> roles, String storeCode) {
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
 			Partenaire partenaire = new Partenaire();
 			partenaire.setDisplayName(name);
+			partenaire.setNom(firstName);
+			partenaire.setPrenom(lastName);
 			partenaire.setEmail(email);
 			partenaire.setPassword(passwordEncoder.encode(password));
 			partenaire.setRoles(roles);
@@ -158,11 +164,13 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 	
 	
 	@Transactional
-	private final User createUserIfNotFound(final String email, final String name, final String password, Set<Role> roles) {
+	private final User createUserIfNotFound(final String email, final String name,String firstName,String lastName , final String password, Set<Role> roles) {
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
 			user = new User();
 			user.setDisplayName(name);
+			user.setNom(firstName);
+			user.setPrenom(lastName);
 			user.setEmail(email);
 			user.setPassword(passwordEncoder.encode(password));
 			user.setRoles(roles);

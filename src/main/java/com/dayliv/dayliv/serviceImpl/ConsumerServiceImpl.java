@@ -2,6 +2,7 @@ package com.dayliv.dayliv.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -13,8 +14,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.dayliv.dayliv.dao.ConsumerDao;
+import com.dayliv.dayliv.dao.RoleDao;
 import com.dayliv.dayliv.model.Consumer;
 import com.dayliv.dayliv.model.Product;
+import com.dayliv.dayliv.model.Role;
 import com.dayliv.dayliv.service.ConsumerService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -24,6 +27,8 @@ public class ConsumerServiceImpl implements ConsumerService {
 	private ConsumerDao consumerDao;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private RoleDao roleRepository;
 	@Override
 	public List<Consumer> findAll() {
 		return consumerDao.findAll();
@@ -32,6 +37,9 @@ public class ConsumerServiceImpl implements ConsumerService {
 	@Override
 	public Consumer save(Consumer consumer) {
 		consumer.setPassword(passwordEncoder.encode(consumer.getPassword()));
+		final HashSet<Role> roles = new HashSet<Role>();
+		roles.add(roleRepository.findByName(Role.ROLE_COSTUMER));
+		consumer.setRoles(roles);
 		return consumerDao.save(consumer);
 	}
 	

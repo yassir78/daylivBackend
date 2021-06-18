@@ -27,12 +27,12 @@ import com.dayliv.dayliv.service.ProductService;
 public class ProductRest {
 	@Autowired
 	private ProductService productService;
-    @GetMapping("/random")
+
+	@GetMapping("/random")
 	public List<Product> getProductsRandomly() {
 		return productService.getProductsRandomly();
 	}
 
-	
 	@GetMapping("/{id}")
 	public Product findById(@PathVariable Long id) {
 		return productService.findById(id);
@@ -63,22 +63,22 @@ public class ProductRest {
 	public List<Product> findAll() {
 		return productService.findAll();
 	}
-	
-	@GetMapping("/products")
-	  public ResponseEntity<Map<String, Object>> getAllProducts(
-	        @RequestParam(required = false) String name,
-	        @RequestParam(required = true) String storeCode,
-	        @RequestParam(defaultValue = "0") int page,
-	        @RequestParam(defaultValue = "12") int size
-	      ) {
-     try {
-	    
-	      return new ResponseEntity<>(productService.getAllProducts(name, storeCode,page, size), HttpStatus.OK);
-	    } catch (Exception e) {
-	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-	    }
-	  }
-	
 
+	@GetMapping("/products")
+	public ResponseEntity<Map<String, Object>> getAllProducts(@RequestParam(required = false) String name,
+			@RequestParam(required = true) String storeCode, @RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "12") int size) {
+		try {
+
+			return new ResponseEntity<>(productService.getAllProducts(name, storeCode, page, size), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	@GetMapping("/productsBySubCategory")
+	public Map<String, Object> findProductsBySubCategoryLink(@RequestParam String link, @RequestParam String storeCode,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "12") int size) {
+		return productService.findProductsBySubCategoryLink(link, storeCode, page, size);
+	}
 
 }

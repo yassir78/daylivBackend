@@ -18,8 +18,9 @@ public interface ProductService {
 	public Product findById(Long id);
 
 	public List<Product> getProductsByStore(String storeCode);
-
-
+    
+	public Map<String, Object> findProductsBySubCategoryLink(String link, String storeCode, int page, int size);
+	
 	public Map<String, Object> getAllProducts(String name, String storeCode, int page, int size);
 
 }

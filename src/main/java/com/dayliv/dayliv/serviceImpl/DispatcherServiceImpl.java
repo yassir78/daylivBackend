@@ -2,6 +2,7 @@ package com.dayliv.dayliv.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -13,8 +14,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.dayliv.dayliv.dao.DispatcherDao;
+import com.dayliv.dayliv.dao.RoleDao;
 import com.dayliv.dayliv.model.Dispatcher;
 import com.dayliv.dayliv.model.Product;
+import com.dayliv.dayliv.model.Role;
 import com.dayliv.dayliv.service.DispatcherService;
 
 @Service
@@ -23,6 +26,8 @@ public class DispatcherServiceImpl implements DispatcherService {
 	private DispatcherDao DispatcherDao;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private RoleDao roleRepository;
 	@Override
 	public List<Dispatcher> findAll() {
 		// TODO Auto-generated method stub
@@ -34,6 +39,9 @@ public class DispatcherServiceImpl implements DispatcherService {
 		// TODO Auto-generated method stub
 		String password =passwordEncoder.encode(dispatcher.getPassword());
 		dispatcher.setPassword(password);
+		final HashSet<Role> roles = new HashSet<Role>();
+		roles.add(roleRepository.findByName(Role.ROLE_DISPATCHER));
+		dispatcher.setRoles(roles);
 		return DispatcherDao.save(dispatcher);
 	}
 

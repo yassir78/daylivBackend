@@ -30,7 +30,7 @@ public class LivraisonInfos {
 	private String interphone;
 	private String typeLivraison;
 	private String fraisLivraison;
-	private String fraisGrosVolume;
+	private String fraisGrosVolume;	
 	private String dateLivraison;
 	private String etage;
 	private String codePostal;

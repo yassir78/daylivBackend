@@ -1,18 +1,15 @@
 package com.dayliv.dayliv.model;
 
-import java.util.Date;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -32,6 +29,8 @@ public class LivraisonInfos {
 	private String batiment;
 	private String interphone;
 	private String typeLivraison;
+	private String fraisLivraison;
+	private String fraisGrosVolume;
 	private String dateLivraison;
 	private String etage;
 	private String codePostal;

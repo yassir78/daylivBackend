@@ -67,7 +67,7 @@ public class DispatcherServiceImpl implements DispatcherService {
 	@Override
 	public Dispatcher findById(Long id) {
 		// TODO Auto-generated method stub
-		return DispatcherDao.getOne(id);
+		return DispatcherDao.findById(id).get();
 	}
 
 	@Override

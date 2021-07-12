@@ -33,7 +33,7 @@ public class ProductRest {
 		return productService.getProductsRandomly();
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/id/{id}")
 	public Product findById(@PathVariable Long id) {
 		return productService.findById(id);
 	}

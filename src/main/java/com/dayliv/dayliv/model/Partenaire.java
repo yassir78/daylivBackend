@@ -34,6 +34,7 @@ public class Partenaire extends User {
 	@JsonIgnore
 	private List<Product> products;
 	@ManyToMany
+	@JsonIgnore
 	private List<CategoryPartenaire> categoryPartenaires;
 	@OneToOne
 	private Store store;

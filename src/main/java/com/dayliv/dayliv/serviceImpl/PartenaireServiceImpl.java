@@ -56,7 +56,7 @@ public class PartenaireServiceImpl implements PartenaireService {
 	}
 	@Override
 	public Partenaire findById(Long id) {
-		return partenaireDao.getOne(id);
+		return partenaireDao.findById(id).get();
 	}
 	@Override
 	public Partenaire findByLogin(String login) {

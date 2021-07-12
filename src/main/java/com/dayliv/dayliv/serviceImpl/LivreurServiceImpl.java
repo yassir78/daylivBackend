@@ -71,7 +71,7 @@ public class LivreurServiceImpl implements LivreurService {
 	@Override
 	public Livreur findById(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return livreurDao.findById(id).get();
 	}
 
 	@Override

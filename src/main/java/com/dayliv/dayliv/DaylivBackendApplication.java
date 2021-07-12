@@ -1,6 +1,5 @@
 package com.dayliv.dayliv;
 
-import java.util.Date;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import com.dayliv.dayliv.dao.CategoryPartenaireDao;
 import com.dayliv.dayliv.dao.CategoryProductDao;
@@ -28,26 +28,25 @@ import com.dayliv.dayliv.dao.StoreDao;
 import com.dayliv.dayliv.dao.SubCategoryDao;
 import com.dayliv.dayliv.dao.SuperAdminDao;
 import com.dayliv.dayliv.model.CategoryProduct;
-import com.dayliv.dayliv.model.Commande;
-import com.dayliv.dayliv.model.CommandeItem;
-import com.dayliv.dayliv.model.CommandeStatus;
-import com.dayliv.dayliv.model.Livreur;
 import com.dayliv.dayliv.model.Product;
-
 import com.dayliv.dayliv.model.ProductImage;
 import com.dayliv.dayliv.model.Store;
 import com.dayliv.dayliv.model.SubCategory;
-import com.dayliv.dayliv.service.EmailService;
+import com.dayliv.dayliv.service.SendMailService;
 
 @SpringBootApplication(scanBasePackages = "com.dayliv")
-public class DaylivBackendApplication implements CommandLineRunner {
+@EnableAsync
+public class DaylivBackendApplication  {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DaylivBackendApplication.class, args);
 	}
 
-	@Autowired
+	/*@Autowired
 	private EmailService emailService;
+	*/
+	@Autowired
+    private  SendMailService mailService;
 
 	@Bean
 	public CommandLineRunner demo(ConsumerDao consumerDao, DispatcherDao dispatcherDao, LivreurDao livreurDao,
@@ -154,14 +153,16 @@ public class DaylivBackendApplication implements CommandLineRunner {
 
 		};
 
-	}
+	
 
-	@Override
+	/*@Override
 	public void run(String... args) throws Exception {
 
 		// emailService.sendMail("belkoweb9718@gmail.com", "Hi", "Ho ho ho");
 
 		// emailService.sendPreConfiguredMail("Ho ho ho");
-	}
+	}*/
 
+}
+	
 }

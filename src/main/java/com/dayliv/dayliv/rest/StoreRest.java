@@ -32,7 +32,7 @@ public class StoreRest {
 		return ResponseEntity.ok(result);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/id/{id}")
 	public Store findById(@PathVariable Long id) {
 		return storeService.findById(id);
 	}                

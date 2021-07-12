@@ -112,45 +112,45 @@ public class DaylivBackendApplication implements CommandLineRunner {
 				store.setUseCache(true);
 				store.setLogo("https://via.placeholder.com/150/0000ff/808080?Text=" + store.getName());
 				storeDao.save(store);
-//				Stream.of("pizza", "panini", "chawarma").forEach(libelle -> {
-//					CategoryProduct categoryProduct = new CategoryProduct();
-//					categoryProduct.setCategorie(libelle);
-//					categoryProduct.setStoreCode("XEHZJ8855");
-//					categoryProductDao.save(categoryProduct);
-//					Stream.of("s-pizza", "s-panini", "s-chawarma").forEach(nom -> {
-//						SubCategory subCategory = new SubCategory();
-//						subCategory.setSousCategorie(nom);
-//						subCategory.setStoreCode("XEHZJ8855");
-//						subCategory.setCategoryProduct(categoryProduct);
-//						subCategoryDao.save(subCategory);
-//					});
-//				});
+				Stream.of("pizza", "panini", "chawarma").forEach(libelle -> {
+					CategoryProduct categoryProduct = new CategoryProduct();
+					categoryProduct.setCategorie(libelle);
+					categoryProduct.setStoreCode("XEHZJ8855");
+					categoryProductDao.save(categoryProduct);
+					Stream.of("s-pizza", "s-panini", "s-chawarma").forEach(nom -> {
+						SubCategory subCategory = new SubCategory();
+						subCategory.setSousCategorie(nom);
+						subCategory.setStoreCode("XEHZJ8855");
+						subCategory.setCategoryProduct(categoryProduct);
+						subCategoryDao.save(subCategory);
+					});
+				});
 			});
 
-//			Stream.of("PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table",
-//					"Chargeur", "Téléphone", "PC", "Imprimante", "Iphone", "Radio", "Clavier", "Clé USB", "Coffe",
-//					"Chaussures", "Table", "Chargeur", "Téléphone", "PC", "Imprimante", "Iphone", "Radio", "Clavier",
-//					"Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone", "PC", "Imprimante", "Iphone",
-//					"Radio", "Clavier", "Clé USB", "Coffe", "Chaussures", "Table", "Chargeur", "Téléphone")
-//					.forEach(libelle -> {
-//						Product product = new Product();
-//						product.setLibelle(libelle);
-//						product.setOrigine("Chine");
-//						product.setStoreCode("I2021");
-//						product.setDescription(
-//								"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
-//						product.setPrice((float) 58.6);
-//						CategoryProduct pizza = categoryProductDao.findById((long) 2).get();
-//						SubCategory sub = subCategoryDao.findById((long) 3).get();
-//						product.setSubCategory(sub);
-//						product.setCategoryProduct(pizza);
-//						ProductImage pi = new ProductImage();
-//						productDao.save(product);
-//						pi.setPath(
-//								"https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/39/358943/1.jpg?9484");
-//						pi.setProduct(product);
-//						productImageDao.save(pi);
-//					});
+			Stream.of("PC1", "Imprimante2", "Iphone3", "Radio4", "Clavier5", "Clé USB6", "Coffe7", "Chaussures8",
+					"Table9", "Chargeur10", "Téléphone11", "PC12", "Imprimante13", "Iphone14", "Radio15", "Clavier16",
+					"Clé USB17", "Coffe18", "Chaussures19", "Table20", "Chargeur21", "Téléphone22", "PC23",
+					"Imprimante24", "Iphone25", "Radio26", "Clavier27", "Clé USB28", "Coffe29", "Chaussures30",
+					"Table31", "Chargeur32", "Téléphone33", "PC34", "Imprimante35", "Iphone36", "Radio37", "Clavier38",
+					"Clé USB39", "Coffe40", "Chaussures41", "Table42", "Chargeur43", "Téléphone44").forEach(libelle -> {
+						Product product = new Product();
+						product.setLibelle(libelle);
+						product.setOrigine("Chine");
+						product.setStoreCode("I2021");
+						product.setDescription(
+								"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+						product.setPrice((float) 58.6);
+						CategoryProduct pizza = categoryProductDao.findById((long) 2).get();
+						SubCategory sub = subCategoryDao.findById((long) 3).get();
+						product.setSubCategory(sub);
+						product.setCategoryProduct(pizza);
+						ProductImage pi = new ProductImage();
+						productDao.save(product);
+						pi.setPath(
+								"https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/39/358943/1.jpg?9484");
+						pi.setProduct(product);
+						productImageDao.save(pi);
+					});
 
 		};
 

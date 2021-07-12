@@ -19,6 +19,7 @@ import com.dayliv.dayliv.model.Partenaire;
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.model.ProductImage;
 import com.dayliv.dayliv.service.ProductService;
+import com.ibm.icu.math.BigDecimal;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -134,6 +135,28 @@ public class ProductServiceImpl implements ProductService {
 		pages = productDao.findBySubCategorie(link, storeCode, paging);
 		products = pages.getContent();
 
+		Map<String, Object> response = new HashMap<>();
+		response.put("products", products);
+		response.put("currentPage", pages.getNumber());
+		response.put("totalItems", pages.getTotalElements());
+		response.put("totalPages", pages.getTotalPages());
+
+		return response;
+	}
+
+	@Override
+	public Map<String, Object> findByMaxAndMinPrice(Float minPrice, Float maxPrice, String storeCode,
+			int page, int size) {
+		// TODO Auto-generated method stub
+//		List<String> params = new ArrayList<String>();
+//		params.add(link);
+//		params.add(storeCode);
+		List<Product> products = new ArrayList<Product>();
+		Pageable paging = PageRequest.of(page, size);
+
+		Page<Product> pages;
+		pages = productDao.findByMaxAndMinPrice(minPrice,maxPrice, storeCode, paging);
+		products = pages.getContent();
 		Map<String, Object> response = new HashMap<>();
 		response.put("products", products);
 		response.put("currentPage", pages.getNumber());

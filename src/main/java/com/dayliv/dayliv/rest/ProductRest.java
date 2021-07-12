@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.service.ProductService;
+import com.ibm.icu.math.BigDecimal;
 
 @RestController
 @CrossOrigin
@@ -67,14 +68,24 @@ public class ProductRest {
 	@GetMapping("/products")
 	public ResponseEntity<Map<String, Object>> getAllProducts(@RequestParam(required = false) String name,
 			@RequestParam(required = true) String storeCode, @RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "12") int size) {
+			@RequestParam(defaultValue = "9") int size) {
 		try {
-
 			return new ResponseEntity<>(productService.getAllProducts(name, storeCode, page, size), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	@GetMapping("/productsByMinAndMaxPrice")
+	public Map<String, Object> findByMaxAndMinPrice(@RequestParam String minPrice,
+			@RequestParam String maxPrice, @RequestParam String storeCode,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "12") int size) {
+		System.out.println("*************************");
+		System.out.println(minPrice);
+
+		return productService.findByMaxAndMinPrice(Float.valueOf(minPrice), Float.valueOf(maxPrice), storeCode, page, size);
+	}
+
 	@GetMapping("/productsBySubCategory")
 	public Map<String, Object> findProductsBySubCategoryLink(@RequestParam String link, @RequestParam String storeCode,
 			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "12") int size) {

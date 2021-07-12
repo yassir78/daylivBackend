@@ -37,10 +37,8 @@ private SubCategoryDao subCategoryDao;
 	@Override
 	public List<CategoryProduct> getCategoriesByStoreCode(String code) {
 		// TODO Auto-generated method stub
-		System.out.println("this is sparta");
 		Store store = storeDao.findByCode(code);
 		if (store != null) {
-			System.out.println("this is Ch3kouka");
 			return categoryProductDao.findByStoreCode(code);
 		}
 		return null;

@@ -41,7 +41,7 @@ public class DispatcherServiceImpl implements DispatcherService {
 	@Override
 	public Dispatcher save(Dispatcher dispatcher) {
 		// TODO Auto-generated method stub
-		String password =passwordEncoder.encode(dispatcher.getPassword());
+		String password = passwordEncoder.encode(dispatcher.getPassword());
 		final HashSet<Role> roles = new HashSet<Role>();
 		roles.add(roleRepository.findByName(Role.ROLE_DISPATCHER));
 		dispatcher.setRoles(roles);

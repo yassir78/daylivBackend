@@ -40,15 +40,15 @@ public class PartenaireServiceImpl implements PartenaireService {
 	@Override
 	public Partenaire save(Partenaire partenaire) {
 		String password =passwordEncoder.encode(partenaire.getPassword());
-		partenaire.setPassword(password);
 		final HashSet<Role> roles = new HashSet<Role>();
 		roles.add(roleRepository.findByName(Role.ROLE_PARTENAIRE));
 		partenaire.setRoles(roles);
 		//Send account creation notification email
-		mailService.sendMail(new NotificationEmail("Please Activate your Account",
-				partenaire.getEmail(), "Thank you for signing up to Spring Dayliv, " +
-                "please click on the below url to activate your account : " +
-                "http://localhost:8080/api/auth/accountVerification/"+"token"));
+		mailService.sendMail(new NotificationEmail("Dayliv MarketPlace",
+				partenaire.getEmail(), "Création de votre compte" +
+                "Vos informations de connexion sont:"+" Email : "+partenaire.getEmail()+" Mot de passe:"+partenaire.getPassword()));
+		
+		partenaire.setPassword(password);
 		return partenaireDao.save(partenaire);
 	}
 	@Override

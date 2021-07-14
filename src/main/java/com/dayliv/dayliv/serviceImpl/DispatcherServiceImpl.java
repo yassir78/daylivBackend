@@ -42,15 +42,14 @@ public class DispatcherServiceImpl implements DispatcherService {
 	public Dispatcher save(Dispatcher dispatcher) {
 		// TODO Auto-generated method stub
 		String password =passwordEncoder.encode(dispatcher.getPassword());
-		dispatcher.setPassword(password);
 		final HashSet<Role> roles = new HashSet<Role>();
 		roles.add(roleRepository.findByName(Role.ROLE_DISPATCHER));
 		dispatcher.setRoles(roles);
 		//Send account creation notification email
-				mailService.sendMail(new NotificationEmail("Please Activate your Account",
-						dispatcher.getEmail(), "Thank you for signing up to Spring Dayliv, " +
-		                "please click on the below url to activate your account : " +
-		                "http://localhost:8080/api/auth/accountVerification/"+"token"));
+		mailService.sendMail(new NotificationEmail("Dayliv MarketPlace",
+				dispatcher.getEmail(), "Création de votre compte" +
+                "Vos informations de connexion sont:"+" Email : "+dispatcher.getEmail()+" Mot de passe:"+dispatcher.getPassword()));
+		dispatcher.setPassword(password);
 		return DispatcherDao.save(dispatcher);
 	}
 

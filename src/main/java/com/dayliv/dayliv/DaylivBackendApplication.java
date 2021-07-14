@@ -126,7 +126,7 @@ public class DaylivBackendApplication  {
 					});
 				});
 			});
-
+           /*
 			Stream.of("PC1", "Imprimante2", "Iphone3", "Radio4", "Clavier5", "Clé USB6", "Coffe7", "Chaussures8",
 					"Table9", "Chargeur10", "Téléphone11", "PC12", "Imprimante13", "Iphone14", "Radio15", "Clavier16",
 					"Clé USB17", "Coffe18", "Chaussures19", "Table20", "Chargeur21", "Téléphone22", "PC23",
@@ -150,13 +150,13 @@ public class DaylivBackendApplication  {
 								"https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/39/358943/1.jpg?9484");
 						pi.setProduct(product);
 						productImageDao.save(pi);
-					});
+					});*/
 			
 			//Send account creation notification email
-			mailService.sendMail(new NotificationEmail("Please Activate your Account",
+			/*mailService.sendMail(new NotificationEmail("Please Activate your Account",
 					"belkoweb9718@gmail.com", "Thank you for signing up to Spring Dayliv, " +
 	                "please click on the below url to activate your account : " +
-	                "http://localhost:8080/api/auth/accountVerification/"+"token"));
+	                "http://localhost:8080/api/auth/accountVerification/"+"token"));*/
 
 		};
 }

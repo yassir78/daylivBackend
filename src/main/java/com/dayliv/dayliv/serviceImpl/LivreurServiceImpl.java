@@ -39,15 +39,14 @@ public class LivreurServiceImpl implements LivreurService {
 
 	@Override
 	public Livreur save(Livreur livreur) {
-		livreur.setPassword(passwordEncoder.encode(livreur.getPassword()));
 		final HashSet<Role> roles = new HashSet<Role>();
 		roles.add(roleRepository.findByName(Role.ROLE_LIVREUR));
 		livreur.setRoles(roles);
 		//Send account creation notification email
-				mailService.sendMail(new NotificationEmail("Please Activate your Account",
-						livreur.getEmail(), "Thank you for signing up to Spring Dayliv, " +
-		                "please click on the below url to activate your account : " +
-		                "http://localhost:8080/api/auth/accountVerification/"+"token"));
+		mailService.sendMail(new NotificationEmail("Dayliv MarketPlace",
+				livreur.getEmail(), "Création de votre compte" +
+                "Vos informations de connexion sont:"+" Email : "+livreur.getEmail()+" Mot de passe:"+livreur.getPassword()));
+		livreur.setPassword(passwordEncoder.encode(livreur.getPassword()));
 		return livreurDao.save(livreur);
 	}
 

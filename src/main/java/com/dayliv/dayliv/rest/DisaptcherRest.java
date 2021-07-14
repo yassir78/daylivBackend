@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dayliv.dayliv.model.Dispatcher;
 import com.dayliv.dayliv.model.Partenaire;
 import com.dayliv.dayliv.service.DispatcherService;
-import com.dayliv.dayliv.service.EmailService;
+import com.dayliv.dayliv.service.EmailServiceDeprecated;
 import com.dayliv.dayliv.service.PartenaireService;
 
 @RestController
@@ -33,7 +33,7 @@ public class DisaptcherRest {
 	// private JwtTokenProvider tokenProvider;
 
 	@Autowired
-    private EmailService emailService; 
+    private EmailServiceDeprecated emailService; 
 
 	@GetMapping("/all")
 	public List<Dispatcher> findAll() {

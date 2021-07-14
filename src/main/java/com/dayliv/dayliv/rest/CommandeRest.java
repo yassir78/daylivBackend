@@ -20,7 +20,7 @@ import com.dayliv.dayliv.model.Commande;
 import com.dayliv.dayliv.model.CommandeStatus;
 import com.dayliv.dayliv.model.Livreur;
 import com.dayliv.dayliv.service.CommandeService;
-import com.dayliv.dayliv.service.EmailService;
+import com.dayliv.dayliv.service.EmailServiceDeprecated;
 
 @RestController
 @CrossOrigin
@@ -29,7 +29,7 @@ public class CommandeRest {
 	@Autowired
 	private CommandeService commandeService;
 	@Autowired
-	private EmailService emailService;
+	private EmailServiceDeprecated emailService;
 
 	@GetMapping("/liv/{id}")
 	public List<Commande> getCommandeByLivreur(@PathVariable Long id) {

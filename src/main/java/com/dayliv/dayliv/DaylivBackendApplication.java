@@ -28,6 +28,7 @@ import com.dayliv.dayliv.dao.StoreDao;
 import com.dayliv.dayliv.dao.SubCategoryDao;
 import com.dayliv.dayliv.dao.SuperAdminDao;
 import com.dayliv.dayliv.model.CategoryProduct;
+import com.dayliv.dayliv.model.NotificationEmail;
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.model.ProductImage;
 import com.dayliv.dayliv.model.Store;
@@ -42,9 +43,7 @@ public class DaylivBackendApplication  {
 		SpringApplication.run(DaylivBackendApplication.class, args);
 	}
 
-	/*@Autowired
-	private EmailService emailService;
-	*/
+	
 	@Autowired
     private  SendMailService mailService;
 
@@ -57,6 +56,8 @@ public class DaylivBackendApplication  {
 			ProductImageDao productImageDao, CategoryPartenaireDao categoryPartenaireDao,
 			SubCategoryDao subCategoryDao) {
 		return (args) -> {
+			
+		
 			/*
 			 * Commande commande1 = new Commande(); Commande commande2 = new Commande();
 			 * commande1.setReference("MT-2938"); commande1.setTotale_commande(4500F);
@@ -150,19 +151,14 @@ public class DaylivBackendApplication  {
 						pi.setProduct(product);
 						productImageDao.save(pi);
 					});
+			
+			//Send account creation notification email
+			mailService.sendMail(new NotificationEmail("Please Activate your Account",
+					"belkoweb9718@gmail.com", "Thank you for signing up to Spring Dayliv, " +
+	                "please click on the below url to activate your account : " +
+	                "http://localhost:8080/api/auth/accountVerification/"+"token"));
 
 		};
-
-	
-
-	/*@Override
-	public void run(String... args) throws Exception {
-
-		// emailService.sendMail("belkoweb9718@gmail.com", "Hi", "Ho ho ho");
-
-		// emailService.sendPreConfiguredMail("Ho ho ho");
-	}*/
-
 }
 	
 }

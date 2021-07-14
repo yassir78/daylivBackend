@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dayliv.dayliv.model.NotificationEmail;
 import com.dayliv.dayliv.model.Partenaire;
-import com.dayliv.dayliv.service.EmailService;
+import com.dayliv.dayliv.service.EmailServiceDeprecated;
 import com.dayliv.dayliv.service.PartenaireService;
 import com.dayliv.dayliv.service.SendMailService;
 
@@ -29,10 +29,7 @@ public class PartenaireRest {
 	// @Autowired
 	// private JwtTokenProvider tokenProvider;
 
-	@Autowired
-    private  SendMailService mailService;
-	@Autowired
-    private EmailService emailService; 
+	
 
 	@GetMapping("/all")
 	public List<Partenaire> findAll() {
@@ -56,12 +53,6 @@ public class PartenaireRest {
 
 	@PostMapping("/save")
 	public Partenaire save(@RequestBody Partenaire partenaire) {
-		//emailService.sendMail(partenaire.getEmail(), "Dayliv Marketplace", "Bonjour nous avons crée un compte pour vous !");
-		//emailService.sendMailWithInlineResources(partenaire.getEmail(), "Dayliv Marketplace", "https://cdn.shopify.com/s/files/1/0511/3901/8925/files/Copia_de_Copia_de_REN_1_410x.png");
-		mailService.sendMail(new NotificationEmail("Please Activate your Account",
-				partenaire.getEmail(), "Thank you for signing up to Spring Dayliv, " +
-                "please click on the below url to activate your account : " +
-                "http://localhost:8080/api/auth/accountVerification/"+"token"));
 		
 		return partenaireService.save(partenaire);
 	}

@@ -16,9 +16,11 @@ import org.springframework.stereotype.Service;
 import com.dayliv.dayliv.dao.ConsumerDao;
 import com.dayliv.dayliv.dao.RoleDao;
 import com.dayliv.dayliv.model.Consumer;
+import com.dayliv.dayliv.model.NotificationEmail;
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.model.Role;
 import com.dayliv.dayliv.service.ConsumerService;
+import com.dayliv.dayliv.service.SendMailService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Service
@@ -29,6 +31,8 @@ public class ConsumerServiceImpl implements ConsumerService {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private RoleDao roleRepository;
+	@Autowired
+    private  SendMailService mailService;
 	@Override
 	public List<Consumer> findAll() {
 		return consumerDao.findAll();
@@ -40,6 +44,11 @@ public class ConsumerServiceImpl implements ConsumerService {
 		final HashSet<Role> roles = new HashSet<Role>();
 		roles.add(roleRepository.findByName(Role.ROLE_COSTUMER));
 		consumer.setRoles(roles);
+		//Send account creation notification email
+				mailService.sendMail(new NotificationEmail("Please Activate your Account",
+						consumer.getEmail(), "Thank you for signing up to Spring Dayliv, " +
+		                "please click on the below url to activate your account : " +
+		                "http://localhost:8080/api/auth/accountVerification/"+"token"));
 		return consumerDao.save(consumer);
 	}
 	

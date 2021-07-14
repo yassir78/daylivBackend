@@ -16,9 +16,11 @@ import org.springframework.stereotype.Service;
 import com.dayliv.dayliv.dao.DispatcherDao;
 import com.dayliv.dayliv.dao.RoleDao;
 import com.dayliv.dayliv.model.Dispatcher;
+import com.dayliv.dayliv.model.NotificationEmail;
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.model.Role;
 import com.dayliv.dayliv.service.DispatcherService;
+import com.dayliv.dayliv.service.SendMailService;
 
 @Service
 public class DispatcherServiceImpl implements DispatcherService {
@@ -28,6 +30,8 @@ public class DispatcherServiceImpl implements DispatcherService {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private RoleDao roleRepository;
+	@Autowired
+    private  SendMailService mailService;
 	@Override
 	public List<Dispatcher> findAll() {
 		// TODO Auto-generated method stub
@@ -42,6 +46,11 @@ public class DispatcherServiceImpl implements DispatcherService {
 		final HashSet<Role> roles = new HashSet<Role>();
 		roles.add(roleRepository.findByName(Role.ROLE_DISPATCHER));
 		dispatcher.setRoles(roles);
+		//Send account creation notification email
+				mailService.sendMail(new NotificationEmail("Please Activate your Account",
+						dispatcher.getEmail(), "Thank you for signing up to Spring Dayliv, " +
+		                "please click on the below url to activate your account : " +
+		                "http://localhost:8080/api/auth/accountVerification/"+"token"));
 		return DispatcherDao.save(dispatcher);
 	}
 

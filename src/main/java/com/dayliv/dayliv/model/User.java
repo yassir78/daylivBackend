@@ -61,9 +61,8 @@ public class User {
 	private String nom;
 	private String prenom;
 	private String email;
-
+	
 	private String password;
-
 	private String image_profile;
 	@OneToMany(mappedBy = "user")
 	private List<Notification> notifications;

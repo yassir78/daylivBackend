@@ -22,5 +22,7 @@ public class Livreur extends User{
 	private Commande commande;
 	private double lg;
 	private double lat;
+	private String adresse;
+	private String codePostal;
 	
 }

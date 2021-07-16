@@ -17,7 +17,6 @@ import com.dayliv.dayliv.util.GeneralUtils;
 
 @RestController
 @RequestMapping("/dayliv-api/user")
-@CrossOrigin("*")
 public class UserRest {
 	@Autowired
 	UserService userService;
@@ -28,6 +27,7 @@ public class UserRest {
 	@GetMapping("/me")
 	@PreAuthorize("hasRole('ROLE_COSTUMER')")
 	public ResponseEntity<?> getCurrentUser(@CurrentUser LocalUser user) {
+		
 		return ResponseEntity.ok(GeneralUtils.buildUserInfo(user));
 	}
 

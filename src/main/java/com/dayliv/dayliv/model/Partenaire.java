@@ -40,6 +40,6 @@ public class Partenaire extends User {
 	@OneToOne
 	private Store store;
 	private String adresse;
-	private String codePostal;
+
 
 }

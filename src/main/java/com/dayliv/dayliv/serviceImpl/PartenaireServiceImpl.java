@@ -58,6 +58,12 @@ public class PartenaireServiceImpl implements PartenaireService {
 	}
 	@Override
 	public Partenaire update(Long id, Partenaire partenaire) {
+		String password =passwordEncoder.encode(partenaire.getPassword());
+		final HashSet<Role> roles = new HashSet<Role>();
+		roles.add(roleRepository.findByName(Role.ROLE_PARTENAIRE));
+		partenaire.setRoles(roles);
+		partenaire.setPassword(password);
+
 		return partenaireDao.save(partenaire);
 	}
 	@Override

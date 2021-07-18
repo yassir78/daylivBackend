@@ -80,7 +80,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.oauth2Login()
 				.authorizationEndpoint()
-					.authorizationRequestRepository(cookieAuthorizationRequestRepository())
 					.and()
 				.redirectionEndpoint()
 					.and()

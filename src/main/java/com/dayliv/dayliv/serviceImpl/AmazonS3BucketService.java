@@ -8,7 +8,12 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.dayliv.dayliv.dao.ProductImageDao;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,6 +35,9 @@ public class AmazonS3BucketService {
     private String accessKey;
     @Value("${secretKey}")
     private String secretKey;
+    
+    @Autowired
+    private ProductImageDao productImageDao;
 
     @PostConstruct
     private void initializeAmazon() {
@@ -67,9 +75,10 @@ public class AmazonS3BucketService {
                 .withCannedAcl(CannedAccessControlList.PublicRead));
     }
 
-    public String deleteFileFromBucket(String fileName) {
+    public  ResponseEntity<?> deleteFileFromBucket(String fileName, long productImageId) {
+    	this.productImageDao.deleteById(productImageId);
         amazonS3.deleteObject(new DeleteObjectRequest(bucketName, fileName));
-        return "Deletion Successful";
+        return  new ResponseEntity<>("Deletion Successful", HttpStatus.OK);
     }
 
 }

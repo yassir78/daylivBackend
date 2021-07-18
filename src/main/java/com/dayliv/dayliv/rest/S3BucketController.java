@@ -1,5 +1,6 @@
 package com.dayliv.dayliv.rest;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -25,7 +26,7 @@ public class S3BucketController {
     }
 
     @PostMapping("/deleteFile")
-    public String deleteFile(@RequestBody DeleteImageRequest deleteImageRequest) {
+    public ResponseEntity<?> deleteFile(@RequestBody DeleteImageRequest deleteImageRequest) {
         return this.amazonS3BucketService.deleteFileFromBucket(deleteImageRequest.getFileName(), deleteImageRequest.getProductImageId() );
     }
 }

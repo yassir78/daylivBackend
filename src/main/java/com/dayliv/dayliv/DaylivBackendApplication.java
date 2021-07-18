@@ -1,5 +1,8 @@
 package com.dayliv.dayliv;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
 
+import java.util.ArrayList;
+import java.util.Collection;  
 import com.dayliv.dayliv.dao.CategoryPartenaireDao;
 import com.dayliv.dayliv.dao.CategoryProductDao;
 import com.dayliv.dayliv.dao.CommandeDao;
@@ -28,6 +33,7 @@ import com.dayliv.dayliv.dao.StoreDao;
 import com.dayliv.dayliv.dao.SubCategoryDao;
 import com.dayliv.dayliv.dao.SuperAdminDao;
 import com.dayliv.dayliv.model.CategoryProduct;
+import com.dayliv.dayliv.model.NotificationEmail;
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.model.ProductImage;
 import com.dayliv.dayliv.model.Store;
@@ -42,9 +48,7 @@ public class DaylivBackendApplication  {
 		SpringApplication.run(DaylivBackendApplication.class, args);
 	}
 
-	/*@Autowired
-	private EmailService emailService;
-	*/
+	
 	@Autowired
     private  SendMailService mailService;
 
@@ -57,6 +61,75 @@ public class DaylivBackendApplication  {
 			ProductImageDao productImageDao, CategoryPartenaireDao categoryPartenaireDao,
 			SubCategoryDao subCategoryDao) {
 		return (args) -> {
+			
+			
+			
+		/*	Map<String, Collection<String>> categories = new HashMap<>();			
+			
+		    List <String> subCategoryList1 = new ArrayList<>();
+		    subCategoryList1.add("Haute de game");
+		    subCategoryList1.add("Haute couture");
+		    subCategoryList1.add("Maison de luxe");
+		    subCategoryList1.add("Voyage");
+		    categories.put("Luxe", subCategoryList1);
+		    
+		    
+		    List <String> subCategoryList2 = new ArrayList<>();
+
+		    subCategoryList2.add("Aspirateurs");
+		    subCategoryList2.add("Nettoyeurs à vapeur");
+		    subCategoryList2.add("Accessoires, nettoyage du sol");
+		    subCategoryList2.add("Appareils à raclette, fondue, crêpes");
+		    subCategoryList2.add("Micro-ondes et mini-fours");
+		    subCategoryList2.add("Cuiseurs vapeurs");
+		    subCategoryList2.add("Barbecue, grill et plancha");
+		    subCategoryList2.add("Autres appareils de cuisson");
+		    subCategoryList2.add("Bouilloires, machines à café");
+		    subCategoryList2.add("Capsules à café et accessoires");
+		    subCategoryList2.add("Sèches cheveux, lisseurs, boucleurs");
+		    subCategoryList2.add("Rasoirs et tondeuses");
+		    subCategoryList2.add("Brosses à dents électriques");
+		    subCategoryList2.add("Machines fitness et sport");
+		    categories.put("Petits électroménagers",subCategoryList2);
+
+		    
+		    List <String> subCategoryList3 = new ArrayList<>();
+		    
+		    subCategoryList3.add("Cuisinières");
+		    subCategoryList3.add("Plaques de cuisson");
+		    subCategoryList3.add("Hottes");
+		    subCategoryList3.add("Fours encastrables");
+		    subCategoryList3.add("Réfrigérateurs");
+		    subCategoryList3.add("Congélateurs");
+		    subCategoryList3.add("Caves à vins");
+		    subCategoryList3.add("Sèches linges");
+		    subCategoryList3.add("Lavantes-séchantes");
+		    subCategoryList3.add("Lave-linge");
+		    subCategoryList3.add("Lave-vaisselle");
+		    subCategoryList3.add("Lave-vaisselle encastrable");
+		    categories.put("Gros électroménagers", subCategoryList3);
+		    
+		    
+		    categories.entrySet().stream().parallel().forEach(e->{
+		    	CategoryProduct catProduct = new CategoryProduct();
+		    	catProduct.setCategorie(e.getKey());
+				//categoryProduct.setStoreCode("XEHZJ8855");
+				categoryProductDao.save(catProduct);
+				
+				e.getValue().forEach(val -> {
+					SubCategory subCat = new SubCategory();
+					subCat.setSousCategorie(val);
+					//subCategory.setStoreCode("XEHZJ8855");
+					subCat.setCategoryProduct(catProduct);
+					subCategoryDao.save(subCat);
+		    });
+				
+		    });
+
+
+		    */
+		    
+		    
 			/*
 			 * Commande commande1 = new Commande(); Commande commande2 = new Commande();
 			 * commande1.setReference("MT-2938"); commande1.setTotale_commande(4500F);
@@ -111,6 +184,8 @@ public class DaylivBackendApplication  {
 				store.setUseCache(true);
 				store.setLogo("https://via.placeholder.com/150/0000ff/808080?Text=" + store.getName());
 				storeDao.save(store);
+			
+				
 				Stream.of("pizza", "panini", "chawarma").forEach(libelle -> {
 					CategoryProduct categoryProduct = new CategoryProduct();
 					categoryProduct.setCategorie(libelle);
@@ -125,7 +200,10 @@ public class DaylivBackendApplication  {
 					});
 				});
 			});
-
+			
+			
+			
+           /*
 			Stream.of("PC1", "Imprimante2", "Iphone3", "Radio4", "Clavier5", "Clé USB6", "Coffe7", "Chaussures8",
 					"Table9", "Chargeur10", "Téléphone11", "PC12", "Imprimante13", "Iphone14", "Radio15", "Clavier16",
 					"Clé USB17", "Coffe18", "Chaussures19", "Table20", "Chargeur21", "Téléphone22", "PC23",
@@ -149,20 +227,15 @@ public class DaylivBackendApplication  {
 								"https://ma.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/39/358943/1.jpg?9484");
 						pi.setProduct(product);
 						productImageDao.save(pi);
-					});
+					});*/
+			
+			//Send account creation notification email
+			/*mailService.sendMail(new NotificationEmail("Please Activate your Account",
+					"belkoweb9718@gmail.com", "Thank you for signing up to Spring Dayliv, " +
+	                "please click on the below url to activate your account : " +
+	                "http://localhost:8080/api/auth/accountVerification/"+"token"));*/
 
 		};
-
-	
-
-	/*@Override
-	public void run(String... args) throws Exception {
-
-		// emailService.sendMail("belkoweb9718@gmail.com", "Hi", "Ho ho ho");
-
-		// emailService.sendPreConfiguredMail("Ho ho ho");
-	}*/
-
 }
 	
 }

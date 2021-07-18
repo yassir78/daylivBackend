@@ -102,6 +102,8 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			livreur.setEmail(email);
 			livreur.setPassword(passwordEncoder.encode(password));
 			livreur.setRoles(roles);
+			livreur.setImage_profile("https://i.pravatar.cc/150?u=fake@pravatar.com");
+
 			livreur.setMobility(mobilite);
 			livreur.setProvider(SocialProvider.LOCAL.getProviderType());
 			livreur.setEnabled(true);
@@ -129,6 +131,8 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			dispatcher.setRoles(roles);
 			dispatcher.setProvider(SocialProvider.LOCAL.getProviderType());
 			dispatcher.setEnabled(true);
+			dispatcher.setImage_profile("https://i.pravatar.cc/150?u=fake@pravatar.com");
+
 			Date now = Calendar.getInstance().getTime();
 			dispatcher.setCreatedDate(now);
 			dispatcher.setModifiedDate(now);
@@ -148,6 +152,8 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			partenaire.setNom(firstName);
 			partenaire.setPrenom(lastName);
 			partenaire.setEmail(email);
+			partenaire.setImage_profile("https://i.pravatar.cc/150?u=fake@pravatar.com");
+
 			partenaire.setPassword(passwordEncoder.encode(password));
 			partenaire.setRoles(roles);
 			partenaire.setStoreCode(storeCode);
@@ -172,6 +178,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			user.setNom(firstName);
 			user.setPrenom(lastName);
 			user.setEmail(email);
+			user.setImage_profile("https://i.pravatar.cc/150?u=fake@pravatar.com");
 			user.setPassword(passwordEncoder.encode(password));
 			user.setRoles(roles);
 			user.setProvider(SocialProvider.LOCAL.getProviderType());

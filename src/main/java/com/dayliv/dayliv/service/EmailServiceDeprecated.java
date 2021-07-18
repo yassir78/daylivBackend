@@ -16,7 +16,7 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
 @Service("emailService")
-public class EmailService 
+public class EmailServiceDeprecated 
 {
     @Autowired
     private JavaMailSender mailSender;

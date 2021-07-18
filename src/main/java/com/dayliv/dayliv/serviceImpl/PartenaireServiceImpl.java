@@ -15,10 +15,12 @@ import org.springframework.stereotype.Service;
 
 import com.dayliv.dayliv.dao.PartenaireDao;
 import com.dayliv.dayliv.dao.RoleDao;
+import com.dayliv.dayliv.model.NotificationEmail;
 import com.dayliv.dayliv.model.Partenaire;
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.model.Role;
 import com.dayliv.dayliv.service.PartenaireService;
+import com.dayliv.dayliv.service.SendMailService;
 
 @Service
 public class PartenaireServiceImpl implements PartenaireService {
@@ -28,6 +30,9 @@ public class PartenaireServiceImpl implements PartenaireService {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private RoleDao roleRepository;
+
+	@Autowired
+    private  SendMailService mailService;
 	@Override
 	public List<Partenaire> findAll() {
 		return partenaireDao.findAll();
@@ -35,10 +40,15 @@ public class PartenaireServiceImpl implements PartenaireService {
 	@Override
 	public Partenaire save(Partenaire partenaire) {
 		String password =passwordEncoder.encode(partenaire.getPassword());
-		partenaire.setPassword(password);
 		final HashSet<Role> roles = new HashSet<Role>();
 		roles.add(roleRepository.findByName(Role.ROLE_PARTENAIRE));
 		partenaire.setRoles(roles);
+		//Send account creation notification email
+		mailService.sendMail(new NotificationEmail("Dayliv MarketPlace",
+				partenaire.getEmail(), "Création de votre compte" +
+                "Vos informations de connexion sont:"+" Email : "+partenaire.getEmail()+" Mot de passe:"+partenaire.getPassword()));
+		
+		partenaire.setPassword(password);
 		return partenaireDao.save(partenaire);
 	}
 	@Override
@@ -48,6 +58,12 @@ public class PartenaireServiceImpl implements PartenaireService {
 	}
 	@Override
 	public Partenaire update(Long id, Partenaire partenaire) {
+		String password =passwordEncoder.encode(partenaire.getPassword());
+		final HashSet<Role> roles = new HashSet<Role>();
+		roles.add(roleRepository.findByName(Role.ROLE_PARTENAIRE));
+		partenaire.setRoles(roles);
+		partenaire.setPassword(password);
+
 		return partenaireDao.save(partenaire);
 	}
 	@Override

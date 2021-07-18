@@ -16,9 +16,11 @@ import org.springframework.stereotype.Service;
 import com.dayliv.dayliv.dao.DispatcherDao;
 import com.dayliv.dayliv.dao.RoleDao;
 import com.dayliv.dayliv.model.Dispatcher;
+import com.dayliv.dayliv.model.NotificationEmail;
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.model.Role;
 import com.dayliv.dayliv.service.DispatcherService;
+import com.dayliv.dayliv.service.SendMailService;
 
 @Service
 public class DispatcherServiceImpl implements DispatcherService {
@@ -28,6 +30,8 @@ public class DispatcherServiceImpl implements DispatcherService {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private RoleDao roleRepository;
+	@Autowired
+    private  SendMailService mailService;
 	@Override
 	public List<Dispatcher> findAll() {
 		// TODO Auto-generated method stub
@@ -37,11 +41,15 @@ public class DispatcherServiceImpl implements DispatcherService {
 	@Override
 	public Dispatcher save(Dispatcher dispatcher) {
 		// TODO Auto-generated method stub
-		String password =passwordEncoder.encode(dispatcher.getPassword());
-		dispatcher.setPassword(password);
+		String password = passwordEncoder.encode(dispatcher.getPassword());
 		final HashSet<Role> roles = new HashSet<Role>();
 		roles.add(roleRepository.findByName(Role.ROLE_DISPATCHER));
 		dispatcher.setRoles(roles);
+		//Send account creation notification email
+		mailService.sendMail(new NotificationEmail("Dayliv MarketPlace",
+				dispatcher.getEmail(), "Création de votre compte" +
+                "Vos informations de connexion sont:"+" Email : "+dispatcher.getEmail()+" Mot de passe:"+dispatcher.getPassword()));
+		dispatcher.setPassword(password);
 		return DispatcherDao.save(dispatcher);
 	}
 

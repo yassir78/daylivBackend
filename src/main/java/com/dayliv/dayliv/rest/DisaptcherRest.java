@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dayliv.dayliv.model.Dispatcher;
-import com.dayliv.dayliv.model.Partenaire;
 import com.dayliv.dayliv.service.DispatcherService;
-import com.dayliv.dayliv.service.EmailService;
-import com.dayliv.dayliv.service.PartenaireService;
 
 @RestController
 @CrossOrigin
@@ -32,8 +29,6 @@ public class DisaptcherRest {
 	// @Autowired
 	// private JwtTokenProvider tokenProvider;
 
-	@Autowired
-    private EmailService emailService; 
 
 	@GetMapping("/all")
 	public List<Dispatcher> findAll() {
@@ -57,8 +52,7 @@ public class DisaptcherRest {
 
 	@PostMapping("/save")
 	public Dispatcher save(@RequestBody Dispatcher dispatcher) {
-		emailService.sendMail(dispatcher.getEmail(), "Dayliv Marketplace", "Bonjour nous avons crée un compte pour vous !");
-		//emailService.sendMailWithInlineResources(dispatcher.getEmail(), "Dayliv Marketplace", "https://cdn.shopify.com/s/files/1/0511/3901/8925/files/Copia_de_Copia_de_REN_1_410x.png");
+		
 		return dispatcherService.save(dispatcher);
 	}
 

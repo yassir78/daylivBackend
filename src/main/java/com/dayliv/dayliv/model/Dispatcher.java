@@ -6,4 +6,5 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("dispatcher")
 public class Dispatcher extends User {
+
 }

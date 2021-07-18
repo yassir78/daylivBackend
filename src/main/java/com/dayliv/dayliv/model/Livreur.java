@@ -23,4 +23,5 @@ public class Livreur extends User{
 	private double lg;
 	private double lat;
 	
+	
 }

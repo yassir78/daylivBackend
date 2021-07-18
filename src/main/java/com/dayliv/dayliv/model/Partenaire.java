@@ -28,6 +28,7 @@ public class Partenaire extends User {
 	private String banniere;
 	private Long latitude;
 	private Long longitude;
+
 	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss.SSSZ")
 	private Date date_livraison;
 	@OneToMany(mappedBy = "partenaire")
@@ -38,5 +39,7 @@ public class Partenaire extends User {
 	private List<CategoryPartenaire> categoryPartenaires;
 	@OneToOne
 	private Store store;
+	private String adresse;
+
 
 }

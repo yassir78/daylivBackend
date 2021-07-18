@@ -26,7 +26,6 @@ import com.dayliv.dayliv.service.LivreurService;
 public class LivreurRest {
 	@Autowired
 	private LivreurService livreurService;
-	//@Autowired
 
 	@GetMapping("/all")
 	public List<Livreur> findAll() {

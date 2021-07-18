@@ -9,6 +9,7 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.dayliv.dayliv.dao.ProductImageDao;
+import com.dayliv.dayliv.dto.DeleteImageResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -78,7 +79,7 @@ public class AmazonS3BucketService {
     public  ResponseEntity<?> deleteFileFromBucket(String fileName, long productImageId) {
     	this.productImageDao.deleteById(productImageId);
         amazonS3.deleteObject(new DeleteObjectRequest(bucketName, fileName));
-        return  new ResponseEntity<>("Deletion Successful", HttpStatus.OK);
+          return new ResponseEntity<>(new DeleteImageResponse("Deleted successful!"), HttpStatus.OK);
     }
 
 }

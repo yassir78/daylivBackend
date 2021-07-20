@@ -1,4 +1,5 @@
 package com.dayliv.dayliv.serviceImpl;
+
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -10,6 +11,7 @@ import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.dayliv.dayliv.dao.ProductImageDao;
 import com.dayliv.dayliv.dto.DeleteImageResponse;
+import com.dayliv.dayliv.model.ProductImage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,60 +28,64 @@ import java.io.IOException;
 @Service
 public class AmazonS3BucketService {
 
-    private AmazonS3 amazonS3;
+	private AmazonS3 amazonS3;
 
-    @Value("${endpointUrl}")
-    private String endpointUrl;
-    @Value("${bucketName}")
-    private String bucketName;
-    @Value("${accessKey}")
-    private String accessKey;
-    @Value("${secretKey}")
-    private String secretKey;
-    
-    @Autowired
-    private ProductImageDao productImageDao;
+	@Value("${endpointUrl}")
+	private String endpointUrl;
+	@Value("${bucketName}")
+	private String bucketName;
+	@Value("${accessKey}")
+	private String accessKey;
+	@Value("${secretKey}")
+	private String secretKey;
 
-    @PostConstruct
-    private void initializeAmazon() {
-        AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
-         this.amazonS3 = new AmazonS3Client(credentials);
-        
-       // BasicAWSCredentials creds = new BasicAWSCredentials(this.accessKey, this.secretKey); 
-        //this.amazonS3 = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).build();
-    }
+	@Autowired
+	private ProductImageDao productImageDao;
 
-    public String uploadFile(MultipartFile multipartFile) {
-        String fileURL = "";
-        try {
-            File file = convertMultipartFileToFile(multipartFile);
-            String fileName = multipartFile.getOriginalFilename();
-            fileURL = endpointUrl + "/" + bucketName + "/" + fileName;
-            uploadFileToBucket(fileName, file);
-            file.delete();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return fileURL;
-    }
+	@PostConstruct
+	private void initializeAmazon() {
+		AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
+		this.amazonS3 = new AmazonS3Client(credentials);
 
-    private File convertMultipartFileToFile(MultipartFile file) throws IOException {
-        File convertedFile = new File(file.getOriginalFilename());
-        FileOutputStream fos = new FileOutputStream(convertedFile);
-        fos.write(file.getBytes());
-        fos.close();
-        return convertedFile;
-    }
+		// BasicAWSCredentials creds = new BasicAWSCredentials(this.accessKey,
+		// this.secretKey);
+		// this.amazonS3 = AmazonS3ClientBuilder.standard().withCredentials(new
+		// AWSStaticCredentialsProvider(creds)).build();
+	}
 
-    private void uploadFileToBucket(String fileName, File file) {
-        amazonS3.putObject(new PutObjectRequest(bucketName, fileName, file)
-                .withCannedAcl(CannedAccessControlList.PublicRead));
-    }
+	public String uploadFile(MultipartFile multipartFile) {
+		String fileURL = "";
+		try {
+			File file = convertMultipartFileToFile(multipartFile);
+			String fileName = multipartFile.getOriginalFilename();
+			fileURL = endpointUrl + "/" + bucketName + "/" + fileName;
+			uploadFileToBucket(fileName, file);
+			file.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return fileURL;
+	}
 
-    public  ResponseEntity<?> deleteFileFromBucket(String fileName, long productImageId) {
-    	this.productImageDao.deleteById(productImageId);
-        amazonS3.deleteObject(new DeleteObjectRequest(bucketName, fileName));
-          return new ResponseEntity<>(new DeleteImageResponse("Deleted successful!"), HttpStatus.OK);
-    }
+	private File convertMultipartFileToFile(MultipartFile file) throws IOException {
+		File convertedFile = new File(file.getOriginalFilename());
+		FileOutputStream fos = new FileOutputStream(convertedFile);
+		fos.write(file.getBytes());
+		fos.close();
+		return convertedFile;
+	}
+
+	private void uploadFileToBucket(String fileName, File file) {
+		amazonS3.putObject(
+				new PutObjectRequest(bucketName, fileName, file).withCannedAcl(CannedAccessControlList.PublicRead));
+	}
+
+	public ResponseEntity<?> deleteFileFromBucket(String fileName, long productImageId) {
+		ProductImage productImage = this.productImageDao.findById(productImageId).orElse(null);
+		if (productImage != null)
+			this.productImageDao.deleteById(productImageId);
+		amazonS3.deleteObject(new DeleteObjectRequest(bucketName, fileName));
+		return new ResponseEntity<>(new DeleteImageResponse("Deleted successful!"), HttpStatus.OK);
+	}
 
 }

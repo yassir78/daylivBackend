@@ -16,6 +16,7 @@ import com.dayliv.dayliv.dao.CategoryProductDao;
 import com.dayliv.dayliv.dao.StoreDao;
 import com.dayliv.dayliv.dao.SubCategoryDao;
 import com.dayliv.dayliv.model.CategoryProduct;
+import com.dayliv.dayliv.model.CategoryStore;
 import com.dayliv.dayliv.model.Store;
 import com.dayliv.dayliv.model.SubCategory;
 import com.dayliv.dayliv.service.StoreService;
@@ -597,4 +598,9 @@ public class StoreServiceImpl implements StoreService {
 				}
 				return "";
 	}
+
+			@Override
+			public List<Store> findAllByCategoryStoreLink(String link) {
+				return storeDao.findAllByCategoryStoreLink(link);
+			}
 }

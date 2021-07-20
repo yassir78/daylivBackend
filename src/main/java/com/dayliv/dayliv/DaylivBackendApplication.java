@@ -3,6 +3,7 @@ package com.dayliv.dayliv;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;  
 import com.dayliv.dayliv.dao.CategoryPartenaireDao;
 import com.dayliv.dayliv.dao.CategoryProductDao;
+import com.dayliv.dayliv.dao.CategoryStoreDao;
 import com.dayliv.dayliv.dao.CommandeDao;
 import com.dayliv.dayliv.dao.CommandeItemDao;
 import com.dayliv.dayliv.dao.CommandeStatusDao;
@@ -33,6 +35,7 @@ import com.dayliv.dayliv.dao.StoreDao;
 import com.dayliv.dayliv.dao.SubCategoryDao;
 import com.dayliv.dayliv.dao.SuperAdminDao;
 import com.dayliv.dayliv.model.CategoryProduct;
+import com.dayliv.dayliv.model.CategoryStore;
 import com.dayliv.dayliv.model.NotificationEmail;
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.model.ProductImage;
@@ -59,8 +62,24 @@ public class DaylivBackendApplication  {
 			CommandeItemDao commandeItemDao, CommandeStatusDao commandeStatusDao, PanierDao panierDao,
 			StoreDao storeDao, PanierItemDao panierItemDao, CategoryProductDao categoryProductDao,
 			ProductImageDao productImageDao, CategoryPartenaireDao categoryPartenaireDao,
-			SubCategoryDao subCategoryDao) {
+			SubCategoryDao subCategoryDao, CategoryStoreDao categoryStoreDao) {
 		return (args) -> {
+			
+			Stream.of("Luxe", "Electroménagers", "Auto Moto","Santé", "Sport", "Beauté et soins", "Animaux", 
+					"Bébé Enfants", "Multimédia / Téléphonie","Librairie / Papeterie", "Divertissements", "Maison / Déco", "Bricolage", "Epicerie fine / Gourmet", "Mode", "Chaussures / Sneakers","Accessoires","Bijoux / Montres").forEach(categorie->{
+				CategoryStore categoryStore = new CategoryStore();
+				categoryStore.setNom(categorie);
+
+				categoryStoreDao.save(categoryStore);
+			});
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -170,8 +189,15 @@ public class DaylivBackendApplication  {
 			 * commande2).forEach(commande -> { commandeDao.save(commande); });
 			 */
 			Stream.of("I2021", "P2021", "M2021", "XEHZJ8855").forEach(code -> {
+				String[] categories = {"Luxe", "Electroménagers", "Auto Moto","Santé", "Sport", "Beauté et soins", "Animaux",};
+				String random = (categories[new Random().nextInt(categories.length)]);
+				CategoryStore cs = new CategoryStore();
+				cs.setNom(random);
+				categoryStoreDao.save(cs);
+				
 				Store store = new Store();
 				store.setCode(code);
+				store.setCategoryStore(cs);
 				store.setPhone("06785521455");
 				store.setName("SHOP-" + code);
 				store.setCodePostal("500300");

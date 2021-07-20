@@ -51,4 +51,6 @@ public class Store {
 	@OneToMany(mappedBy = "store")
 	@JsonIgnore
 	private List<Commande> commandes;
+    @ManyToOne
+	private CategoryStore categoryStore;
 }

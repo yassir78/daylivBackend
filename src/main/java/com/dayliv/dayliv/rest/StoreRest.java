@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dayliv.dayliv.dao.CategoryStoreDao;
+import com.dayliv.dayliv.model.CategoryStore;
 import com.dayliv.dayliv.model.Store;
 import com.dayliv.dayliv.service.StoreService;
 
@@ -26,6 +28,8 @@ import com.dayliv.dayliv.service.StoreService;
 public class StoreRest {
 	@Autowired
 	private StoreService storeService;
+	@Autowired
+	CategoryStoreDao  categoryStoreDao;
     @GetMapping("/adresse/{code}")
 	public ResponseEntity<String>  findAddressByCode(@PathVariable String code) {
 		String result =  storeService.findAddressByCode(code);
@@ -76,5 +80,9 @@ public class StoreRest {
 	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	  }
-
+	
+	@GetMapping("/link/{link}")
+	public List<Store> findAllByCategoryStoreLink(@PathVariable String link) {
+		return storeService.findAllByCategoryStoreLink(link);
+	}
 }

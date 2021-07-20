@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 
+import com.dayliv.dayliv.model.CategoryStore;
 import com.dayliv.dayliv.model.Store;
 
 public interface StoreService {
@@ -17,6 +18,8 @@ public interface StoreService {
 	public void deleteStore(Long id);
 
 	public Store findById(Long id);
+	
+	public List<Store> findAllByCategoryStoreLink(String link);
 	
 	public Store findByCode(String code);
 	public Map<String, Object> getAllStores(String name, int page, int size);

@@ -569,6 +569,8 @@ public class StoreServiceImpl implements StoreService {
 		stores = pagecats.getContent();
 
 		Map<String, Object> response = new HashMap<>();
+		
+		
 		response.put("stores", stores);
 		response.put("currentPage", pagecats.getNumber());
 		response.put("totalItems", pagecats.getTotalElements());

@@ -46,9 +46,9 @@ public class StoreRest {
 		storeService.deleteStore(id);
 	}
 
-	@PutMapping("/update")
+	@PutMapping("/")
 	public Store updateStore(@RequestBody Store store) {
-		return storeService.updateStore(store);
+		return storeService.updateStore(store.getId(), store);
 	}
 
 	@PostMapping("/add")

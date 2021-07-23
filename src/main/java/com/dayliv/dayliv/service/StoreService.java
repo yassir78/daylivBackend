@@ -13,7 +13,7 @@ public interface StoreService {
 
 	public Store createStore(Store store);
 
-	public Store updateStore(Store store);
+	public Store updateStore(long id, Store store);
 
 	public void deleteStore(Long id);
 

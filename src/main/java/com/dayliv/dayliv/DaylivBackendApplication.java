@@ -72,17 +72,6 @@ public class DaylivBackendApplication  {
 
 				categoryStoreDao.save(categoryStore);
 			});
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 		/*	Map<String, Collection<String>> categories = new HashMap<>();			
 			
 		    List <String> subCategoryList1 = new ArrayList<>();

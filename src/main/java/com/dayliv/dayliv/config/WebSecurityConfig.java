@@ -1,4 +1,5 @@
 package com.dayliv.dayliv.config;
+
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,6 @@ import com.dayliv.dayliv.oauth2.OAuth2AccessTokenResponseConverterWithDefaults;
 import com.dayliv.dayliv.oauth2.OAuth2AuthenticationFailureHandler;
 import com.dayliv.dayliv.oauth2.OAuth2AuthenticationSuccessHandler;
 
-
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
@@ -62,36 +61,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http
-			.cors()
-				.and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and()
-			.csrf().disable()
-			.formLogin().disable()
-			.httpBasic().disable()
-			.exceptionHandling()
-				.authenticationEntryPoint(new RestAuthenticationEntryPoint())
-				.and()
-			.authorizeRequests()
-				.antMatchers("/", "/error", "/api/all","/oauth2/**","/dayliv-api/categoryStore/**","/dayliv-api/store/category/**", "/login/oauth2/code/**","/login/oauth2/code/google", "/api/auth/**","/dayliv-api/auth/**","/uploadFile", "/deleteFile", "/oauth2/**","/dayliv-api/product/**","/dayliv-api/image/**","/dayliv-api/partenaire/**","/dayliv-api/commande/**", "/dayliv-api/store/**","/dayliv-api/categoryProduct/**","/dayliv-api/subCategory/**", "/dayliv-api/payment/**","/dayliv-api/user/**","/dayliv-api/livreur/**","/dayliv-api/dispatcher/**","/dayliv-api/notification/**","/dayliv-api/categoryProduct/storeCode/**","/dayliv-api/user/**", "/dayliv-api/user/me").permitAll()
-			.anyRequest()
-				.authenticated()
-				.and()
-			.oauth2Login()
-				.authorizationEndpoint()
-					.and()
-				.redirectionEndpoint()
-					.and()
-				.userInfoEndpoint()
-					.oidcUserService(customOidcUserService)
-					.userService(customOAuth2UserService)
-					.and()
-				.tokenEndpoint()
-					.accessTokenResponseClient(authorizationCodeTokenResponseClient())
-					.and()
-				.successHandler(oAuth2AuthenticationSuccessHandler)
-				.failureHandler(oAuth2AuthenticationFailureHandler);
+		http.cors().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf()
+				.disable().formLogin().disable().httpBasic().disable().exceptionHandling()
+				.authenticationEntryPoint(new RestAuthenticationEntryPoint()).and().authorizeRequests()
+				.antMatchers("/", "/error", "/api/all", "/oauth2/**", "/dayliv-api/categoryStore/**",
+						"/dayliv-api/store/category/**", "/login/oauth2/code/**", "/login/oauth2/code/google",
+						"/api/auth/**", "/dayliv-api/auth/**", "/uploadFile", "/deleteFile", "/oauth2/**",
+						"/dayliv-api/product/**", "/dayliv-api/image/**", "/dayliv-api/partenaire/**",
+						"/dayliv-api/commande/**", "/dayliv-api/store/**", "/dayliv-api/categoryProduct/**",
+						"/dayliv-api/subCategory/**", "/dayliv-api/payment/**", "/dayliv-api/user/**",
+						"/dayliv-api/livreur/**", "/dayliv-api/dispatcher/**", "/dayliv-api/notification/**",
+						"/dayliv-api/categoryProduct/storeCode/**", "/dayliv-api/user/**", "/dayliv-api/user/me")
+				.permitAll().anyRequest().authenticated().and().oauth2Login().authorizationEndpoint().and()
+				.redirectionEndpoint().and().userInfoEndpoint().oidcUserService(customOidcUserService)
+				.userService(customOAuth2UserService).and().tokenEndpoint()
+				.accessTokenResponseClient(authorizationCodeTokenResponseClient()).and()
+				.successHandler(oAuth2AuthenticationSuccessHandler).failureHandler(oAuth2AuthenticationFailureHandler);
 
 		// Add our custom Token based authentication filter
 		http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -132,8 +117,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private OAuth2AccessTokenResponseClient<OAuth2AuthorizationCodeGrantRequest> authorizationCodeTokenResponseClient() {
 		OAuth2AccessTokenResponseHttpMessageConverter tokenResponseHttpMessageConverter = new OAuth2AccessTokenResponseHttpMessageConverter();
-		tokenResponseHttpMessageConverter.setTokenResponseConverter(new OAuth2AccessTokenResponseConverterWithDefaults());
-		RestTemplate restTemplate = new RestTemplate(Arrays.asList(new FormHttpMessageConverter(), tokenResponseHttpMessageConverter));
+		tokenResponseHttpMessageConverter
+				.setTokenResponseConverter(new OAuth2AccessTokenResponseConverterWithDefaults());
+		RestTemplate restTemplate = new RestTemplate(
+				Arrays.asList(new FormHttpMessageConverter(), tokenResponseHttpMessageConverter));
 		restTemplate.setErrorHandler(new OAuth2ErrorResponseErrorHandler());
 		DefaultAuthorizationCodeTokenResponseClient tokenResponseClient = new DefaultAuthorizationCodeTokenResponseClient();
 		tokenResponseClient.setRestOperations(restTemplate);

@@ -17,6 +17,7 @@ import com.dayliv.dayliv.dao.LivreurDao;
 import com.dayliv.dayliv.dao.RoleDao;
 import com.dayliv.dayliv.model.Livreur;
 import com.dayliv.dayliv.model.NotificationEmail;
+import com.dayliv.dayliv.model.Partenaire;
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.model.Role;
 import com.dayliv.dayliv.service.LivreurService;
@@ -57,7 +58,64 @@ public class LivreurServiceImpl implements LivreurService {
 
 	@Override
 	public Livreur update(Long id, Livreur livreur) {
-		return livreurDao.save(livreur);
+		Livreur myLivreur = livreurDao.findById(id).get();
+		if(livreur.getPassword() != null) {
+			String password =passwordEncoder.encode(livreur.getPassword());
+			myLivreur.setPassword(password);
+		}
+		if(livreur.getNom()!=null) {
+			myLivreur.setNom(livreur.getNom());
+		}
+		if(livreur.getPrenom() != null) {
+			myLivreur.setPrenom(livreur.getPrenom());
+		}
+		 if(livreur.getAdresse() !=null)
+		 {
+			 myLivreur.setAdresse(livreur.getAdresse());
+		 }
+		 
+		 if(livreur.getCodePostal()!=null) {
+			 myLivreur.setCodePostal(livreur.getCodePostal());
+		 }
+		 if(livreur.getEmail() !=null) {
+			 myLivreur.setEmail(livreur.getEmail());
+		 }
+		 
+		 if(livreur.getDisplayName() !=null) {
+			 myLivreur.setDisplayName(livreur.getDisplayName());
+		 }
+		 
+		 if(livreur.getNum_tel() !=null) {
+			 myLivreur.setNum_tel(livreur.getNum_tel());
+		 }
+		 if(livreur.getImage_profile() !=null) {
+			 myLivreur.setImage_profile(livreur.getImage_profile());
+		 }
+	     if(livreur.getCreatedDate() !=null) {
+	    	 myLivreur.setCreatedDate(livreur.getCreatedDate());
+	     }
+	     
+	     if(livreur.getStoreCode() != null ) {
+	    	 myLivreur.setStoreCode(livreur.getStoreCode());
+	     }
+	     
+		
+		if(livreur.getRoles() !=null) {
+			final HashSet<Role> roles = new HashSet<Role>();
+			roles.add(roleRepository.findByName(Role.ROLE_PARTENAIRE));
+			myLivreur.setRoles(roles);
+		}
+		
+		
+		if(livreur.getMobility()!=null) {
+			myLivreur.setMobility(livreur.getMobility());
+		}
+		
+		
+		if(livreur.getModifiedDate()!=null) {
+			myLivreur.setModifiedDate(livreur.getModifiedDate());
+		}
+		return livreurDao.save(myLivreur);
 	}
 	
 	@Override

@@ -37,9 +37,9 @@ public class LivreurRest {
 	public void delete(@PathVariable Long id) {
 		livreurService.delete(id);
 	}
-	@PutMapping("/num/{id}")
-	public Livreur update(@PathVariable Long id,@RequestBody Livreur livreur) {
-		return livreurService.update(id, livreur);
+	@PutMapping("/")
+	public Livreur update(@RequestBody Livreur livreur) {
+		return livreurService.update(livreur.getId(), livreur);
 	}
 	
 	@PutMapping("/{id}")

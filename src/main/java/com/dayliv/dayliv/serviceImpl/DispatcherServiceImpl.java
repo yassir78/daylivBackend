@@ -17,6 +17,7 @@ import com.dayliv.dayliv.dao.DispatcherDao;
 import com.dayliv.dayliv.dao.RoleDao;
 import com.dayliv.dayliv.model.Dispatcher;
 import com.dayliv.dayliv.model.NotificationEmail;
+import com.dayliv.dayliv.model.Partenaire;
 import com.dayliv.dayliv.model.Product;
 import com.dayliv.dayliv.model.Role;
 import com.dayliv.dayliv.service.DispatcherService;
@@ -62,8 +63,55 @@ public class DispatcherServiceImpl implements DispatcherService {
 
 	@Override
 	public Dispatcher update(Long id, Dispatcher dispatcher) {
-		// TODO Auto-generated method stub
-		return DispatcherDao.save(dispatcher);
+		Dispatcher myDispatcher = DispatcherDao.findById(id).get();
+		if(dispatcher.getPassword() != null) {
+			String password =passwordEncoder.encode(dispatcher.getPassword());
+			myDispatcher.setPassword(password);
+		}
+		if(dispatcher.getNom()!=null) {
+			myDispatcher.setNom(dispatcher.getNom());
+		}
+		if(dispatcher.getPrenom() != null) {
+			myDispatcher.setPrenom(dispatcher.getPrenom());
+		}
+		 if(dispatcher.getAdresse() !=null)
+		 {
+			 myDispatcher.setAdresse(dispatcher.getAdresse());
+		 }
+		 
+		 if(dispatcher.getCodePostal()!=null) {
+			 myDispatcher.setCodePostal(dispatcher.getCodePostal());
+		 }
+		 if(dispatcher.getEmail() !=null) {
+			 myDispatcher.setEmail(dispatcher.getEmail());
+		 }
+		 
+		 if(dispatcher.getDisplayName() !=null) {
+			 myDispatcher.setDisplayName(dispatcher.getDisplayName());
+		 }
+		 
+		 if(dispatcher.getNum_tel() !=null) {
+			 myDispatcher.setNum_tel(dispatcher.getNum_tel());
+		 }
+		 if(dispatcher.getImage_profile() !=null) {
+			 myDispatcher.setImage_profile(dispatcher.getImage_profile());
+		 }
+	     if(dispatcher.getCreatedDate() !=null) {
+	    	 myDispatcher.setCreatedDate(dispatcher.getCreatedDate());
+	     }
+	     
+	     if(dispatcher.getStoreCode() != null ) {
+	    	 myDispatcher.setStoreCode(dispatcher.getStoreCode());
+	     }
+	     
+		
+		if(dispatcher.getRoles() !=null) {
+			final HashSet<Role> roles = new HashSet<Role>();
+			roles.add(roleRepository.findByName(Role.ROLE_PARTENAIRE));
+			myDispatcher.setRoles(roles);
+
+		}
+		return DispatcherDao.save(myDispatcher);
 	}
 
 	@Override

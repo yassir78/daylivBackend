@@ -58,13 +58,56 @@ public class PartenaireServiceImpl implements PartenaireService {
 	}
 	@Override
 	public Partenaire update(Long id, Partenaire partenaire) {
-		String password =passwordEncoder.encode(partenaire.getPassword());
-		final HashSet<Role> roles = new HashSet<Role>();
-		roles.add(roleRepository.findByName(Role.ROLE_PARTENAIRE));
-		partenaire.setRoles(roles);
-		partenaire.setPassword(password);
+		Partenaire myPartenaire = partenaireDao.findById(id).get();
+		if(partenaire.getPassword() != null) {
+			String password =passwordEncoder.encode(partenaire.getPassword());
+			myPartenaire.setPassword(password);
+		}
+		if(partenaire.getNom()!=null) {
+			myPartenaire.setNom(partenaire.getNom());
+		}
+		if(partenaire.getPrenom() != null) {
+			myPartenaire.setPrenom(partenaire.getPrenom());
+		}
+		 if(partenaire.getAdresse() !=null)
+		 {
+			 myPartenaire.setAdresse(partenaire.getAdresse());
+		 }
+		 
+		 if(partenaire.getCodePostal()!=null) {
+			 myPartenaire.setCodePostal(partenaire.getCodePostal());
+		 }
+		 if(partenaire.getEmail() !=null) {
+			 myPartenaire.setEmail(partenaire.getEmail());
+		 }
+		 
+		 if(partenaire.getDisplayName() !=null) {
+			 myPartenaire.setDisplayName(partenaire.getDisplayName());
+		 }
+		 
+		 if(partenaire.getNum_tel() !=null) {
+			 myPartenaire.setNum_tel(partenaire.getNum_tel());
+		 }
+		 if(partenaire.getImage_profile() !=null) {
+			 myPartenaire.setImage_profile(partenaire.getImage_profile());
+		 }
+	     if(partenaire.getCreatedDate() !=null) {
+	    	 myPartenaire.setCreatedDate(partenaire.getCreatedDate());
+	     }
+	     
+	     if(partenaire.getStoreCode() != null ) {
+	    	 myPartenaire.setStoreCode(partenaire.getStoreCode());
+	     }
+	     
+		
+		if(partenaire.getRoles() !=null) {
+			final HashSet<Role> roles = new HashSet<Role>();
+			roles.add(roleRepository.findByName(Role.ROLE_PARTENAIRE));
+			myPartenaire.setRoles(roles);
 
-		return partenaireDao.save(partenaire);
+		}
+
+		return partenaireDao.save(myPartenaire);
 	}
 	@Override
 	public Partenaire findByNom(String nom) {

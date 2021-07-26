@@ -17,7 +17,7 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*")
-                        .allowedOrigins("*", "http://daylivfrontendapp.s3-website.eu-west-3.amazonaws.com");
+                        .allowedOrigins("*", "http://daylivfrontendapp.s3-website.eu-west-3.amazonaws.com", "http://localhost:4200");
             }
         };
     }

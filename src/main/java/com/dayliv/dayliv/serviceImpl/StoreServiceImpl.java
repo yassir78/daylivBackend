@@ -536,8 +536,48 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
-	public Store updateStore(Store store) {
-		return storeDao.save(store);
+	public Store updateStore(long id, Store store) {
+		Store myStore =  storeDao.findById(id).get();
+		 if(store.getName() != null) {
+			 myStore.setName(store.getName());
+		 }
+		 if(store.getAddress()!=null) {
+			 myStore.setAddress(store.getAddress());
+		 }
+		 
+		 if(store.getCode() != null) {
+			 myStore.setCode(store.getCode());
+		 }
+			 
+		 if(store.getEmail() != null) {
+			 myStore.setEmail(store.getEmail());
+		 }
+		 if(store.getCodePostal() != null) {
+			 myStore.setCodePostal(store.getCodePostal());
+		 }
+		if(store.getLat() !=  0) {
+			myStore.setLat(store.getLat());
+		}
+		
+		if(store.getLg() != 0) {
+			myStore.setLg(store.getLg());
+		}
+		if(store.getLogo() != null) {
+			myStore.setLogo(store.getLogo());
+		}
+		if(store.getDescription() != null)
+		{
+			myStore.setDescription(store.getDescription());
+		}
+		
+		if(store.getCurrency() != null) {
+			myStore.setCurrency(store.getCurrency());
+		}
+		
+		if(store.getDefaultLanguage() !=null) {
+			myStore.setDefaultLanguage(store.getDefaultLanguage());
+		}
+		return storeDao.save(myStore);
 	}
 
 	@Override

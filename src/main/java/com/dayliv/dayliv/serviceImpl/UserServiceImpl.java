@@ -61,6 +61,8 @@ public class UserServiceImpl implements UserService {
 					"User with email id " + signUpRequest.getEmail() + " already exist");
 		}
 		User user = buildUser(signUpRequest);
+		System.out.println("*****************User");
+		System.out.println(user);
 		Date now = Calendar.getInstance().getTime();
 		user.setCreatedDate(now);
 		user.setModifiedDate(now);
@@ -73,6 +75,7 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 		user.setDisplayName(formDTO.getDisplayName());
 		user.setEmail(formDTO.getEmail());
+		user.setNum_tel(formDTO.getNum_tel());
 		user.setPassword(passwordEncoder.encode(formDTO.getPassword()));
 		final HashSet<Role> roles = new HashSet<Role>();
 		roles.add(roleRepository.findByName(Role.ROLE_COSTUMER));

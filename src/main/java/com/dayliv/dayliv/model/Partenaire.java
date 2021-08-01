@@ -42,7 +42,6 @@ public class Partenaire extends User {
 	@OneToOne
 	private Store store;
 	private String adresse;
-	
 	@OneToMany(mappedBy = "partenaire")
 	@JsonIgnore
 	private List<Commande> commandes;

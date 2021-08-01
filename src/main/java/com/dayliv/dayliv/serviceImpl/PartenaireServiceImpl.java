@@ -23,6 +23,7 @@ import com.dayliv.dayliv.model.CategoryProduct;
 import com.dayliv.dayliv.model.NotificationEmail;
 import com.dayliv.dayliv.model.Partenaire;
 import com.dayliv.dayliv.model.Role;
+import com.dayliv.dayliv.model.Store;
 import com.dayliv.dayliv.model.SubCategory;
 import com.dayliv.dayliv.service.PartenaireService;
 import com.dayliv.dayliv.service.SendMailService;
@@ -627,6 +628,10 @@ public class PartenaireServiceImpl implements PartenaireService {
 			myPartenaire.setRoles(roles);
 
 		}
+		
+		if(partenaire.getCategoryStore() != null) {
+			myPartenaire.setCategoryStore(partenaire.getCategoryStore());
+		}
 
 		return partenaireDao.save(myPartenaire);
 		
@@ -634,6 +639,20 @@ public class PartenaireServiceImpl implements PartenaireService {
 		
 		
 		
+	}
+	
+
+	@Override
+	public List<Partenaire> findAllByCategoryStoreLink(String link) {
+		return partenaireDao.findAllByCategoryStoreLink(link);
+	}
+	
+	public String findAddressByCode(String code) {
+		Partenaire partenaire = partenaireDao.findByStoreCode(code);
+		if (partenaire != null && !partenaire.getAdresse().equals("")) {
+			return partenaire.getAdresse();
+		}
+		return "";
 	}
 	@Override
 	public Partenaire findByNom(String nom) {
@@ -667,6 +686,10 @@ public class PartenaireServiceImpl implements PartenaireService {
 	      response.put("totalPages", pagecats.getTotalPages());
 
 		return response;
+	}
+	@Override
+	public Partenaire findByStoreCode(String code) {
+		return partenaireDao.findByStoreCode(code);
 	}
 
 }

@@ -20,6 +20,11 @@ public interface PartenaireService {
 
 	public Partenaire findByLogin(String login);
 	public Map<String, Object> getAllPartenaires(String name, int page, int size);
+	public List<Partenaire> findAllByCategoryStoreLink(String link);
+
+	public Partenaire findByStoreCode(String code);
+
+	public String findAddressByCode(String code);
 
 
 }

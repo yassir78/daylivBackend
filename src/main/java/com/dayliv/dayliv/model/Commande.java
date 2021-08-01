@@ -49,4 +49,7 @@ public class Commande {
 	private LivraisonInfos livraisonInfos;
 	@ManyToOne
 	private Store store;
+	
+	@ManyToOne
+	private  Partenaire partenaire;
 }

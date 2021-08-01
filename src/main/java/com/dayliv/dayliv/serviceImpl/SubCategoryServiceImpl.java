@@ -28,10 +28,10 @@ public class SubCategoryServiceImpl implements SubCategoryService{
 	}
 	@Override
 	public List<SubCategory> getSubCategoriesByStoreCode(String code) {
-		Store store = storeDao.findByCode(code);
+		/*Store store = storeDao.findByCode(code);
 		if (store != null) {
 			return subCategoryDao.findByStoreCode(code);
-		}
-		return null;
+		}*/
+		 return subCategoryDao.findByStoreCode(code);
 	}
 }

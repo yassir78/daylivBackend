@@ -35,6 +35,10 @@ private String storeCode;
 @JsonIgnore
 private List<Store> stores;
 
+@OneToMany(mappedBy = "categoryStore")
+@JsonIgnore
+private List<Partenaire> partenaires;
+
 @PrePersist
 public void slugify(){
 	this.label = this.nom;

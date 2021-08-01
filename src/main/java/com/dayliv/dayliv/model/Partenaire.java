@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -28,9 +29,10 @@ public class Partenaire extends User {
 	private String banniere;
 	private Long latitude;
 	private Long longitude;
-
+	private String defaultLanguage = "FR";//code
+	private String currency ="CH";//code
 	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss.SSSZ")
-	private Date date_livraison;
+	private Date inBusinessSince;
 	@OneToMany(mappedBy = "partenaire")
 	@JsonIgnore
 	private List<Product> products;
@@ -40,6 +42,12 @@ public class Partenaire extends User {
 	@OneToOne
 	private Store store;
 	private String adresse;
+	
+	@OneToMany(mappedBy = "partenaire")
+	@JsonIgnore
+	private List<Commande> commandes;
+    @ManyToOne
+	private CategoryStore categoryStore;
 
 
 }

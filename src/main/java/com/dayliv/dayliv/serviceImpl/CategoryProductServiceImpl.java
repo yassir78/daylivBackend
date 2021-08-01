@@ -36,12 +36,11 @@ private SubCategoryDao subCategoryDao;
 
 	@Override
 	public List<CategoryProduct> getCategoriesByStoreCode(String code) {
-		// TODO Auto-generated method stub
-		Store store = storeDao.findByCode(code);
+		/*Store store = storeDao.findByCode(code);
 		if (store != null) {
 			return categoryProductDao.findByStoreCode(code);
-		}
-		return null;
+		}*/
+		return categoryProductDao.findByStoreCode(code);
 	}
 
 	@Override
